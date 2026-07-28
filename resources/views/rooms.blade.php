@@ -16,10 +16,10 @@
         <section class="hero-section room-hero">
             <div class="hero-copy">
                 <p class="eyebrow">Accommodation</p>
-                <h1>Rooms For Slow, Comfortable Stays</h1>
+                <h1>Comfortable Stays Near The Oak</h1>
                 <p>
-                    Explore three room styles for couples, families, and guests visiting The Oak. Send an enquiry
-                    and the resort team will call back with availability and suitable options.
+                    Stay close to the resort in calm, comfortable accommodation surrounded by natural beauty.
+                    Send an enquiry and the team will call back with availability and suitable options.
                 </p>
                 <div class="hero-actions">
                     <a class="primary-action" href="#enquiry">Enquire About Rooms</a>
@@ -49,12 +49,12 @@
                     >
                     <div>
                         <span>01</span>
-                        <h3>Heritage Rooms</h3>
-                        <p>Warm, classic rooms for couples or solo guests who want a calm and comfortable stay.</p>
+                        <h3>Semi Deluxe Rooms</h3>
+                        <p>A comfortable stay option for travellers who want to explore nearby places and return to a quiet room after a day out.</p>
                         <ul>
-                            <li>Ideal for 1-2 guests</li>
-                            <li>Classic resort-style interiors</li>
-                            <li>Good for short leisure stays</li>
+                            <li>Suitable for leisure travellers</li>
+                            <li>Convenient for sightseeing around Sohra, Jowai, and nearby areas</li>
+                            <li>Good for short stays and event guests</li>
                         </ul>
                     </div>
                 </article>
@@ -66,12 +66,12 @@
                     >
                     <div>
                         <span>02</span>
-                        <h3>Garden View Rooms</h3>
-                        <p>Light-filled rooms suited for guests who prefer a quiet view and a softer morning pace.</p>
+                        <h3>Cottages</h3>
+                        <p>A peaceful home-away-from-home stay surrounded by nature, ideal for guests looking for a quieter resort escape.</p>
                         <ul>
-                            <li>Ideal for couples</li>
-                            <li>Garden-facing feel</li>
-                            <li>Relaxed weekend stays</li>
+                            <li>Peaceful cottage-style accommodation</li>
+                            <li>Suited for families and relaxed getaways</li>
+                            <li>Good for guests who prefer privacy and calm surroundings</li>
                         </ul>
                     </div>
                 </article>
@@ -83,12 +83,12 @@
                     >
                     <div>
                         <span>03</span>
-                        <h3>Family Rooms</h3>
-                        <p>More spacious rooms for small families or groups who want to stay close together.</p>
+                        <h3>The Oak Restaurant</h3>
+                        <p>A relaxed dining space for conversations with family and friends, offering a multi-cuisine menu in the outskirts of Shillong.</p>
                         <ul>
-                            <li>Ideal for families</li>
-                            <li>Extra sleeping flexibility</li>
-                            <li>Useful for event guests</li>
+                            <li>Indian, Chinese, Continental, and Khasi menu options</li>
+                            <li>Comfortable dining ambience</li>
+                            <li>Useful for staying guests and event visitors</li>
                         </ul>
                     </div>
                 </article>
@@ -108,18 +108,18 @@
             <div class="detail-list">
                 <article>
                     <span>01</span>
-                    <h3>Short Form</h3>
+                    <h3>Easy Stay Enquiry</h3>
                     <p>Only essential details are asked first, so customers can enquire quickly.</p>
                 </article>
                 <article>
                     <span>02</span>
-                    <h3>Flexible Requirements</h3>
-                    <p>Guests can mention room preference, number of people, and any special requests.</p>
+                    <h3>Travel & Event Friendly</h3>
+                    <p>Guests can mention whether they are visiting for sightseeing, a family stay, or an event at the resort.</p>
                 </article>
                 <article>
                     <span>03</span>
-                    <h3>Admin Follow-Up</h3>
-                    <p>The resort team handles date validation and final room confirmation from the admin side.</p>
+                    <h3>Additional Assistance</h3>
+                    <p>The team can also guide guests on planning support, vendor coordination, photography, videography, and other event needs.</p>
                 </article>
             </div>
         </section>
@@ -160,9 +160,8 @@
                     <div class="field-group">
                         <label for="room_type">Preferred Room</label>
                         <select id="room_type" name="room_type">
-                            <option>Heritage Rooms</option>
-                            <option>Garden View Rooms</option>
-                            <option>Family Rooms</option>
+                            <option>Semi Deluxe Rooms</option>
+                            <option>Cottages</option>
                             <option>Not sure yet</option>
                         </select>
                     </div>

@@ -18,8 +18,8 @@
                 <p class="eyebrow">Catering Services</p>
                 <h1>Menus For Gatherings, Celebrations, And Events</h1>
                 <p>
-                    Choose between vegetarian and non-vegetarian catering enquiries, then select a complete or
-                    partial service depending on how much support your event needs.
+                    The Oak supports in-house catering with multi-cuisine menu options and experienced service staff.
+                    Outside caterers can also be discussed based on the event requirement.
                 </p>
                 <div class="hero-actions">
                     <a class="primary-action" href="#enquiry">Enquire About Catering</a>
@@ -123,10 +123,10 @@
         <section class="details-section catering-details">
             <div class="details-copy">
                 <p class="eyebrow">Menu Discussion</p>
-                <h2>Sample Items First, Final Menu Later</h2>
+                <h2>Multi-Cuisine Menus, Finalized Personally</h2>
                 <p>
-                    These items are placeholders so the page has a complete structure. The final dish names,
-                    servings, counters, and menu combinations can be updated once the client shares the real menu.
+                    The final menu can include Indian, Continental, Asian, Khasi, and custom selections. Dish names,
+                    serving style, counters, and special requests will be confirmed directly with the resort team.
                 </p>
             </div>
 
@@ -134,12 +134,12 @@
                 <article>
                     <span>01</span>
                     <h3>Choose Food Type</h3>
-                    <p>Customers begin with vegetarian or non-vegetarian catering based on the event.</p>
+                    <p>Customers begin with vegetarian, non-vegetarian, or mixed catering based on the event.</p>
                 </article>
                 <article>
                     <span>02</span>
-                    <h3>Select Service Level</h3>
-                    <p>Complete service covers a fuller spread, while lite service keeps the menu focused.</p>
+                    <h3>In-House Or Outside Caterers</h3>
+                    <p>The Oak can support in-house catering, and outside caterers may also be allowed after discussion.</p>
                 </article>
                 <article>
                     <span>03</span>

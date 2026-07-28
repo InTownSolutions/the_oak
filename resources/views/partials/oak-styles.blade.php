@@ -1372,6 +1372,32 @@
         cursor: pointer;
     }
 
+    .amenities-section {
+        padding: clamp(54px, 8vw, 92px) clamp(20px, 5vw, 72px);
+        background: #fff7e5;
+    }
+
+    .amenity-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 28px;
+    }
+
+    .amenity-grid span {
+        display: flex;
+        min-height: 72px;
+        align-items: center;
+        padding: 14px;
+        border: 1px solid rgba(121, 80, 0, 0.2);
+        border-radius: 8px;
+        background: var(--oak-ivory);
+        color: var(--oak-bark);
+        font-size: 0.94rem;
+        font-weight: 700;
+        line-height: 1.45;
+    }
+
     .form-action:disabled {
         cursor: not-allowed;
         opacity: 0.58;
@@ -1862,6 +1888,10 @@
             grid-template-columns: 1fr;
         }
 
+        .amenity-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
         .combined-hero,
         .combined-workspace {
             grid-template-columns: 1fr;
@@ -1941,6 +1971,10 @@
         }
 
         .quick-stats {
+            grid-template-columns: 1fr;
+        }
+
+        .amenity-grid {
             grid-template-columns: 1fr;
         }
 

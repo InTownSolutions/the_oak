@@ -18,8 +18,8 @@
                 <p class="eyebrow">Decoration Services</p>
                 <h1>Choose A Decoration Setup For Your Event</h1>
                 <p>
-                    Start with one of three decoration categories. The final styling, theme, flowers, lighting,
-                    and venue setup will be discussed personally by the resort team after your enquiry.
+                    Floral, traditional, and theme-based decor can be arranged in-house or discussed with outside
+                    vendors based on the style and scale of your event.
                 </p>
                 <div class="hero-actions">
                     <a class="primary-action" href="#decoration-categories">View Packages</a>
@@ -104,10 +104,11 @@
         <section class="details-section decoration-details">
             <div class="details-copy">
                 <p class="eyebrow">Visual Planning</p>
-                <h2>Made For Discussion, Not Instant Checkout</h2>
+                <h2>In-House Decor Or Vendor Support</h2>
                 <p>
                     Decoration needs usually depend on the event type, guest count, venue area, theme, and customer
-                    taste. The enquiry form collects enough detail for the team to call back and guide the customer.
+                    taste. The resort team can discuss in-house decor, outside vendor support, and entertainment
+                    arrangements such as music, DJ, or visual setup.
                 </p>
             </div>
 
@@ -120,12 +121,12 @@
                 <article>
                     <span>02</span>
                     <h3>Share The Event Mood</h3>
-                    <p>They can mention colors, theme, occasion, guest count, and specific decor needs.</p>
+                    <p>They can mention colors, theme, occasion, floral preferences, guest count, and specific decor needs.</p>
                 </article>
                 <article>
                     <span>03</span>
-                    <h3>Admin Finalizes Offline</h3>
-                    <p>The admin team discusses feasibility, availability, and final scope directly with the customer.</p>
+                    <h3>Extras Can Be Discussed</h3>
+                    <p>Planning coordination, vendor assistance, photography, videography, music, and visual setup can be discussed offline.</p>
                 </article>
             </div>
         </section>

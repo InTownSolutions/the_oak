@@ -18,8 +18,8 @@
                 <p class="eyebrow">Banquet Hall</p>
                 <h1>Where Celebration Comes To Life</h1>
                 <p>
-                    A warm, elegant setting for weddings, receptions, family gatherings, corporate events,
-                    and milestone celebrations in the Khasi Hills.
+                    Set amid pine greenery and landscaped outdoor spaces, The Oak Banquet Hall offers an elegant
+                    setting for weddings, receptions, birthdays, corporate meetings, and memorable gatherings.
                 </p>
                 <div class="hero-actions">
                     <a class="primary-action" href="#enquiry">Enquire Now</a>
@@ -37,20 +37,20 @@
 
         <section class="quick-stats" aria-label="Banquet hall highlights">
             <div>
-                <strong>250+</strong>
-                <span>Guest Capacity</span>
+                <strong>250</strong>
+                <span>Cluster Seating</span>
             </div>
             <div>
-                <strong>Indoor</strong>
-                <span>Celebration Space</span>
+                <strong>400</strong>
+                <span>Theatre Seating</span>
             </div>
             <div>
-                <strong>Decor</strong>
-                <span>Available On Request</span>
+                <strong>150</strong>
+                <span>Dining Capacity</span>
             </div>
             <div>
-                <strong>Catering</strong>
-                <span>Appointment Support</span>
+                <strong>1000</strong>
+                <span>Informal Outdoor Setup</span>
             </div>
         </section>
 
@@ -80,29 +80,52 @@
         <section id="details" class="details-section">
             <div class="details-copy">
                 <p class="eyebrow">For Every Occasion</p>
-                <h2>Simple To Explore, Easy To Enquire</h2>
+                <h2>A Flexible Venue For Formal And Informal Gatherings</h2>
                 <p>
-                    Customers can choose their preferred event date and quickly see whether the banquet hall appears
-                    available. Final confirmation still happens after the resort team calls back.
+                    The hall is designed for intimate ceremonies, grand celebrations, corporate programmes, and
+                    family events. Customers can choose their preferred event date and quickly see whether the
+                    banquet hall appears available before sending an enquiry.
                 </p>
             </div>
 
             <div class="detail-list">
                 <article>
                     <span>01</span>
-                    <h3>Weddings & Receptions</h3>
-                    <p>Designed for graceful gatherings with space for ceremony, dining, and family moments.</p>
+                    <h3>Celebration Capacity</h3>
+                    <p>Suitable for 100 to 250 guests in cluster seating, 300 to 400 guests in theatre style, and larger informal gatherings using the outdoor space.</p>
                 </article>
                 <article>
                     <span>02</span>
-                    <h3>Private Celebrations</h3>
-                    <p>Birthdays, anniversaries, reunions, and festive events can be discussed through enquiry.</p>
+                    <h3>Dining & Kitchen Support</h3>
+                    <p>A separate dining hall with 25 tables and seating for around 150 guests is connected to a kitchen area for smoother catering operations.</p>
                 </article>
                 <article>
                     <span>03</span>
-                    <h3>Corporate Events</h3>
-                    <p>Meetings, retreats, team dinners, and formal functions can be arranged by the admin team.</p>
+                    <h3>Garden & Preparation Rooms</h3>
+                    <p>The outdoor lawn can support open-air ceremonies, while two nearby rooms can be used for preparation, relaxation, or pre-function discussions.</p>
                 </article>
+            </div>
+        </section>
+
+        <section class="amenities-section">
+            <div class="section-heading">
+                <p class="eyebrow">Facilities & Amenities</p>
+                <h2>Venue Support For A Smooth Event</h2>
+            </div>
+
+            <div class="amenity-grid">
+                <span>Air conditioning inside the banquet hall</span>
+                <span>Elegant lighting and custom decor options</span>
+                <span>Wi-Fi across the venue</span>
+                <span>Ample parking space</span>
+                <span>Wheelchair accessibility</span>
+                <span>Power backup and 30KVA generator</span>
+                <span>24/7 security with CCTV surveillance</span>
+                <span>Children's play area</span>
+                <span>Running water</span>
+                <span>Separate washrooms for ladies and gentlemen</span>
+                <span>Two rooms near the main hall</span>
+                <span>Separate car entry and exit</span>
             </div>
         </section>
 
@@ -111,8 +134,8 @@
                 <p class="eyebrow">Start A Conversation</p>
                 <h2>Banquet Hall Enquiry</h2>
                 <p>
-                    Send a few details and the resort team will call back to discuss availability, arrangements,
-                    decoration, and catering support.
+                    Send a few details and the resort team will call back to discuss availability, seating,
+                    dining arrangements, decoration, and catering support.
                 </p>
             </div>
 
