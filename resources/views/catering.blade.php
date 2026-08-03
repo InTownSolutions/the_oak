@@ -159,21 +159,34 @@
                 </p>
             </div>
 
-            <form class="enquiry-form" method="POST" action="#">
+            @if (session('success'))
+                <p class="form-success">{{ session('success') }}</p>
+            @endif
+
+            @if ($errors->any())
+                <div class="form-error">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
+
+            <form class="enquiry-form" method="POST" action="{{ route('enquiries.store') }}">
                 @csrf
+                <input type="hidden" name="service" value="Catering">
                 <div class="field-group">
                     <label for="name">Full Name</label>
-                    <input id="name" name="name" type="text" placeholder="Enter your name">
+                    <input id="name" name="name" type="text" value="{{ old('name') }}" placeholder="Enter your name" required>
                 </div>
 
                 <div class="field-row">
                     <div class="field-group">
                         <label for="phone">Phone Number</label>
-                        <input id="phone" name="phone" type="tel" placeholder="Your contact number">
+                        <input id="phone" name="phone" type="tel" value="{{ old('phone') }}" placeholder="Your contact number" required>
                     </div>
                     <div class="field-group">
                         <label for="guests">Guests</label>
-                        <input id="guests" name="guests" type="number" min="1" placeholder="Approx. count">
+                        <input id="guests" name="guests" type="number" min="1" value="{{ old('guests') }}" placeholder="Approx. count">
                     </div>
                 </div>
 
@@ -181,17 +194,17 @@
                     <div class="field-group">
                         <label for="food_type">Food Type</label>
                         <select id="food_type" name="food_type">
-                            <option>Vegetarian</option>
-                            <option>Non-Vegetarian</option>
-                            <option>Both / Need Guidance</option>
+                            <option @selected(old('food_type') === 'Vegetarian')>Vegetarian</option>
+                            <option @selected(old('food_type') === 'Non-Vegetarian')>Non-Vegetarian</option>
+                            <option @selected(old('food_type') === 'Both / Need Guidance')>Both / Need Guidance</option>
                         </select>
                     </div>
                     <div class="field-group">
                         <label for="service_level">Service Level</label>
                         <select id="service_level" name="service_level">
-                            <option>Complete Feast</option>
-                            <option>Lite Service</option>
-                            <option>Not sure yet</option>
+                            <option @selected(old('service_level') === 'Complete Feast')>Complete Feast</option>
+                            <option @selected(old('service_level') === 'Lite Service')>Lite Service</option>
+                            <option @selected(old('service_level') === 'Not sure yet')>Not sure yet</option>
                         </select>
                     </div>
                 </div>
@@ -199,17 +212,17 @@
                 <div class="field-group">
                     <label for="event_type">Event Type</label>
                     <select id="event_type" name="event_type">
-                        <option>Wedding / Reception</option>
-                        <option>Birthday / Anniversary</option>
-                        <option>Family Gathering</option>
-                        <option>Corporate Event</option>
-                        <option>Other</option>
+                        <option @selected(old('event_type') === 'Wedding / Reception')>Wedding / Reception</option>
+                        <option @selected(old('event_type') === 'Birthday / Anniversary')>Birthday / Anniversary</option>
+                        <option @selected(old('event_type') === 'Family Gathering')>Family Gathering</option>
+                        <option @selected(old('event_type') === 'Corporate Event')>Corporate Event</option>
+                        <option @selected(old('event_type') === 'Other')>Other</option>
                     </select>
                 </div>
 
                 <div class="field-group">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Tell us about menu preferences or serving needs"></textarea>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about menu preferences or serving needs">{{ old('message') }}</textarea>
                 </div>
 
                 <button class="primary-action form-action" type="submit">Send Catering Enquiry</button>

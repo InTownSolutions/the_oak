@@ -52,19 +52,6 @@
                 </div>
             </a>
 
-            <a class="service-card" href="#">
-                <img
-                    src="https://images.unsplash.com/photo-1518733057094-95b53143d2a7?auto=format&fit=crop&w=900&q=85"
-                    alt="Cottage surrounded by trees"
-                >
-                <span class="service-badge">Accommodation</span>
-                <div>
-                    <h2>Cottages</h2>
-                    <p>Private cottage enquiries for quiet stays, retreats, and family getaways.</p>
-                    <span class="service-link muted-link">Coming Next</span>
-                </div>
-            </a>
-
             <a class="service-card" href="/decoration">
                 <img
                     src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85"

@@ -139,16 +139,29 @@
                 </p>
             </div>
 
-            <form class="enquiry-form" method="POST" action="#">
+            @if (session('success'))
+                <p class="form-success">{{ session('success') }}</p>
+            @endif
+
+            @if ($errors->any())
+                <div class="form-error">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
+
+            <form class="enquiry-form" method="POST" action="{{ route('enquiries.store') }}">
                 @csrf
+                <input type="hidden" name="service" value="Banquet Hall">
                 <div class="field-group">
                     <label for="name">Full Name</label>
-                    <input id="name" name="name" type="text" placeholder="Enter your name">
+                    <input id="name" name="name" type="text" value="{{ old('name') }}" placeholder="Enter your name" required>
                 </div>
 
                 <div class="field-group">
                     <label for="event_date">Preferred Event Date</label>
-                    <input id="event_date" name="event_date" type="date" data-banquet-date>
+                    <input id="event_date" name="event_date" type="date" value="{{ old('event_date') }}" data-banquet-date required>
                     <p class="availability-message neutral" data-banquet-availability>
                         Select a date to check banquet hall availability.
                     </p>
@@ -157,27 +170,27 @@
                 <div class="field-row">
                     <div class="field-group">
                         <label for="phone">Phone Number</label>
-                        <input id="phone" name="phone" type="tel" placeholder="Your contact number">
+                        <input id="phone" name="phone" type="tel" value="{{ old('phone') }}" placeholder="Your contact number" required>
                     </div>
                     <div class="field-group">
                         <label for="guests">Guests</label>
-                        <input id="guests" name="guests" type="number" min="1" placeholder="Approx. count">
+                        <input id="guests" name="guests" type="number" min="1" value="{{ old('guests') }}" placeholder="Approx. count">
                     </div>
                 </div>
 
                 <div class="field-group">
                     <label for="event_type">Event Type</label>
                     <select id="event_type" name="event_type">
-                        <option>Wedding / Reception</option>
-                        <option>Birthday / Private Celebration</option>
-                        <option>Corporate Event</option>
-                        <option>Other Gathering</option>
+                        <option @selected(old('event_type') === 'Wedding / Reception')>Wedding / Reception</option>
+                        <option @selected(old('event_type') === 'Birthday / Private Celebration')>Birthday / Private Celebration</option>
+                        <option @selected(old('event_type') === 'Corporate Event')>Corporate Event</option>
+                        <option @selected(old('event_type') === 'Other Gathering')>Other Gathering</option>
                     </select>
                 </div>
 
                 <div class="field-group">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Tell us what you are planning"></textarea>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us what you are planning">{{ old('message') }}</textarea>
                 </div>
 
                 <button class="primary-action form-action" type="submit" data-banquet-submit disabled>Send Enquiry</button>
@@ -188,7 +201,7 @@
             const banquetDateInput = document.querySelector('[data-banquet-date]');
             const banquetMessage = document.querySelector('[data-banquet-availability]');
             const banquetSubmit = document.querySelector('[data-banquet-submit]');
-            const bookedBanquetDates = ['2026-07-18', '2026-08-15', '2026-10-24'];
+            let availabilityRequest;
 
             function updateBanquetAvailability() {
                 const selectedDate = banquetDateInput.value;
@@ -202,16 +215,44 @@
                     return;
                 }
 
-                if (bookedBanquetDates.includes(selectedDate)) {
-                    banquetMessage.textContent = 'Banquet hall is unavailable on this date. Please choose another date.';
-                    banquetMessage.classList.add('unavailable');
-                    banquetSubmit.disabled = true;
-                    return;
+                banquetMessage.textContent = 'Checking banquet hall availability...';
+                banquetMessage.classList.add('neutral');
+                banquetSubmit.disabled = true;
+
+                if (availabilityRequest) {
+                    availabilityRequest.abort();
                 }
 
-                banquetMessage.textContent = 'Banquet hall appears available for this date. Submit your enquiry and our team will call to confirm.';
-                banquetMessage.classList.add('available');
-                banquetSubmit.disabled = false;
+                availabilityRequest = new AbortController();
+
+                fetch(`{{ route('banquet.availability') }}?date=${encodeURIComponent(selectedDate)}`, {
+                    headers: { 'Accept': 'application/json' },
+                    signal: availabilityRequest.signal,
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        banquetMessage.classList.remove('available', 'unavailable', 'neutral');
+
+                        if (data.available) {
+                            banquetMessage.textContent = 'Banquet hall appears available for this date. Submit your enquiry and our team will call to confirm.';
+                            banquetMessage.classList.add('available');
+                            banquetSubmit.disabled = false;
+                        } else {
+                            banquetMessage.textContent = 'Banquet hall is unavailable on this date. Please choose another date.';
+                            banquetMessage.classList.add('unavailable');
+                            banquetSubmit.disabled = true;
+                        }
+                    })
+                    .catch((error) => {
+                        if (error.name === 'AbortError') {
+                            return;
+                        }
+
+                        banquetMessage.classList.remove('available', 'unavailable', 'neutral');
+                        banquetMessage.textContent = 'Unable to check availability right now. Please try again.';
+                        banquetMessage.classList.add('unavailable');
+                        banquetSubmit.disabled = true;
+                    });
             }
 
             banquetDateInput.addEventListener('change', updateBanquetAvailability);

@@ -134,35 +134,48 @@
                 </p>
             </div>
 
-            <form class="enquiry-form" method="POST" action="#">
+            @if (session('success'))
+                <p class="form-success">{{ session('success') }}</p>
+            @endif
+
+            @if ($errors->any())
+                <div class="form-error">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
+
+            <form class="enquiry-form" method="POST" action="{{ route('enquiries.store') }}">
                 @csrf
+                <input type="hidden" name="service" value="Rooms">
                 <div class="field-group">
                     <label for="name">Full Name</label>
-                    <input id="name" name="name" type="text" placeholder="Enter your name">
+                    <input id="name" name="name" type="text" value="{{ old('name') }}" placeholder="Enter your name" required>
                 </div>
 
                 <div class="field-row">
                     <div class="field-group">
                         <label for="phone">Phone Number</label>
-                        <input id="phone" name="phone" type="tel" placeholder="Your contact number">
+                        <input id="phone" name="phone" type="tel" value="{{ old('phone') }}" placeholder="Your contact number" required>
                     </div>
                     <div class="field-group">
                         <label for="guests">Guests</label>
-                        <input id="guests" name="guests" type="number" min="1" placeholder="No. of guests">
+                        <input id="guests" name="guests" type="number" min="1" value="{{ old('guests') }}" placeholder="No. of guests">
                     </div>
                 </div>
 
                 <div class="field-row">
                     <div class="field-group">
                         <label for="rooms">Rooms Needed</label>
-                        <input id="rooms" name="rooms" type="number" min="1" placeholder="Approx. rooms">
+                        <input id="rooms" name="rooms" type="number" min="1" value="{{ old('rooms') }}" placeholder="Approx. rooms">
                     </div>
                     <div class="field-group">
                         <label for="room_type">Preferred Room</label>
                         <select id="room_type" name="room_type">
-                            <option>Semi Deluxe Rooms</option>
-                            <option>Cottages</option>
-                            <option>Not sure yet</option>
+                            <option @selected(old('room_type') === 'Semi Deluxe Rooms')>Semi Deluxe Rooms</option>
+                            <option @selected(old('room_type') === 'Cottages')>Cottages</option>
+                            <option @selected(old('room_type') === 'Not sure yet')>Not sure yet</option>
                         </select>
                     </div>
                 </div>
@@ -170,17 +183,17 @@
                 <div class="field-group">
                     <label for="stay_purpose">Stay Purpose</label>
                     <select id="stay_purpose" name="stay_purpose">
-                        <option>Leisure Stay</option>
-                        <option>Family Visit</option>
-                        <option>Wedding / Event Guest</option>
-                        <option>Corporate Stay</option>
-                        <option>Other</option>
+                        <option @selected(old('stay_purpose') === 'Leisure Stay')>Leisure Stay</option>
+                        <option @selected(old('stay_purpose') === 'Family Visit')>Family Visit</option>
+                        <option @selected(old('stay_purpose') === 'Wedding / Event Guest')>Wedding / Event Guest</option>
+                        <option @selected(old('stay_purpose') === 'Corporate Stay')>Corporate Stay</option>
+                        <option @selected(old('stay_purpose') === 'Other')>Other</option>
                     </select>
                 </div>
 
                 <div class="field-group">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your stay requirements"></textarea>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your stay requirements">{{ old('message') }}</textarea>
                 </div>
 
                 <button class="primary-action form-action" type="submit">Send Room Enquiry</button>

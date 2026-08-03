@@ -45,7 +45,7 @@
 
                 <div class="combined-service-grid">
                     <label class="combined-service-card is-selected">
-                        <input type="checkbox" value="banquet" checked data-combined-service>
+                        <input type="checkbox" name="selected_services[]" value="banquet" checked data-combined-service form="combinedEnquiryForm">
                         <img
                             src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=900&q=85"
                             alt="Banquet hall decorated for an event"
@@ -56,7 +56,7 @@
                     </label>
 
                     <label class="combined-service-card is-selected">
-                        <input type="checkbox" value="rooms" checked data-combined-service>
+                        <input type="checkbox" name="selected_services[]" value="rooms" checked data-combined-service form="combinedEnquiryForm">
                         <img
                             src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=85"
                             alt="Comfortable resort room"
@@ -67,7 +67,7 @@
                     </label>
 
                     <label class="combined-service-card">
-                        <input type="checkbox" value="cottages" data-combined-service>
+                        <input type="checkbox" name="selected_services[]" value="cottages" data-combined-service form="combinedEnquiryForm">
                         <img
                             src="https://images.unsplash.com/photo-1518733057094-95b53143d2a7?auto=format&fit=crop&w=900&q=85"
                             alt="Private resort cottage in nature"
@@ -78,7 +78,7 @@
                     </label>
 
                     <label class="combined-service-card">
-                        <input type="checkbox" value="decoration" data-combined-service>
+                        <input type="checkbox" name="selected_services[]" value="decoration" data-combined-service form="combinedEnquiryForm">
                         <img
                             src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85"
                             alt="Wedding decoration with flowers and lights"
@@ -89,7 +89,7 @@
                     </label>
 
                     <label class="combined-service-card">
-                        <input type="checkbox" value="catering" data-combined-service>
+                        <input type="checkbox" name="selected_services[]" value="catering" data-combined-service form="combinedEnquiryForm">
                         <img
                             src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=900&q=85"
                             alt="Catering food arrangement"
@@ -109,7 +109,7 @@
                         <div class="combined-field-grid">
                             <label>
                                 Event Type
-                                <select>
+                                <select name="banquet_event_type" form="combinedEnquiryForm">
                                     <option>Wedding Ceremony</option>
                                     <option>Reception</option>
                                     <option>Engagement</option>
@@ -119,11 +119,11 @@
                             </label>
                             <label>
                                 Expected Guests
-                                <input type="number" min="1" placeholder="Example: 150">
+                                <input type="number" name="banquet_guests" min="1" placeholder="Example: 150" form="combinedEnquiryForm">
                             </label>
                             <label>
                                 Hall Preference
-                                <select>
+                                <select name="banquet_hall_preference" form="combinedEnquiryForm">
                                     <option>Main Banquet Hall</option>
                                     <option>Garden Side Setup</option>
                                     <option>Indoor And Outdoor Setup</option>
@@ -140,19 +140,19 @@
                         <div class="combined-field-grid">
                             <label>
                                 Room Category
-                                <select>
-                                    <option>Heritage Room</option>
-                                    <option>Garden View Room</option>
-                                    <option>Family Room</option>
+                                <select name="room_type" form="combinedEnquiryForm">
+                                    <option>Semi Deluxe Rooms</option>
+                                    <option>Cottages</option>
+                                    <option>Not sure yet</option>
                                 </select>
                             </label>
                             <label>
                                 Rooms Needed
-                                <input type="number" min="1" placeholder="Example: 4">
+                                <input type="number" name="rooms" min="1" placeholder="Example: 4" form="combinedEnquiryForm">
                             </label>
                             <label>
                                 Number Of Guests
-                                <input type="number" min="1" placeholder="Example: 10">
+                                <input type="number" name="rooms_guests" min="1" placeholder="Example: 10" form="combinedEnquiryForm">
                             </label>
                         </div>
                     </article>
@@ -165,7 +165,7 @@
                         <div class="combined-field-grid">
                             <label>
                                 Cottage Type
-                                <select>
+                                <select name="cottage_type" form="combinedEnquiryForm">
                                     <option>Forest Cottage</option>
                                     <option>Family Cottage</option>
                                     <option>Group Cottage</option>
@@ -173,11 +173,11 @@
                             </label>
                             <label>
                                 Cottages Needed
-                                <input type="number" min="1" placeholder="Example: 2">
+                                <input type="number" name="cottages_needed" min="1" placeholder="Example: 2" form="combinedEnquiryForm">
                             </label>
                             <label>
                                 Guests Staying
-                                <input type="number" min="1" placeholder="Example: 6">
+                                <input type="number" name="cottage_guests" min="1" placeholder="Example: 6" form="combinedEnquiryForm">
                             </label>
                         </div>
                     </article>
@@ -190,7 +190,7 @@
                         <div class="combined-field-grid">
                             <label>
                                 Decoration Category
-                                <select>
+                                <select name="decor_category" form="combinedEnquiryForm">
                                     <option>Grand Wedding Decor</option>
                                     <option>Signature Celebration Decor</option>
                                     <option>Simple Decor Essentials</option>
@@ -198,11 +198,11 @@
                             </label>
                             <label>
                                 Preferred Theme
-                                <input type="text" placeholder="Example: Floral, rustic, golden">
+                                <input type="text" name="theme" placeholder="Example: Floral, rustic, golden" form="combinedEnquiryForm">
                             </label>
                             <label>
                                 Decor Areas
-                                <select>
+                                <select name="decor_areas" form="combinedEnquiryForm">
                                     <option>Stage, Entry, Seating, Photo Corner</option>
                                     <option>Stage And Entry</option>
                                     <option>Simple Backdrop Only</option>
@@ -219,7 +219,7 @@
                         <div class="combined-field-grid">
                             <label>
                                 Food Type
-                                <select>
+                                <select name="food_type" form="combinedEnquiryForm">
                                     <option>Pure Veg</option>
                                     <option>Non-Veg</option>
                                     <option>Veg And Non-Veg</option>
@@ -227,14 +227,14 @@
                             </label>
                             <label>
                                 Service Level
-                                <select>
+                                <select name="service_level" form="combinedEnquiryForm">
                                     <option>Complete Feast</option>
                                     <option>Partial Service</option>
                                 </select>
                             </label>
                             <label>
                                 Guests For Food
-                                <input type="number" min="1" placeholder="Example: 120">
+                                <input type="number" name="catering_guests" min="1" placeholder="Example: 120" form="combinedEnquiryForm">
                             </label>
                         </div>
                         <a class="combined-menu-link" href="/catering-menu.pdf" target="_blank" rel="noopener">Open sample menu PDF</a>
@@ -247,22 +247,36 @@
                 <h2>Customer Details</h2>
                 <p>One request reaches the admin team. Later, the admin can call and convert selected services into confirmed bookings.</p>
 
-                <form class="combined-form" data-combined-form>
+                @if (session('success'))
+                    <p class="form-success">{{ session('success') }}</p>
+                @endif
+
+                @if ($errors->any())
+                    <div class="form-error">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
+
+                <form id="combinedEnquiryForm" class="combined-form" method="POST" action="{{ route('enquiries.store') }}" data-combined-form>
+                    @csrf
+                    <input type="hidden" name="service" value="Combined Enquiry">
                     <label>
                         Full Name
-                        <input type="text" placeholder="Customer name" required>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="Customer name" required>
                     </label>
                     <label>
                         Phone Number
-                        <input type="tel" placeholder="Contact number" required>
+                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="Contact number" required>
                     </label>
                     <label>
                         Email Address
-                        <input type="email" placeholder="Optional email">
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Optional email">
                     </label>
                     <label>
                         Best Time To Call
-                        <select>
+                        <select name="best_time_to_call">
                             <option>Morning</option>
                             <option>Afternoon</option>
                             <option>Evening</option>
@@ -270,7 +284,7 @@
                     </label>
                     <label>
                         Additional Notes
-                        <textarea rows="4" placeholder="Share any event, stay, food, or decor notes"></textarea>
+                        <textarea rows="4" name="message" placeholder="Share any event, stay, food, or decor notes">{{ old('message') }}</textarea>
                     </label>
 
                     <div class="selected-summary">
@@ -279,9 +293,6 @@
                     </div>
 
                     <button class="combined-submit" type="submit">Send Combined Enquiry</button>
-                    <p class="combined-result" data-combined-result hidden>
-                        Demo enquiry created. In the final system this will appear in the admin enquiry table.
-                    </p>
                 </form>
             </aside>
         </section>
@@ -291,7 +302,6 @@
             const serviceDetails = document.querySelectorAll('[data-service-detail]');
             const selectedSummary = document.querySelector('[data-selected-summary]');
             const combinedForm = document.querySelector('[data-combined-form]');
-            const combinedResult = document.querySelector('[data-combined-result]');
             const serviceNames = {
                 banquet: 'Banquet Hall',
                 rooms: 'Rooms',
@@ -320,11 +330,6 @@
 
             serviceInputs.forEach((input) => {
                 input.addEventListener('change', refreshCombinedSelection);
-            });
-
-            combinedForm.addEventListener('submit', (event) => {
-                event.preventDefault();
-                combinedResult.hidden = false;
             });
 
             refreshCombinedSelection();

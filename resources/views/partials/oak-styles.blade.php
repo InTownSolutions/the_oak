@@ -884,7 +884,7 @@
         color: #795000;
     }
 
-    .status-pill.converted {
+    .status-pill.booked {
         background: #dff0df;
         color: #285c28;
     }
@@ -1040,6 +1040,7 @@
     }
 
     .followup-box label,
+    .booking-builder > label,
     .admin-form-grid label {
         display: grid;
         gap: 8px;
@@ -1049,6 +1050,7 @@
     }
 
     .followup-box textarea,
+    .booking-builder textarea,
     .followup-box input,
     .followup-box select,
     .admin-form-grid input,
@@ -1066,6 +1068,12 @@
         min-height: 96px;
         margin-top: 14px;
         padding: 12px;
+    }
+
+    .booking-builder textarea {
+        min-height: 96px;
+        padding: 12px;
+        resize: vertical;
     }
 
     .booking-builder-header span {
@@ -1140,7 +1148,7 @@
 
     .service-picker {
         display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
         padding-top: 0;
         padding-bottom: clamp(50px, 7vw, 88px);
@@ -1370,6 +1378,35 @@
         width: 100%;
         margin-top: 4px;
         cursor: pointer;
+    }
+
+    .form-success,
+    .form-error {
+        margin: 0 0 18px;
+        padding: 14px 16px;
+        border-radius: 8px;
+        font-weight: 700;
+        line-height: 1.5;
+    }
+
+    .form-success {
+        border: 1px solid rgba(75, 128, 67, 0.34);
+        background: rgba(126, 165, 111, 0.16);
+        color: #335d2e;
+    }
+
+    .form-error {
+        border: 1px solid rgba(148, 55, 42, 0.32);
+        background: rgba(148, 55, 42, 0.1);
+        color: #8b2f25;
+    }
+
+    .form-error p {
+        margin: 0;
+    }
+
+    .form-error p + p {
+        margin-top: 6px;
     }
 
     .amenities-section {

@@ -22,27 +22,39 @@
                 </div>
 
                 <div class="admin-date">
-                    <span>Review Demo</span>
-                    <strong>Dummy Data</strong>
+                    <span>Live Data</span>
+                    <strong>{{ now()->format('d M Y') }}</strong>
                 </div>
             </header>
+
+            @if (session('success'))
+                <p class="form-success">{{ session('success') }}</p>
+            @endif
+
+            @if ($errors->any())
+                <div class="form-error">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
 
             <section class="admin-stats" aria-label="Admin summary">
                 <article>
                     <span>New</span>
-                    <strong>06</strong>
+                    <strong>{{ str_pad((string) $stats['new'], 2, '0', STR_PAD_LEFT) }}</strong>
                 </article>
                 <article>
                     <span>Contacted</span>
-                    <strong>04</strong>
+                    <strong>{{ str_pad((string) $stats['contacted'], 2, '0', STR_PAD_LEFT) }}</strong>
                 </article>
                 <article>
                     <span>In Discussion</span>
-                    <strong>03</strong>
+                    <strong>{{ str_pad((string) $stats['discussion'], 2, '0', STR_PAD_LEFT) }}</strong>
                 </article>
                 <article>
-                    <span>Converted</span>
-                    <strong>02</strong>
+                    <span>Booked</span>
+                    <strong>{{ str_pad((string) $stats['booked'], 2, '0', STR_PAD_LEFT) }}</strong>
                 </article>
             </section>
 
@@ -54,7 +66,7 @@
                     </div>
 
                     <div class="admin-filters">
-                        <span>All Services</span>
+                        <span>{{ $enquiries->count() }} Enquiries</span>
                         <span>Newest First</span>
                     </div>
                 </div>
@@ -72,110 +84,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="enquiry-row" tabindex="0"
-                                data-name="Amit Sharma"
-                                data-phone="+91 98765 43210"
-                                data-email="amit.sharma@example.com"
-                                data-service="Banquet Hall"
-                                data-type="Wedding Reception"
-                                data-guests="220"
-                                data-status="New"
-                                data-created="08 Jul 2026"
-                                data-message="Looking for banquet hall, decoration and catering support for a wedding reception.">
-                                <td>
-                                    <strong>Amit Sharma</strong>
-                                    <span>amit.sharma@example.com</span>
-                                </td>
-                                <td><span class="service-pill banquet">Banquet Hall</span></td>
-                                <td>Wedding Reception</td>
-                                <td>+91 98765 43210</td>
-                                <td><span class="status-pill new">New</span></td>
-                                <td>08 Jul 2026</td>
-                            </tr>
-
-                            <tr class="enquiry-row" tabindex="0"
-                                data-name="Riya Khongwir"
-                                data-phone="+91 99887 76655"
-                                data-email="riya.k@example.com"
-                                data-service="Rooms"
-                                data-type="Family Stay"
-                                data-guests="6"
-                                data-status="Contacted"
-                                data-created="08 Jul 2026"
-                                data-message="Needs 3 rooms for family guests attending a function at the resort.">
-                                <td>
-                                    <strong>Riya Khongwir</strong>
-                                    <span>riya.k@example.com</span>
-                                </td>
-                                <td><span class="service-pill rooms">Rooms</span></td>
-                                <td>Family Stay</td>
-                                <td>+91 99887 76655</td>
-                                <td><span class="status-pill contacted">Contacted</span></td>
-                                <td>08 Jul 2026</td>
-                            </tr>
-
-                            <tr class="enquiry-row" tabindex="0"
-                                data-name="Karan Mehta"
-                                data-phone="+91 91234 56789"
-                                data-email="karan.mehta@example.com"
-                                data-service="Decoration"
-                                data-type="Engagement Decor"
-                                data-guests="90"
-                                data-status="In Discussion"
-                                data-created="07 Jul 2026"
-                                data-message="Interested in Signature Celebration Decor with warm gold floral theme.">
-                                <td>
-                                    <strong>Karan Mehta</strong>
-                                    <span>karan.mehta@example.com</span>
-                                </td>
-                                <td><span class="service-pill decoration">Decoration</span></td>
-                                <td>Engagement Decor</td>
-                                <td>+91 91234 56789</td>
-                                <td><span class="status-pill discussion">In Discussion</span></td>
-                                <td>07 Jul 2026</td>
-                            </tr>
-
-                            <tr class="enquiry-row" tabindex="0"
-                                data-name="Meban Lyngdoh"
-                                data-phone="+91 90909 12121"
-                                data-email="meban.l@example.com"
-                                data-service="Catering"
-                                data-type="Complete Non-Veg Feast"
-                                data-guests="150"
-                                data-status="New"
-                                data-created="07 Jul 2026"
-                                data-message="Wants non-veg complete catering and may also need decoration for a family celebration.">
-                                <td>
-                                    <strong>Meban Lyngdoh</strong>
-                                    <span>meban.l@example.com</span>
-                                </td>
-                                <td><span class="service-pill catering">Catering</span></td>
-                                <td>Complete Non-Veg Feast</td>
-                                <td>+91 90909 12121</td>
-                                <td><span class="status-pill new">New</span></td>
-                                <td>07 Jul 2026</td>
-                            </tr>
-
-                            <tr class="enquiry-row" tabindex="0"
-                                data-name="Priya Das"
-                                data-phone="+91 93456 77881"
-                                data-email="priya.das@example.com"
-                                data-service="Banquet Hall"
-                                data-type="Corporate Dinner"
-                                data-guests="80"
-                                data-status="Converted"
-                                data-created="06 Jul 2026"
-                                data-message="Corporate dinner with banquet hall, vegetarian lite catering, and simple decoration.">
-                                <td>
-                                    <strong>Priya Das</strong>
-                                    <span>priya.das@example.com</span>
-                                </td>
-                                <td><span class="service-pill banquet">Banquet Hall</span></td>
-                                <td>Corporate Dinner</td>
-                                <td>+91 93456 77881</td>
-                                <td><span class="status-pill converted">Converted</span></td>
-                                <td>06 Jul 2026</td>
-                            </tr>
+                            @forelse ($enquiries as $enquiry)
+                                @php
+                                    $serviceClass = match ($enquiry->service) {
+                                        'Banquet Hall' => 'banquet',
+                                        'Rooms' => 'rooms',
+                                        'Decoration' => 'decoration',
+                                        'Catering' => 'catering',
+                                        default => 'banquet',
+                                    };
+                                    $statusClass = match ($enquiry->status) {
+                                        'Contacted' => 'contacted',
+                                        'In Discussion' => 'discussion',
+                                        'Booked' => 'booked',
+                                        default => 'new',
+                                    };
+                                @endphp
+                                <tr class="enquiry-row" tabindex="0" data-enquiry-id="{{ $enquiry->id }}">
+                                    <td>
+                                        <strong>{{ $enquiry->customer_name }}</strong>
+                                        <span>{{ $enquiry->email ?: 'No email shared' }}</span>
+                                    </td>
+                                    <td><span class="service-pill {{ $serviceClass }}">{{ $enquiry->service }}</span></td>
+                                    <td>{{ $enquiry->enquiry_type ?: 'General Enquiry' }}</td>
+                                    <td>{{ $enquiry->phone }}</td>
+                                    <td><span class="status-pill {{ $statusClass }}">{{ $enquiry->status }}</span></td>
+                                    <td>{{ $enquiry->created_at->format('d M Y') }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6">
+                                        <strong>No enquiries yet</strong>
+                                        <span>Customer submissions will appear here automatically.</span>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -188,18 +131,21 @@
                 </div>
 
                 <div class="booking-card-grid">
-                    <article>
-                        <span class="booking-code">BK-0012</span>
-                        <h3>Priya Das</h3>
-                        <p>Banquet Hall, Veg Lite Catering, Simple Decor Essentials</p>
-                        <strong>Confirmed</strong>
-                    </article>
-                    <article>
-                        <span class="booking-code">BK-0011</span>
-                        <h3>Arun Nongrum</h3>
-                        <p>Rooms: 2 Heritage Rooms, 1 Family Room</p>
-                        <strong>Tentative</strong>
-                    </article>
+                    @forelse ($bookings as $booking)
+                        <article>
+                            <span class="booking-code">BK-{{ str_pad((string) $booking->id, 4, '0', STR_PAD_LEFT) }}</span>
+                            <h3>{{ $booking->customer_name }}</h3>
+                            <p>{{ collect($booking->services)->map(fn ($service) => \Illuminate\Support\Str::headline($service))->implode(', ') }}</p>
+                            <strong>{{ $booking->status }}</strong>
+                        </article>
+                    @empty
+                        <article>
+                            <span class="booking-code">LIVE</span>
+                            <h3>No bookings yet</h3>
+                            <p>Confirmed bookings created from enquiries will appear here.</p>
+                            <strong>Waiting</strong>
+                        </article>
+                    @endforelse
                 </div>
             </section>
 
@@ -245,7 +191,7 @@
                                         <span>Festive holiday pricing</span>
                                     </td>
                                     <td>20 Dec 2026 - 03 Jan 2027</td>
-                                    <td>Rooms, Cottages, Banquet</td>
+                                    <td>Rooms, Banquet</td>
                                     <td><span class="tariff-badge increase">+30%</span></td>
                                     <td><span class="status-pill new">Active Soon</span></td>
                                 </tr>
@@ -255,7 +201,7 @@
                                         <span>Low season accommodation offer</span>
                                     </td>
                                     <td>01 Jun 2027 - 31 Jul 2027</td>
-                                    <td>Rooms, Cottages</td>
+                                    <td>Rooms</td>
                                     <td><span class="tariff-badge discount">-15%</span></td>
                                     <td><span class="status-pill contacted">Draft</span></td>
                                 </tr>
@@ -279,7 +225,6 @@
                             <select>
                                 <option>Banquet Hall</option>
                                 <option>Rooms</option>
-                                <option>Cottages</option>
                                 <option>Decoration</option>
                                 <option>Catering</option>
                                 <option>All Services</option>
@@ -297,7 +242,7 @@
                         </div>
                         <label>
                             Note For Admin
-                            <textarea rows="3" placeholder="Example: Applies only after admin confirms date and package.">Show this during booking review before final quotation.</textarea>
+                            <textarea rows="3">Show this during booking review before final quotation.</textarea>
                         </label>
                         <button class="primary-action form-action" type="button">Save Tariff Rule</button>
                     </form>
@@ -342,6 +287,10 @@
                             <dd id="modalGuests"></dd>
                         </div>
                         <div>
+                            <dt>Preferred Date</dt>
+                            <dd id="modalDate"></dd>
+                        </div>
+                        <div>
                             <dt>Created</dt>
                             <dd id="modalCreated"></dd>
                         </div>
@@ -350,31 +299,35 @@
                 </aside>
 
                 <div class="modal-workspace">
-                    <section class="followup-box">
+                    <form id="followupForm" class="followup-box" method="POST">
+                        @csrf
+                        @method('PATCH')
                         <h3>Admin Follow-Up</h3>
                         <div class="admin-form-grid">
                             <label>
                                 Call Status
-                                <select>
+                                <select name="status" id="followupStatus">
                                     <option>New</option>
                                     <option>Contacted</option>
                                     <option>In Discussion</option>
-                                    <option>Converted</option>
+                                    <option>Booked</option>
                                     <option>Closed</option>
                                 </select>
                             </label>
                             <label>
                                 Next Follow-Up
-                                <input type="date">
+                                <input name="next_follow_up" id="followupDate" type="date">
                             </label>
                         </div>
                         <label>
                             Admin Notes
-                            <textarea rows="3" placeholder="Call notes, customer preferences, pending decisions"></textarea>
+                            <textarea name="admin_notes" id="followupNotes" rows="3" placeholder="Call notes, customer preferences, pending decisions"></textarea>
                         </label>
-                    </section>
+                        <button class="ghost-action form-action" type="submit">Save Follow-Up</button>
+                    </form>
 
-                    <section class="booking-builder">
+                    <form id="bookingForm" class="booking-builder" method="POST">
+                        @csrf
                         <div class="booking-builder-header">
                             <div>
                                 <h3>Create Booking For This Customer</h3>
@@ -384,94 +337,95 @@
                         </div>
 
                         <div class="service-toggle-grid">
-                            <label><input type="checkbox" value="banquet" data-service-toggle> Banquet Hall</label>
-                            <label><input type="checkbox" value="rooms" data-service-toggle> Rooms</label>
-                            <label><input type="checkbox" value="cottages" data-service-toggle> Cottages</label>
-                            <label><input type="checkbox" value="decoration" data-service-toggle> Decoration</label>
-                            <label><input type="checkbox" value="catering" data-service-toggle> Catering</label>
+                            <label><input type="checkbox" name="services[]" value="banquet" data-service-toggle> Banquet Hall</label>
+                            <label><input type="checkbox" name="services[]" value="rooms" data-service-toggle> Rooms</label>
+                            <label><input type="checkbox" name="services[]" value="decoration" data-service-toggle> Decoration</label>
+                            <label><input type="checkbox" name="services[]" value="catering" data-service-toggle> Catering</label>
                         </div>
 
                         <div class="service-form-stack">
                             <article class="service-booking-form" data-service-form="banquet">
                                 <h4>Banquet Hall Booking</h4>
                                 <div class="admin-form-grid">
-                                    <label>Event Date <input type="date"></label>
-                                    <label>Event Time <input type="time"></label>
-                                    <label>Hall <select><option>Main Banquet Hall</option><option>Garden Hall</option></select></label>
-                                    <label>Guests <input type="number" value="220"></label>
+                                    <label>Event Date <input name="banquet_event_date" id="bookingBanquetDate" type="date"></label>
+                                    <label>Event Time <input name="banquet_event_time" type="time"></label>
+                                    <label>Hall <select name="banquet_hall"><option>Main Banquet Hall</option><option>Garden Hall</option></select></label>
+                                    <label>Guests <input name="banquet_guests" id="bookingBanquetGuests" type="number" min="1"></label>
                                 </div>
                                 <p class="admin-availability-note">
-                                    Demo validation: confirmed banquet bookings block the selected date before admin can confirm.
+                                    Confirmed banquet bookings block the selected date before admin can confirm.
                                 </p>
                             </article>
 
                             <article class="service-booking-form" data-service-form="rooms">
                                 <h4>Room Assignment</h4>
                                 <div class="admin-form-grid">
-                                    <label>Check-In <input type="date"></label>
-                                    <label>Check-Out <input type="date"></label>
-                                    <label>Room Category <select><option>Heritage Rooms</option><option>Garden View Rooms</option><option>Family Rooms</option></select></label>
-                                    <label>Rooms Needed <input type="number" value="2"></label>
-                                </div>
-                                <div class="availability-strip">
-                                    <button type="button">H-101</button>
-                                    <button type="button">H-102</button>
-                                    <button type="button">G-201</button>
-                                    <button type="button">F-301</button>
-                                </div>
-                            </article>
-
-                            <article class="service-booking-form" data-service-form="cottages">
-                                <h4>Cottage Assignment</h4>
-                                <div class="admin-form-grid">
-                                    <label>Check-In <input type="date"></label>
-                                    <label>Check-Out <input type="date"></label>
-                                    <label>Cottage Type <select><option>Standard Cottage</option><option>Family Cottage</option></select></label>
-                                    <label>Cottages Needed <input type="number" value="1"></label>
-                                </div>
-                                <div class="availability-strip">
-                                    <button type="button">C-01</button>
-                                    <button type="button">C-02</button>
-                                    <button type="button">C-05</button>
+                                    <label>Check-In <input name="rooms_check_in" type="date"></label>
+                                    <label>Check-Out <input name="rooms_check_out" type="date"></label>
+                                    <label>Room Category <select name="room_category"><option>Semi Deluxe Rooms</option><option>Cottages</option></select></label>
+                                    <label>Rooms Needed <input name="rooms_needed" type="number" min="1"></label>
                                 </div>
                             </article>
 
                             <article class="service-booking-form" data-service-form="decoration">
                                 <h4>Decoration Booking</h4>
                                 <div class="admin-form-grid">
-                                    <label>Category <select><option>Grand Wedding Decor</option><option>Signature Celebration Decor</option><option>Simple Decor Essentials</option></select></label>
-                                    <label>Event Area <select><option>Banquet Hall</option><option>Garden Area</option><option>Entrance + Hall</option></select></label>
-                                    <label>Theme <input type="text" value="Warm gold floral"></label>
-                                    <label>Guests <input type="number" value="120"></label>
+                                    <label>Category <select name="decoration_category"><option>Grand Wedding Decor</option><option>Signature Celebration Decor</option><option>Simple Decor Essentials</option></select></label>
+                                    <label>Event Area <select name="decoration_area"><option>Banquet Hall</option><option>Garden Area</option><option>Entrance + Hall</option></select></label>
+                                    <label>Theme <input name="decoration_theme" id="bookingDecorTheme" type="text"></label>
+                                    <label>Guests <input name="decoration_guests" type="number" min="1"></label>
                                 </div>
                             </article>
 
                             <article class="service-booking-form" data-service-form="catering">
                                 <h4>Catering Booking</h4>
                                 <div class="admin-form-grid">
-                                    <label>Food Type <select><option>Vegetarian</option><option>Non-Vegetarian</option><option>Both</option></select></label>
-                                    <label>Service Level <select><option>Complete Feast</option><option>Lite Service</option></select></label>
-                                    <label>Guests <input type="number" value="150"></label>
-                                    <label>Menu Notes <input type="text" value="Confirm dessert counter"></label>
+                                    <label>Food Type <select name="food_type"><option>Vegetarian</option><option>Non-Vegetarian</option><option>Both</option></select></label>
+                                    <label>Service Level <select name="service_level"><option>Complete Feast</option><option>Lite Service</option></select></label>
+                                    <label>Guests <input name="catering_guests" type="number" min="1"></label>
+                                    <label>Menu Notes <input name="menu_notes" type="text"></label>
                                 </div>
                             </article>
                         </div>
 
+                        <label>
+                            Booking Notes
+                            <textarea name="admin_notes" rows="3" placeholder="Final booking notes, quotation remarks, package confirmation"></textarea>
+                        </label>
+
                         <div class="modal-actions">
                             <button class="ghost-action" type="button" id="resetBooking">Reset Services</button>
-                            <button class="primary-action" type="button" id="confirmBooking">Confirm Internal Booking</button>
+                            <button class="primary-action" type="submit">Confirm Internal Booking</button>
                         </div>
-
-                        <p class="booking-result" id="bookingResult" aria-live="polite"></p>
-                    </section>
+                    </form>
                 </div>
             </div>
         </section>
     </div>
 
     <script>
+        const enquiryPayloads = @js($enquiries->mapWithKeys(fn ($enquiry) => [
+            $enquiry->id => [
+                'id' => $enquiry->id,
+                'customer' => $enquiry->customer_name,
+                'phone' => $enquiry->phone,
+                'email' => $enquiry->email ?: 'No email shared',
+                'service' => $enquiry->service,
+                'type' => $enquiry->enquiry_type ?: 'General Enquiry',
+                'guests' => $enquiry->guests ?: 'Not shared',
+                'preferredDate' => optional($enquiry->preferred_date)->format('Y-m-d') ?: 'Not shared',
+                'created' => $enquiry->created_at->format('d M Y'),
+                'message' => $enquiry->message ?: 'No message shared.',
+                'status' => $enquiry->status,
+                'nextFollowUp' => optional($enquiry->next_follow_up)->format('Y-m-d'),
+                'adminNotes' => $enquiry->admin_notes,
+                'details' => $enquiry->details ?: [],
+            ],
+        ]));
         const modal = document.getElementById('enquiryModal');
         const rows = document.querySelectorAll('.enquiry-row');
+        const followupForm = document.getElementById('followupForm');
+        const bookingForm = document.getElementById('bookingForm');
         const fields = {
             customer: document.getElementById('modalCustomer'),
             phone: document.getElementById('modalPhone'),
@@ -479,15 +433,16 @@
             service: document.getElementById('modalService'),
             type: document.getElementById('modalType'),
             guests: document.getElementById('modalGuests'),
+            date: document.getElementById('modalDate'),
             created: document.getElementById('modalCreated'),
             message: document.getElementById('modalMessage'),
         };
 
         rows.forEach((row) => {
-            row.addEventListener('click', () => openModal(row));
+            row.addEventListener('click', () => openModal(row.dataset.enquiryId));
             row.addEventListener('keydown', (event) => {
                 if (event.key === 'Enter') {
-                    openModal(row);
+                    openModal(row.dataset.enquiryId);
                 }
             });
         });
@@ -504,29 +459,37 @@
             document.querySelectorAll('[data-service-toggle]').forEach((checkbox) => {
                 checkbox.checked = false;
             });
-            document.getElementById('bookingResult').textContent = '';
             updateServiceForms();
         });
 
-        document.getElementById('confirmBooking').addEventListener('click', () => {
-            const selected = [...document.querySelectorAll('[data-service-toggle]:checked')]
-                .map((checkbox) => checkbox.parentElement.textContent.trim());
+        function openModal(enquiryId) {
+            const enquiry = enquiryPayloads[enquiryId];
+            const details = enquiry.details || {};
 
-            document.getElementById('bookingResult').textContent = selected.length
-                ? `Demo booking created for ${fields.customer.textContent}: ${selected.join(', ')}.`
-                : 'Select at least one service before confirming the booking.';
-        });
+            fields.customer.textContent = enquiry.customer;
+            fields.phone.textContent = enquiry.phone;
+            fields.email.textContent = enquiry.email;
+            fields.service.textContent = enquiry.service;
+            fields.type.textContent = enquiry.type;
+            fields.guests.textContent = enquiry.guests;
+            fields.date.textContent = enquiry.preferredDate;
+            fields.created.textContent = enquiry.created;
+            fields.message.textContent = enquiry.message;
 
-        function openModal(row) {
-            fields.customer.textContent = row.dataset.name;
-            fields.phone.textContent = row.dataset.phone;
-            fields.email.textContent = row.dataset.email;
-            fields.service.textContent = row.dataset.service;
-            fields.type.textContent = row.dataset.type;
-            fields.guests.textContent = row.dataset.guests;
-            fields.created.textContent = row.dataset.created;
-            fields.message.textContent = row.dataset.message;
-            document.getElementById('bookingResult').textContent = '';
+            followupForm.action = `/admin/enquiries/${enquiry.id}`;
+            bookingForm.action = `/admin/enquiries/${enquiry.id}/bookings`;
+            document.getElementById('followupStatus').value = enquiry.status;
+            document.getElementById('followupDate').value = enquiry.nextFollowUp || '';
+            document.getElementById('followupNotes').value = enquiry.adminNotes || '';
+            document.getElementById('bookingBanquetDate').value = details.event_date || '';
+            document.getElementById('bookingBanquetGuests').value = enquiry.guests !== 'Not shared' ? enquiry.guests : '';
+            document.getElementById('bookingDecorTheme').value = details.theme || '';
+
+            document.querySelectorAll('[data-service-toggle]').forEach((checkbox) => {
+                checkbox.checked = serviceShouldStartChecked(checkbox.value, enquiry, details);
+            });
+
+            updateServiceForms();
             modal.classList.add('is-open');
             modal.setAttribute('aria-hidden', 'false');
         }
@@ -534,6 +497,21 @@
         function closeModal() {
             modal.classList.remove('is-open');
             modal.setAttribute('aria-hidden', 'true');
+        }
+
+        function serviceShouldStartChecked(service, enquiry, details) {
+            const selected = details.selected_services || [];
+
+            if (selected.includes(service)) {
+                return true;
+            }
+
+            return {
+                banquet: 'Banquet Hall',
+                rooms: 'Rooms',
+                decoration: 'Decoration',
+                catering: 'Catering',
+            }[service] === enquiry.service;
         }
 
         function updateServiceForms() {

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EnquiryController;
 
 function oak_pdf_text(string $text): string
 {
@@ -92,6 +94,9 @@ Route::get('/catering-menu.pdf', function () {
     ]);
 })->name('catering.menu');
 
-Route::get('/admin', function () {
-    return view('admin');
-})->name('admin.dashboard');
+Route::post('/enquiries', [EnquiryController::class, 'store'])->name('enquiries.store');
+Route::get('/banquet-hall/availability', [EnquiryController::class, 'banquetAvailability'])->name('banquet.availability');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::patch('/admin/enquiries/{enquiry}', [AdminController::class, 'updateEnquiry'])->name('admin.enquiries.update');
+Route::post('/admin/enquiries/{enquiry}/bookings', [AdminController::class, 'storeBooking'])->name('admin.bookings.store');
