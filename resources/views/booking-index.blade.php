@@ -6,12 +6,6 @@
                 <span>The Oak</span>
             </a>
 
-            <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="/combined-enquiry">One Page Option</a>
-                <a href="/banquet-hall">Banquet Hall</a>
-            </div>
         </nav>
 
         <section class="gateway-hero">

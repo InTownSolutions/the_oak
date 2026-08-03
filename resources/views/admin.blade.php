@@ -20,11 +20,6 @@
                     <p class="eyebrow">Admin Workspace</p>
                     <h1>Enquiries & Internal Bookings</h1>
                 </div>
-
-                <div class="admin-date">
-                    <span>Live Data</span>
-                    <strong>{{ now()->format('d M Y') }}</strong>
-                </div>
             </header>
 
             @if (session('success'))
