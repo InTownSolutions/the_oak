@@ -29,8 +29,8 @@
 
             <div class="catering-hero-image" aria-label="Catering preview">
                 <img
-                    src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1400&q=85"
-                    alt="Catering service table with prepared food"
+                    src="{{ asset('images/oak/RV_02908.jpg') }}"
+                    alt="The Oak restaurant dining area"
                 >
             </div>
         </section>
@@ -44,8 +44,8 @@
             <div class="catering-type-grid">
                 <article class="catering-type-card">
                     <img
-                        src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1200&q=85"
-                        alt="Vegetarian catering spread with colorful dishes"
+                        src="{{ asset('images/oak/RV_02923.jpg') }}"
+                        alt="The Oak restaurant interior with dining setup"
                     >
                     <div class="catering-type-copy">
                         <span class="catering-type-label">Vegetarian</span>
@@ -82,8 +82,8 @@
 
                 <article class="catering-type-card">
                     <img
-                        src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85"
-                        alt="Non vegetarian grilled food served for an event"
+                        src="{{ asset('images/oak/RV_02914.jpg') }}"
+                        alt="The Oak restaurant seating arrangement"
                     >
                     <div class="catering-type-copy">
                         <span class="catering-type-label">Non-Vegetarian</span>

@@ -22,8 +22,8 @@
         <section id="services" class="service-picker" aria-label="Booking enquiry service options">
             <a class="service-card" href="/banquet-hall">
                 <img
-                    src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1100&q=85"
-                    alt="Banquet hall arranged for a celebration"
+                    src="{{ asset('images/oak/RV_02903.jpg') }}"
+                    alt="The Oak building exterior"
                 >
                 <span class="service-badge">Banquet Services</span>
                 <div>
@@ -35,8 +35,8 @@
 
             <a class="service-card" href="/rooms">
                 <img
-                    src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=85"
-                    alt="Warm resort room interior"
+                    src="{{ asset('images/oak/RV_02934.jpg') }}"
+                    alt="The Oak room with warm wooden flooring"
                 >
                 <span class="service-badge">Accommodation</span>
                 <div>
@@ -61,8 +61,8 @@
 
             <a class="service-card" href="/catering">
                 <img
-                    src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=900&q=85"
-                    alt="Catering service table with prepared food"
+                    src="{{ asset('images/oak/RV_02908.jpg') }}"
+                    alt="The Oak restaurant dining area"
                 >
                 <span class="service-badge">Event Support</span>
                 <div>

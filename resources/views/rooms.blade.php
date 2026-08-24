@@ -29,8 +29,8 @@
 
             <div class="hero-media" aria-label="Room preview">
                 <img
-                    src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1400&q=85"
-                    alt="Warm resort room with bed and wooden interior"
+                    src="{{ asset('images/oak/RV_02942.jpg') }}"
+                    alt="The Oak guest room bed setup"
                 >
             </div>
         </section>
@@ -44,8 +44,8 @@
             <div class="room-category-grid">
                 <article class="room-category-card">
                     <img
-                        src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=85"
-                        alt="Heritage style room with warm lighting"
+                        src="{{ asset('images/oak/RV_02934.jpg') }}"
+                        alt="The Oak Semi Deluxe room"
                     >
                     <div>
                         <span>01</span>
@@ -61,8 +61,8 @@
 
                 <article class="room-category-card">
                     <img
-                        src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1000&q=85"
-                        alt="Room with large window and natural light"
+                        src="{{ asset('images/oak/RV_02919.jpg') }}"
+                        alt="The Oak interior lounge seating"
                     >
                     <div>
                         <span>02</span>
@@ -78,8 +78,8 @@
 
                 <article class="room-category-card">
                     <img
-                        src="https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=1000&q=85"
-                        alt="Spacious hotel room with twin bedding"
+                        src="{{ asset('images/oak/RV_02908.jpg') }}"
+                        alt="The Oak restaurant seating area"
                     >
                     <div>
                         <span>03</span>

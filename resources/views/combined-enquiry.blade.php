@@ -26,8 +26,8 @@
 
             <div class="combined-hero-image">
                 <img
-                    src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1300&q=85"
-                    alt="Warm banquet setup at a resort"
+                    src="{{ asset('images/oak/RV_02903.jpg') }}"
+                    alt="The Oak building exterior"
                 >
             </div>
         </section>
@@ -47,8 +47,8 @@
                     <label class="combined-service-card is-selected">
                         <input type="checkbox" name="selected_services[]" value="banquet" checked data-combined-service form="combinedEnquiryForm">
                         <img
-                            src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=900&q=85"
-                            alt="Banquet hall decorated for an event"
+                            src="{{ asset('images/oak/RV_02905.jpg') }}"
+                            alt="The Oak exterior and entrance"
                         >
                         <span>Banquet Services</span>
                         <strong>Banquet Hall</strong>
@@ -58,8 +58,8 @@
                     <label class="combined-service-card is-selected">
                         <input type="checkbox" name="selected_services[]" value="rooms" checked data-combined-service form="combinedEnquiryForm">
                         <img
-                            src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=85"
-                            alt="Comfortable resort room"
+                            src="{{ asset('images/oak/RV_02934.jpg') }}"
+                            alt="The Oak guest room"
                         >
                         <span>Accommodation</span>
                         <strong>Rooms</strong>
@@ -69,8 +69,8 @@
                     <label class="combined-service-card">
                         <input type="checkbox" name="selected_services[]" value="cottages" data-combined-service form="combinedEnquiryForm">
                         <img
-                            src="https://images.unsplash.com/photo-1518733057094-95b53143d2a7?auto=format&fit=crop&w=900&q=85"
-                            alt="Private resort cottage in nature"
+                            src="{{ asset('images/oak/RV_02919.jpg') }}"
+                            alt="The Oak interior seating area"
                         >
                         <span>Accommodation</span>
                         <strong>Cottages</strong>
@@ -91,8 +91,8 @@
                     <label class="combined-service-card">
                         <input type="checkbox" name="selected_services[]" value="catering" data-combined-service form="combinedEnquiryForm">
                         <img
-                            src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=900&q=85"
-                            alt="Catering food arrangement"
+                            src="{{ asset('images/oak/RV_02908.jpg') }}"
+                            alt="The Oak restaurant dining area"
                         >
                         <span>Event Support</span>
                         <strong>Catering</strong>
