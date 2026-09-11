@@ -26,8 +26,8 @@
 
             <div class="combined-hero-image">
                 <img
-                    src="{{ asset('images/oak/RV_02903.jpg') }}"
-                    alt="The Oak building exterior"
+                    src="{{ asset('images/oak/client/banquet-garden.jpg') }}"
+                    alt="The Oak resort garden and event area"
                 >
             </div>
         </section>
@@ -47,8 +47,8 @@
                     <label class="combined-service-card is-selected">
                         <input type="checkbox" name="selected_services[]" value="banquet" checked data-combined-service form="combinedEnquiryForm">
                         <img
-                            src="{{ asset('images/oak/RV_02905.jpg') }}"
-                            alt="The Oak exterior and entrance"
+                            src="{{ asset('images/oak/client/banquet-hero.jpg') }}"
+                            alt="The Oak banquet entrance"
                         >
                         <span>Banquet Services</span>
                         <strong>Banquet Hall</strong>
@@ -58,7 +58,7 @@
                     <label class="combined-service-card is-selected">
                         <input type="checkbox" name="selected_services[]" value="rooms" checked data-combined-service form="combinedEnquiryForm">
                         <img
-                            src="{{ asset('images/oak/RV_02934.jpg') }}"
+                            src="{{ asset('images/oak/client/room-deluxe.jpg') }}"
                             alt="The Oak guest room"
                         >
                         <span>Accommodation</span>
@@ -69,8 +69,8 @@
                     <label class="combined-service-card">
                         <input type="checkbox" name="selected_services[]" value="cottages" data-combined-service form="combinedEnquiryForm">
                         <img
-                            src="{{ asset('images/oak/RV_02919.jpg') }}"
-                            alt="The Oak interior seating area"
+                            src="{{ asset('images/oak/client/rooms-exterior.jpg') }}"
+                            alt="The Oak guesthouse exterior"
                         >
                         <span>Accommodation</span>
                         <strong>Cottages</strong>
@@ -80,8 +80,8 @@
                     <label class="combined-service-card">
                         <input type="checkbox" name="selected_services[]" value="decoration" data-combined-service form="combinedEnquiryForm">
                         <img
-                            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85"
-                            alt="Wedding decoration with flowers and lights"
+                            src="{{ asset('images/oak/client/banquet-lawn.jpg') }}"
+                            alt="The Oak lawn for event decoration planning"
                         >
                         <span>Event Support</span>
                         <strong>Decoration</strong>
@@ -91,7 +91,7 @@
                     <label class="combined-service-card">
                         <input type="checkbox" name="selected_services[]" value="catering" data-combined-service form="combinedEnquiryForm">
                         <img
-                            src="{{ asset('images/oak/RV_02908.jpg') }}"
+                            src="{{ asset('images/oak/client/restaurant-hero.jpg') }}"
                             alt="The Oak restaurant dining area"
                         >
                         <span>Event Support</span>

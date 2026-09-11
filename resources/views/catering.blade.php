@@ -29,7 +29,7 @@
 
             <div class="catering-hero-image" aria-label="Catering preview">
                 <img
-                    src="{{ asset('images/oak/RV_02908.jpg') }}"
+                    src="{{ asset('images/oak/client/restaurant-hero.jpg') }}"
                     alt="The Oak restaurant dining area"
                 >
             </div>
@@ -44,7 +44,7 @@
             <div class="catering-type-grid">
                 <article class="catering-type-card">
                     <img
-                        src="{{ asset('images/oak/RV_02923.jpg') }}"
+                        src="{{ asset('images/oak/client/restaurant-corner.jpg') }}"
                         alt="The Oak restaurant interior with dining setup"
                     >
                     <div class="catering-type-copy">
@@ -82,7 +82,7 @@
 
                 <article class="catering-type-card">
                     <img
-                        src="{{ asset('images/oak/RV_02914.jpg') }}"
+                        src="{{ asset('images/oak/client/restaurant-seating.jpg') }}"
                         alt="The Oak restaurant seating arrangement"
                     >
                     <div class="catering-type-copy">

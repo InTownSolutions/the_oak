@@ -29,8 +29,8 @@
 
             <div class="hero-media" aria-label="Banquet hall preview">
                 <img
-                    src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1400&q=85"
-                    alt="Elegant banquet hall arranged for a celebration"
+                    src="{{ asset('images/oak/client/banquet-hero.jpg') }}"
+                    alt="The Oak banquet hall entrance surrounded by greenery"
                 >
             </div>
         </section>
@@ -63,16 +63,16 @@
             <div class="gallery-grid">
                 <img
                     class="gallery-large"
-                    src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1400&q=85"
-                    alt="Banquet event space with decorated tables"
+                    src="{{ asset('images/oak/client/banquet-entrance.jpg') }}"
+                    alt="The Oak banquet hall approach and entrance"
                 >
                 <img
-                    src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=85"
-                    alt="Wedding table setting with floral decor"
+                    src="{{ asset('images/oak/client/banquet-garden.jpg') }}"
+                    alt="The Oak landscaped banquet garden"
                 >
                 <img
-                    src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85"
-                    alt="Reception decor with warm lighting"
+                    src="{{ asset('images/oak/client/banquet-lawn.jpg') }}"
+                    alt="The Oak outdoor lawn event space"
                 >
             </div>
         </section>

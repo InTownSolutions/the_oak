@@ -29,8 +29,8 @@
 
             <div class="decoration-hero-image" aria-label="Decoration preview">
                 <img
-                    src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1400&q=85"
-                    alt="Wedding ceremony arch decorated with flowers"
+                    src="{{ asset('images/oak/client/banquet-lawn.jpg') }}"
+                    alt="The Oak outdoor event lawn"
                 >
             </div>
         </section>
@@ -44,8 +44,8 @@
             <div class="decor-category-grid">
                 <article class="decor-category-card">
                     <img
-                        src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85"
-                        alt="Grand wedding reception decorated with warm lights"
+                        src="{{ asset('images/oak/client/banquet-hero.jpg') }}"
+                        alt="The Oak banquet entrance for wedding decoration planning"
                     >
                     <div>
                         <span>01</span>
@@ -64,8 +64,8 @@
 
                 <article class="decor-category-card">
                     <img
-                        src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=85"
-                        alt="Celebration table decoration with warm lights"
+                        src="{{ asset('images/oak/client/banquet-garden.jpg') }}"
+                        alt="The Oak garden event space for celebration decoration"
                     >
                     <div>
                         <span>02</span>
@@ -83,8 +83,8 @@
 
                 <article class="decor-category-card">
                     <img
-                        src="https://images.unsplash.com/photo-1513278974582-3e1b4a4fa21e?auto=format&fit=crop&w=1200&q=85"
-                        alt="Simple floral event decoration"
+                        src="{{ asset('images/oak/client/banquet-entrance.jpg') }}"
+                        alt="The Oak event entrance for simple decoration setup"
                     >
                     <div>
                         <span>03</span>

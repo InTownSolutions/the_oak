@@ -230,7 +230,7 @@
         padding: clamp(44px, 6vw, 74px) clamp(20px, 5vw, 72px);
         background:
             linear-gradient(rgba(45, 24, 10, 0.86), rgba(45, 24, 10, 0.86)),
-            url('https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?auto=format&fit=crop&w=1600&q=80');
+            url('{{ asset('images/oak/client/banquet-garden.jpg') }}');
         background-position: center;
         background-size: cover;
     }
@@ -366,7 +366,7 @@
     .room-details {
         background:
             linear-gradient(rgba(248, 237, 219, 0.92), rgba(248, 237, 219, 0.94)),
-            url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80');
+            url('{{ asset('images/oak/client/room-deluxe.jpg') }}');
         background-position: center;
         background-size: cover;
     }
@@ -495,7 +495,7 @@
     .decoration-details {
         background:
             linear-gradient(rgba(248, 237, 219, 0.9), rgba(248, 237, 219, 0.94)),
-            url('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1600&q=80');
+            url('{{ asset('images/oak/client/banquet-lawn.jpg') }}');
         background-position: center;
         background-size: cover;
     }
@@ -643,7 +643,7 @@
     .catering-details {
         background:
             linear-gradient(rgba(248, 237, 219, 0.92), rgba(248, 237, 219, 0.94)),
-            url('https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1600&q=80');
+            url('{{ asset('images/oak/client/restaurant-hero.jpg') }}');
         background-position: center;
         background-size: cover;
     }

@@ -29,7 +29,7 @@
 
             <div class="hero-media" aria-label="Room preview">
                 <img
-                    src="{{ asset('images/oak/RV_02942.jpg') }}"
+                    src="{{ asset('images/oak/client/room-deluxe.jpg') }}"
                     alt="The Oak guest room bed setup"
                 >
             </div>
@@ -44,7 +44,7 @@
             <div class="room-category-grid">
                 <article class="room-category-card">
                     <img
-                        src="{{ asset('images/oak/RV_02934.jpg') }}"
+                        src="{{ asset('images/oak/client/room-deluxe.jpg') }}"
                         alt="The Oak Semi Deluxe room"
                     >
                     <div>
@@ -61,8 +61,8 @@
 
                 <article class="room-category-card">
                     <img
-                        src="{{ asset('images/oak/RV_02919.jpg') }}"
-                        alt="The Oak interior lounge seating"
+                        src="{{ asset('images/oak/client/room-comfort.jpg') }}"
+                        alt="The Oak comfortable guest room"
                     >
                     <div>
                         <span>02</span>
@@ -78,8 +78,8 @@
 
                 <article class="room-category-card">
                     <img
-                        src="{{ asset('images/oak/RV_02908.jpg') }}"
-                        alt="The Oak restaurant seating area"
+                        src="{{ asset('images/oak/client/room-twin.jpg') }}"
+                        alt="The Oak twin guest room"
                     >
                     <div>
                         <span>03</span>
