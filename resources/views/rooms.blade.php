@@ -37,19 +37,19 @@
 
         <section id="room-categories" class="room-categories">
             <div class="section-heading">
-                <p class="eyebrow">Room Categories</p>
-                <h2>Choose The Stay That Feels Right</h2>
+                <p class="eyebrow">Rooms & Restaurant</p>
+                <h2>Choose The Option That Feels Right</h2>
             </div>
 
             <div class="room-category-grid">
                 <article class="room-category-card">
                     <img
                         src="{{ asset('images/oak/client/room-deluxe.jpg') }}"
-                        alt="The Oak Semi Deluxe room"
+                        alt="The Oak guest room"
                     >
                     <div>
                         <span>01</span>
-                        <h3>Semi Deluxe Rooms</h3>
+                        <h3>Guest Room</h3>
                         <p>A comfortable stay option for travellers who want to explore nearby places and return to a quiet room after a day out.</p>
                         <ul>
                             <li>Suitable for leisure travellers</li>
@@ -61,28 +61,11 @@
 
                 <article class="room-category-card">
                     <img
-                        src="{{ asset('images/oak/client/room-comfort.jpg') }}"
-                        alt="The Oak comfortable guest room"
+                        src="{{ asset('images/oak/client/restaurant-corner.jpg') }}"
+                        alt="The Oak restaurant dining space"
                     >
                     <div>
                         <span>02</span>
-                        <h3>Cottages</h3>
-                        <p>A peaceful home-away-from-home stay surrounded by nature, ideal for guests looking for a quieter resort escape.</p>
-                        <ul>
-                            <li>Peaceful cottage-style accommodation</li>
-                            <li>Suited for families and relaxed getaways</li>
-                            <li>Good for guests who prefer privacy and calm surroundings</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="room-category-card">
-                    <img
-                        src="{{ asset('images/oak/client/room-twin.jpg') }}"
-                        alt="The Oak twin guest room"
-                    >
-                    <div>
-                        <span>03</span>
                         <h3>The Oak Restaurant</h3>
                         <p>A relaxed dining space for conversations with family and friends, offering a multi-cuisine menu in the outskirts of Shillong.</p>
                         <ul>
@@ -173,8 +156,7 @@
                     <div class="field-group">
                         <label for="room_type">Preferred Room</label>
                         <select id="room_type" name="room_type">
-                            <option @selected(old('room_type') === 'Semi Deluxe Rooms')>Semi Deluxe Rooms</option>
-                            <option @selected(old('room_type') === 'Cottages')>Cottages</option>
+                            <option @selected(old('room_type') === 'Guest Room')>Guest Room</option>
                             <option @selected(old('room_type') === 'Not sure yet')>Not sure yet</option>
                         </select>
                     </div>
