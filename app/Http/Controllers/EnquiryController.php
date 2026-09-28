@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EnquiryReceivedMail;
 use App\Models\Booking;
 use App\Models\Enquiry;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
+use Throwable;
 
 class EnquiryController extends Controller
 {
@@ -75,7 +79,7 @@ class EnquiryController extends Controller
         $details = Arr::except($request->input(), ['_token', 'name', 'phone', 'email', 'service', 'guests', 'message']);
         $selectedServices = $request->input('selected_services', []);
 
-        Enquiry::create([
+        $enquiry = Enquiry::create([
             'customer_name' => $validated['name'],
             'phone' => $validated['phone'],
             'email' => $validated['email'] ?? null,
@@ -89,6 +93,8 @@ class EnquiryController extends Controller
             ],
             'message' => $validated['message'] ?? null,
         ]);
+
+        $this->sendEnquiryReceivedMail($enquiry);
 
         return back()->with('success', 'Your enquiry has been sent. The Oak team will call you back soon.');
     }
@@ -195,5 +201,22 @@ class EnquiryController extends Controller
         }
 
         return null;
+    }
+
+    private function sendEnquiryReceivedMail(Enquiry $enquiry): void
+    {
+        if (! $enquiry->email) {
+            return;
+        }
+
+        try {
+            Mail::to($enquiry->email)->send(new EnquiryReceivedMail($enquiry));
+        } catch (Throwable $exception) {
+            Log::warning('Unable to send enquiry received email.', [
+                'enquiry_id' => $enquiry->id,
+                'email' => $enquiry->email,
+                'error' => $exception->getMessage(),
+            ]);
+        }
     }
 }

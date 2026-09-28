@@ -10,7 +10,7 @@
                 <a class="active" href="/admin" data-admin-dashboard-link>Enquiries</a>
                 <a href="#manual-booking" data-manual-booking-link>Create Manual Booking</a>
                 <a href="#booking-preview" data-admin-section-link>Bookings</a>
-                <a href="#tariff-season" data-admin-section-link>Season Tariffs</a>
+                <a href="#tariff-season" data-tariff-link>Room Tariffs</a>
                 <a href="/">Customer Site</a>
             </nav>
         </aside>
@@ -166,7 +166,7 @@
 
                     <div class="admin-filters">
                         <span>{{ $adminRows->count() }} Records</span>
-                        <span>Enquiries + Bookings</span>
+                        <span>Enquiries + Direct Bookings</span>
                     </div>
                 </div>
 
@@ -253,16 +253,16 @@
                 </div>
             </section>
 
-            <section id="tariff-season" class="admin-panel tariff-panel admin-dashboard-section">
+            <section id="tariff-season" class="admin-panel tariff-panel admin-switch-panel" aria-hidden="true">
                 <div class="admin-panel-header">
                     <div>
-                        <h2>Season & Festive Tariffs</h2>
-                        <p>Frontend demo for managing price changes during peak season, festivals, and holidays.</p>
+                        <h2>Room Season Tariffs</h2>
+                        <p>Manage room price changes during peak season, festivals, holidays, and low-demand periods.</p>
                     </div>
 
                     <div class="admin-filters">
-                        <span>Demo Only</span>
-                        <span>Applies During Enquiry</span>
+                        <span>Rooms Only</span>
+                        <span>Applied During Availability</span>
                     </div>
                 </div>
 
@@ -273,7 +273,7 @@
                                 <tr>
                                     <th>Season</th>
                                     <th>Date Range</th>
-                                    <th>Services</th>
+                                    <th>Room Rate</th>
                                     <th>Adjustment</th>
                                     <th>Status</th>
                                 </tr>
@@ -282,11 +282,11 @@
                                 <tr>
                                     <td>
                                         <strong>Autumn Wedding Peak</strong>
-                                        <span>High demand event period</span>
+                                        <span>High demand stay period</span>
                                     </td>
                                     <td>01 Oct 2026 - 20 Nov 2026</td>
-                                    <td>Banquet, Decoration, Catering</td>
-                                    <td><span class="tariff-badge increase">+20%</span></td>
+                                    <td>Guest Room</td>
+                                    <td><span class="tariff-badge increase">Seasonal Override</span></td>
                                     <td><span class="status-pill discussion">Upcoming</span></td>
                                 </tr>
                                 <tr>
@@ -295,8 +295,8 @@
                                         <span>Festive holiday pricing</span>
                                     </td>
                                     <td>20 Dec 2026 - 03 Jan 2027</td>
-                                    <td>Rooms, Banquet</td>
-                                    <td><span class="tariff-badge increase">+30%</span></td>
+                                    <td>Guest Room</td>
+                                    <td><span class="tariff-badge increase">Festive Override</span></td>
                                     <td><span class="status-pill new">Active Soon</span></td>
                                 </tr>
                                 <tr>
@@ -305,8 +305,8 @@
                                         <span>Low season accommodation offer</span>
                                     </td>
                                     <td>01 Jun 2027 - 31 Jul 2027</td>
-                                    <td>Rooms</td>
-                                    <td><span class="tariff-badge discount">-15%</span></td>
+                                    <td>Guest Room</td>
+                                    <td><span class="tariff-badge discount">Low Season Override</span></td>
                                     <td><span class="status-pill contacted">Draft</span></td>
                                 </tr>
                             </tbody>
@@ -318,35 +318,31 @@
                         <h3>Add Tariff Rule</h3>
                         <label>
                             Rule Name
-                            <input type="text" value="Festive Banquet Rate">
+                            <input type="text" value="Festive Room Rate">
                         </label>
                         <div class="admin-form-grid">
                             <label>Start Date <input type="date" value="2026-10-01"></label>
                             <label>End Date <input type="date" value="2026-10-24"></label>
                         </div>
                         <label>
-                            Apply To Service
+                            Apply To
                             <select>
-                                <option>Banquet Hall</option>
-                                <option>Rooms</option>
-                                <option>Decoration</option>
-                                <option>Catering</option>
-                                <option>All Services</option>
+                                <option>Guest Room</option>
                             </select>
                         </label>
                         <div class="admin-form-grid">
-                            <label>Change Type
+                            <label>Tariff Type
                                 <select>
-                                    <option>Percentage Increase</option>
-                                    <option>Fixed Increase</option>
-                                    <option>Discount</option>
+                                    <option>Seasonal Room Rate</option>
+                                    <option>Festive Room Rate</option>
+                                    <option>Low Season Room Rate</option>
                                 </select>
                             </label>
-                            <label>Value <input type="text" value="20%"></label>
+                            <label>Room Price <input type="text" value="INR 4,000"></label>
                         </div>
                         <label>
                             Note For Admin
-                            <textarea rows="3">Show this during booking review before final quotation.</textarea>
+                            <textarea rows="3">Apply this room rate when the selected stay dates fall inside this tariff period.</textarea>
                         </label>
                         <button class="primary-action form-action" type="button">Save Tariff Rule</button>
                     </form>
@@ -537,8 +533,10 @@
         const followupForm = document.getElementById('followupForm');
         const bookingForm = document.getElementById('bookingForm');
         const manualBookingPanel = document.getElementById('manual-booking');
+        const tariffPanel = document.getElementById('tariff-season');
         const dashboardSections = document.querySelectorAll('.admin-dashboard-section');
         const manualBookingLink = document.querySelector('[data-manual-booking-link]');
+        const tariffLink = document.querySelector('[data-tariff-link]');
         const dashboardLink = document.querySelector('[data-admin-dashboard-link]');
         const adminSectionLinks = document.querySelectorAll('[data-admin-section-link]');
         const fields = {
@@ -566,6 +564,11 @@
         manualBookingLink.addEventListener('click', (event) => {
             event.preventDefault();
             showManualBooking();
+        });
+
+        tariffLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            showTariffPanel();
         });
 
         dashboardLink.addEventListener('click', (event) => {
@@ -598,7 +601,7 @@
         function openModal(recordId) {
             const record = recordPayloads[recordId];
             const details = record.details || {};
-            const isBooking = record.kind === 'booking';
+            const isBooking = record.kind === 'booking' || record.kind === 'booked-enquiry';
 
             fields.title.textContent = isBooking ? 'Internal Booking' : 'Customer Enquiry';
             fields.customer.textContent = record.customer;
@@ -673,15 +676,23 @@
         }
 
         function showManualBooking() {
-            dashboardSections.forEach((section) => {
-                section.classList.add('is-hidden');
-            });
+            hideDashboardSections();
+            hideTariffPanel();
 
             manualBookingPanel.classList.add('is-visible');
             manualBookingPanel.setAttribute('aria-hidden', 'false');
-            manualBookingLink.classList.add('active');
-            dashboardLink.classList.remove('active');
+            setActiveAdminLink(manualBookingLink);
             manualBookingPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showTariffPanel() {
+            hideDashboardSections();
+            hideManualBooking();
+
+            tariffPanel.classList.add('is-visible');
+            tariffPanel.setAttribute('aria-hidden', 'false');
+            setActiveAdminLink(tariffLink);
+            tariffPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function showDashboard(targetSelector = null) {
@@ -689,10 +700,9 @@
                 section.classList.remove('is-hidden');
             });
 
-            manualBookingPanel.classList.remove('is-visible');
-            manualBookingPanel.setAttribute('aria-hidden', 'true');
-            dashboardLink.classList.add('active');
-            manualBookingLink.classList.remove('active');
+            hideManualBooking();
+            hideTariffPanel();
+            setActiveAdminLink(dashboardLink);
 
             if (targetSelector) {
                 document.querySelector(targetSelector)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -700,6 +710,28 @@
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function hideDashboardSections() {
+            dashboardSections.forEach((section) => {
+                section.classList.add('is-hidden');
+            });
+        }
+
+        function hideManualBooking() {
+            manualBookingPanel.classList.remove('is-visible');
+            manualBookingPanel.setAttribute('aria-hidden', 'true');
+        }
+
+        function hideTariffPanel() {
+            tariffPanel.classList.remove('is-visible');
+            tariffPanel.setAttribute('aria-hidden', 'true');
+        }
+
+        function setActiveAdminLink(activeLink) {
+            [dashboardLink, manualBookingLink, tariffLink, ...adminSectionLinks].forEach((link) => {
+                link.classList.toggle('active', link === activeLink);
+            });
         }
     </script>
 </x-layouts.app>

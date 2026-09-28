@@ -2,41 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingConfirmedMail;
 use App\Models\Booking;
 use App\Models\Enquiry;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Throwable;
 
 class AdminController extends Controller
 {
     public function index(): View
     {
-        $enquiries = Enquiry::query()->latest()->get();
+        $enquiries = Enquiry::query()->with('bookings')->latest()->get();
         $allBookings = Booking::query()->latest()->get();
+        $manualBookings = $allBookings->whereNull('enquiry_id');
         $bookings = $allBookings->take(8);
         $adminRows = $enquiries
-            ->map(fn (Enquiry $enquiry): array => [
-                'kind' => 'enquiry',
-                'id' => $enquiry->id,
-                'record_key' => 'enquiry-'.$enquiry->id,
-                'customer_name' => $enquiry->customer_name,
-                'email' => $enquiry->email,
-                'service' => $enquiry->service,
-                'type' => $enquiry->enquiry_type ?: 'General Enquiry',
-                'phone' => $enquiry->phone,
-                'status' => $enquiry->status,
-                'created_at' => $enquiry->created_at,
-            ])
-            ->merge($allBookings->map(fn (Booking $booking): array => [
+            ->map(function (Enquiry $enquiry): array {
+                $latestBooking = $enquiry->bookings->sortByDesc('created_at')->first();
+
+                return [
+                    'kind' => 'enquiry',
+                    'id' => $enquiry->id,
+                    'record_key' => 'enquiry-'.$enquiry->id,
+                    'customer_name' => $enquiry->customer_name,
+                    'email' => $enquiry->email,
+                    'service' => $latestBooking
+                        ? $this->serviceSummary($latestBooking->services ?: [])
+                        : $enquiry->service,
+                    'type' => $latestBooking ? 'Booking From Enquiry' : ($enquiry->enquiry_type ?: 'General Enquiry'),
+                    'phone' => $enquiry->phone,
+                    'status' => $latestBooking?->status ?? $enquiry->status,
+                    'created_at' => $enquiry->created_at,
+                ];
+            })
+            ->merge($manualBookings->map(fn (Booking $booking): array => [
                 'kind' => 'booking',
                 'id' => $booking->id,
                 'record_key' => 'booking-'.$booking->id,
                 'customer_name' => $booking->customer_name,
                 'email' => $booking->email,
-                'service' => collect($booking->services)->map(fn ($service) => str($service)->headline()->toString())->implode(', '),
-                'type' => $booking->enquiry_id ? 'Booking From Enquiry' : 'Manual Booking',
+                'service' => $this->serviceSummary($booking->services ?: []),
+                'type' => 'Manual Booking',
                 'phone' => $booking->phone,
                 'status' => $booking->status,
                 'created_at' => $booking->created_at,
@@ -44,34 +55,45 @@ class AdminController extends Controller
             ->sortByDesc('created_at')
             ->values();
         $recordPayloads = $enquiries
-            ->mapWithKeys(fn (Enquiry $enquiry): array => [
-                'enquiry-'.$enquiry->id => [
-                    'kind' => 'enquiry',
-                    'id' => $enquiry->id,
-                    'customer' => $enquiry->customer_name,
-                    'phone' => $enquiry->phone,
-                    'email' => $enquiry->email ?: 'No email shared',
-                    'service' => $enquiry->service,
-                    'type' => $enquiry->enquiry_type ?: 'General Enquiry',
-                    'guests' => $enquiry->guests ?: 'Not shared',
-                    'preferredDate' => optional($enquiry->preferred_date)->format('Y-m-d') ?: 'Not shared',
-                    'created' => $enquiry->created_at->format('d M Y'),
-                    'message' => $enquiry->message ?: 'No message shared.',
-                    'status' => $enquiry->status,
-                    'nextFollowUp' => optional($enquiry->next_follow_up)->format('Y-m-d'),
-                    'adminNotes' => $enquiry->admin_notes,
-                    'details' => $enquiry->details ?: [],
-                ],
-            ])
-            ->merge($allBookings->mapWithKeys(fn (Booking $booking): array => [
+            ->mapWithKeys(function (Enquiry $enquiry): array {
+                $latestBooking = $enquiry->bookings->sortByDesc('created_at')->first();
+
+                return [
+                    'enquiry-'.$enquiry->id => [
+                        'kind' => $latestBooking ? 'booked-enquiry' : 'enquiry',
+                        'id' => $enquiry->id,
+                        'customer' => $enquiry->customer_name,
+                        'phone' => $enquiry->phone,
+                        'email' => $enquiry->email ?: 'No email shared',
+                        'service' => $latestBooking ? $this->serviceSummary($latestBooking->services ?: []) : $enquiry->service,
+                        'type' => $latestBooking ? 'Booking From Enquiry' : ($enquiry->enquiry_type ?: 'General Enquiry'),
+                        'guests' => $latestBooking ? $this->bookingGuestSummary($latestBooking) : ($enquiry->guests ?: 'Not shared'),
+                        'preferredDate' => $latestBooking ? $this->bookingDateSummary($latestBooking) : (optional($enquiry->preferred_date)->format('Y-m-d') ?: 'Not shared'),
+                        'created' => $enquiry->created_at->format('d M Y'),
+                        'message' => $latestBooking ? $this->bookingSummary($latestBooking) : ($enquiry->message ?: 'No message shared.'),
+                        'status' => $latestBooking?->status ?? $enquiry->status,
+                        'nextFollowUp' => optional($enquiry->next_follow_up)->format('Y-m-d'),
+                        'adminNotes' => $latestBooking?->admin_notes ?? $enquiry->admin_notes,
+                        'details' => $latestBooking
+                            ? [
+                                ...($latestBooking->details ?: []),
+                                'selected_services' => $latestBooking->services ?: [],
+                                'estimated_total' => $latestBooking->total_amount,
+                                'estimated_advance' => $latestBooking->advance_amount,
+                            ]
+                            : ($enquiry->details ?: []),
+                    ],
+                ];
+            })
+            ->merge($manualBookings->mapWithKeys(fn (Booking $booking): array => [
                 'booking-'.$booking->id => [
                     'kind' => 'booking',
                     'id' => $booking->id,
                     'customer' => $booking->customer_name,
                     'phone' => $booking->phone,
                     'email' => $booking->email ?: 'No email saved',
-                    'service' => collect($booking->services)->map(fn ($service) => str($service)->headline()->toString())->implode(', '),
-                    'type' => $booking->enquiry_id ? 'Booking From Enquiry' : 'Manual Booking',
+                    'service' => $this->serviceSummary($booking->services ?: []),
+                    'type' => 'Manual Booking',
                     'guests' => $this->bookingGuestSummary($booking),
                     'preferredDate' => $this->bookingDateSummary($booking),
                     'created' => $booking->created_at->format('d M Y'),
@@ -123,7 +145,7 @@ class AdminController extends Controller
             return back()->withErrors(['booking' => $error]);
         }
 
-        Booking::create([
+        $booking = Booking::create([
             'enquiry_id' => $enquiry->id,
             'customer_name' => $enquiry->customer_name,
             'phone' => $enquiry->phone,
@@ -141,6 +163,7 @@ class AdminController extends Controller
 
         if ($validated['status'] === 'Confirmed') {
             $enquiry->update(['status' => 'Booked']);
+            $this->sendBookingConfirmedMail($booking);
         }
 
         return back()->with('success', 'Booking saved for '.$enquiry->customer_name.'.');
@@ -159,7 +182,7 @@ class AdminController extends Controller
             return back()->withErrors(['booking' => $error]);
         }
 
-        Booking::create([
+        $booking = Booking::create([
             'customer_name' => $validated['customer_name'],
             'phone' => $validated['phone'],
             'email' => $validated['email'] ?? null,
@@ -173,6 +196,10 @@ class AdminController extends Controller
             'payment_status' => $validated['payment_status'],
             'admin_notes' => $validated['admin_notes'] ?? null,
         ]);
+
+        if ($validated['status'] === 'Confirmed') {
+            $this->sendBookingConfirmedMail($booking);
+        }
 
         return back()->with('success', 'Manual booking saved for '.$validated['customer_name'].'.');
     }
@@ -274,5 +301,29 @@ class AdminController extends Controller
         }
 
         return implode("\n", $summary);
+    }
+
+    private function serviceSummary(array $services): string
+    {
+        return collect($services)
+            ->map(fn ($service) => str($service)->headline()->toString())
+            ->implode(', ');
+    }
+
+    private function sendBookingConfirmedMail(Booking $booking): void
+    {
+        if (! $booking->email) {
+            return;
+        }
+
+        try {
+            Mail::to($booking->email)->send(new BookingConfirmedMail($booking));
+        } catch (Throwable $exception) {
+            Log::warning('Unable to send booking confirmation email.', [
+                'booking_id' => $booking->id,
+                'email' => $booking->email,
+                'error' => $exception->getMessage(),
+            ]);
+        }
     }
 }

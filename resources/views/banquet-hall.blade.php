@@ -14,7 +14,7 @@
             </div>
         </nav>
 
-        <section class="hero-section">
+        <section class="hero-section banquet-hero">
             <div class="hero-copy">
                 <p class="eyebrow">Banquet Hall</p>
                 <h1>Where Celebration Comes To Life</h1>

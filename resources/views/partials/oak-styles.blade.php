@@ -161,6 +161,12 @@
         font-size: clamp(3rem, 8vw, 7.8rem);
     }
 
+    .banquet-hero h1 {
+        max-width: 680px;
+        font-size: clamp(2.65rem, 5.8vw, 5.6rem);
+        line-height: 1.08;
+    }
+
     h2 {
         font-size: clamp(2rem, 4.2vw, 4.6rem);
     }
@@ -173,6 +179,13 @@
         color: var(--oak-muted);
         font-size: clamp(1rem, 1.5vw, 1.16rem);
         line-height: 1.7;
+    }
+
+    .hero-copy,
+    .decoration-hero-copy,
+    .catering-hero-copy {
+        min-width: 0;
+        overflow: hidden;
     }
 
     .hero-actions {
@@ -206,21 +219,21 @@
 
     .hero-media {
         position: relative;
+        padding: clamp(14px, 2vw, 22px);
+        border: 1px solid var(--oak-line);
+        background: rgba(255, 250, 240, 0.78);
         min-height: 540px;
     }
 
     .hero-media::before {
-        position: absolute;
-        inset: -18px 24px 34px -18px;
-        border: 1px solid var(--oak-line);
-        content: '';
+        display: none;
     }
 
     .hero-media img {
         position: relative;
         width: 100%;
-        height: min(68vh, 680px);
-        min-height: 480px;
+        height: min(64vh, 640px);
+        min-height: 460px;
         object-fit: cover;
     }
 
@@ -376,6 +389,75 @@
         content: '';
     }
 
+    .restaurant-menu-section {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+        gap: clamp(28px, 5vw, 64px);
+        align-items: start;
+        padding: clamp(42px, 6vw, 72px) clamp(20px, 5vw, 72px);
+        background:
+            linear-gradient(rgba(255, 250, 240, 0.94), rgba(255, 250, 240, 0.96)),
+            url('{{ asset('images/oak/client/restaurant-hero.jpg') }}');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .restaurant-menu-copy {
+        max-width: 620px;
+    }
+
+    .restaurant-menu-copy h2 {
+        margin: 0;
+        color: var(--oak-gold-dark);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(2.3rem, 4.4vw, 4.8rem);
+        font-weight: 400;
+        line-height: 1.05;
+    }
+
+    .restaurant-menu-copy p:not(.eyebrow) {
+        margin: 20px 0 0;
+        color: var(--oak-muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .restaurant-menu-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .restaurant-menu-grid article {
+        padding: clamp(22px, 3vw, 32px);
+        border: 1px solid var(--oak-line);
+        background: rgba(255, 247, 229, 0.92);
+    }
+
+    .restaurant-menu-grid span {
+        display: block;
+        margin-bottom: 16px;
+        color: var(--oak-gold);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.8rem;
+        line-height: 1;
+    }
+
+    .restaurant-menu-grid h3 {
+        margin: 0;
+        color: var(--oak-gold-dark);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+        font-weight: 400;
+        line-height: 1.12;
+    }
+
+    .restaurant-menu-grid p {
+        margin: 12px 0 0;
+        color: var(--oak-muted);
+        line-height: 1.62;
+    }
+
     .room-details {
         background:
             linear-gradient(rgba(248, 237, 219, 0.92), rgba(248, 237, 219, 0.94)),
@@ -408,21 +490,21 @@
 
     .decoration-hero-image {
         position: relative;
+        padding: clamp(14px, 2vw, 22px);
+        border: 1px solid var(--oak-line);
+        background: rgba(255, 250, 240, 0.78);
         min-height: 390px;
     }
 
     .decoration-hero-image::before {
-        position: absolute;
-        inset: 24px -18px -18px 28px;
-        border: 1px solid var(--oak-line);
-        content: '';
+        display: none;
     }
 
     .decoration-hero-image img {
         position: relative;
         width: 100%;
-        height: min(50vh, 510px);
-        min-height: 390px;
+        height: min(48vh, 490px);
+        min-height: 360px;
         object-fit: cover;
     }
 
@@ -537,21 +619,21 @@
 
     .catering-hero-image {
         position: relative;
+        padding: clamp(14px, 2vw, 22px);
+        border: 1px solid var(--oak-line);
+        background: rgba(255, 250, 240, 0.78);
         min-height: 400px;
     }
 
     .catering-hero-image::before {
-        position: absolute;
-        inset: 24px -18px -18px 28px;
-        border: 1px solid var(--oak-line);
-        content: '';
+        display: none;
     }
 
     .catering-hero-image img {
         position: relative;
         width: 100%;
-        height: min(52vh, 520px);
-        min-height: 400px;
+        height: min(50vh, 500px);
+        min-height: 370px;
         object-fit: cover;
     }
 
@@ -908,11 +990,13 @@
     }
 
     .admin-dashboard-section.is-hidden,
-    .manual-booking-panel {
+    .manual-booking-panel,
+    .admin-switch-panel {
         display: none;
     }
 
-    .manual-booking-panel.is-visible {
+    .manual-booking-panel.is-visible,
+    .admin-switch-panel.is-visible {
         display: block;
     }
 
@@ -2128,7 +2212,9 @@
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .room-category-grid {
+        .room-category-grid,
+        .restaurant-menu-section,
+        .restaurant-menu-grid {
             grid-template-columns: 1fr;
         }
 

@@ -9,6 +9,7 @@
             <div class="nav-links">
                 <a href="/">All Services</a>
                 <a href="#room-categories">Rooms</a>
+                <a href="#restaurant-menu">Restaurant Menu</a>
                 <a href="#room-facilities">Facilities</a>
                 <a href="#enquiry">Enquire</a>
             </div>
@@ -78,7 +79,44 @@
                             <li>Comfortable indoor and outdoor seating</li>
                             <li>Warm ambience for a great dining experience</li>
                         </ul>
+                        <a class="text-action" href="/restaurant-menu.pdf" target="_blank" rel="noopener">View Restaurant Menu</a>
                     </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="restaurant-menu" class="restaurant-menu-section">
+            <div class="restaurant-menu-copy">
+                <p class="eyebrow">The Oak Restaurant</p>
+                <h2>Restaurant Menu Highlights</h2>
+                <p>
+                    Guests can browse The Oak Restaurant menu for soups, quick bites, Indian dishes,
+                    Chinese and Continental plates, momos, rice, Indian breads, and salads. Prices are shown
+                    in the full restaurant menu PDF.
+                </p>
+                <a class="primary-action" href="/restaurant-menu.pdf" target="_blank" rel="noopener">Open Full Restaurant Menu</a>
+            </div>
+
+            <div class="restaurant-menu-grid">
+                <article>
+                    <span>01</span>
+                    <h3>Soups & Quick Bites</h3>
+                    <p>Clear soup, hot and sour soup, pakora, fries, chilli potato, baby corn, rolls, fish fingers, chicken popcorn, and wings.</p>
+                </article>
+                <article>
+                    <span>02</span>
+                    <h3>Chinese & Continental</h3>
+                    <p>Noodles, fried rice, pasta, chilly fry, stir fry, sweet and sour, manchurian, fish and chips, and prawn options.</p>
+                </article>
+                <article>
+                    <span>03</span>
+                    <h3>Momos, Rice & Breads</h3>
+                    <p>Steamed and fried momos, plain rice, veg pulao, jeera rice, roti, paratha, aloo paratha, gobi paratha, and paneer paratha.</p>
+                </article>
+                <article>
+                    <span>04</span>
+                    <h3>Indian Mains & Salads</h3>
+                    <p>Paneer masala, dal, rajma, chicken curry, fish curry, egg curry, mutton curry, green salad, chicken salad, and panzanella salad.</p>
                 </article>
             </div>
         </section>
