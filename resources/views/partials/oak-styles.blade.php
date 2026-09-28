@@ -101,6 +101,7 @@
     .catering-options,
     .details-section,
     .enquiry-section,
+    .terms-section,
     .service-picker,
     .gateway-steps {
         padding: clamp(54px, 8vw, 110px) clamp(20px, 5vw, 72px);
@@ -332,6 +333,18 @@
         line-height: 1.08;
     }
 
+    .room-price {
+        display: inline-flex;
+        width: fit-content;
+        margin-top: 14px;
+        padding: 8px 12px;
+        border: 1px solid rgba(164, 109, 2, 0.32);
+        border-radius: 6px;
+        background: rgba(255, 241, 201, 0.72);
+        color: var(--oak-gold-dark);
+        font-size: 0.92rem;
+    }
+
     .room-category-card p {
         margin: 14px 0 0;
         color: var(--oak-muted);
@@ -553,6 +566,127 @@
         gap: 20px;
     }
 
+    .catering-menu-showcase {
+        display: grid;
+        grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .menu-feature-card,
+    .menu-category-grid article,
+    .catering-format-grid article {
+        border: 1px solid var(--oak-line);
+        background: #fff7e5;
+    }
+
+    .menu-feature-card {
+        display: grid;
+        grid-template-rows: minmax(260px, 0.85fr) 1fr;
+    }
+
+    .menu-feature-card img {
+        width: 100%;
+        height: 100%;
+        min-height: 260px;
+        object-fit: cover;
+    }
+
+    .menu-feature-card > div {
+        padding: clamp(24px, 3vw, 36px);
+    }
+
+    .menu-feature-card h3,
+    .menu-category-grid h3,
+    .catering-format-grid h3 {
+        margin: 0;
+        color: var(--oak-gold-dark);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(1.7rem, 2.6vw, 2.7rem);
+        font-weight: 400;
+        line-height: 1.08;
+    }
+
+    .menu-feature-card p,
+    .menu-category-grid p {
+        margin: 16px 0 0;
+        color: var(--oak-muted);
+        line-height: 1.65;
+    }
+
+    .text-action {
+        display: inline-flex;
+        margin-top: 20px;
+        color: var(--oak-bark);
+        border-bottom: 2px solid var(--oak-gold);
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+    .menu-category-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .menu-category-grid article {
+        padding: clamp(24px, 3vw, 34px);
+    }
+
+    .menu-category-grid span {
+        display: block;
+        margin-bottom: 18px;
+        color: var(--oak-gold-dark);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.9rem;
+        line-height: 1;
+    }
+
+    .catering-format-section {
+        background: #fffaf0;
+        padding: clamp(42px, 6vw, 72px) clamp(20px, 5vw, 72px);
+    }
+
+    .compact-heading {
+        max-width: 860px;
+    }
+
+    .catering-format-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .catering-format-grid article {
+        padding: clamp(24px, 3vw, 36px);
+    }
+
+    .catering-format-grid ul {
+        display: grid;
+        gap: 10px;
+        margin: 20px 0 0;
+        padding: 0;
+        color: var(--oak-bark);
+        list-style: none;
+    }
+
+    .catering-format-grid li {
+        position: relative;
+        padding-left: 20px;
+        line-height: 1.55;
+    }
+
+    .catering-format-grid li::before {
+        position: absolute;
+        top: 0.7em;
+        left: 0;
+        width: 7px;
+        height: 7px;
+        background: var(--oak-gold);
+        border-radius: 50%;
+        content: '';
+    }
+
     .catering-type-card {
         display: grid;
         grid-template-rows: minmax(320px, 0.7fr) 1fr;
@@ -771,6 +905,15 @@
     .admin-panel {
         margin-top: 20px;
         padding: 24px;
+    }
+
+    .admin-dashboard-section.is-hidden,
+    .manual-booking-panel {
+        display: none;
+    }
+
+    .manual-booking-panel.is-visible {
+        display: block;
     }
 
     .admin-panel h2 {
@@ -1374,6 +1517,67 @@
         box-shadow: 0 0 0 3px rgba(164, 109, 2, 0.12);
     }
 
+    .room-booking-summary {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .room-booking-summary div,
+    .upi-payment-box {
+        border: 1px solid var(--oak-line);
+        border-radius: 6px;
+        background: rgba(255, 250, 240, 0.76);
+    }
+
+    .room-booking-summary div {
+        display: grid;
+        gap: 6px;
+        padding: 16px;
+    }
+
+    .room-booking-summary span,
+    .upi-payment-box span {
+        color: var(--oak-muted);
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .room-booking-summary strong,
+    .upi-payment-box strong {
+        color: var(--oak-gold-dark);
+        font-size: 1.05rem;
+    }
+
+    .upi-payment-box {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(180px, 0.34fr);
+        gap: 18px;
+        padding: 18px;
+    }
+
+    .upi-payment-box h3 {
+        margin: 4px 0 8px;
+        color: var(--oak-bark);
+    }
+
+    .upi-payment-box p {
+        margin: 0;
+        color: var(--oak-muted);
+        line-height: 1.6;
+    }
+
+    .upi-payment-box > div:last-child {
+        display: grid;
+        place-content: center;
+        gap: 8px;
+        padding: 14px;
+        border: 1px dashed rgba(121, 80, 0, 0.32);
+        border-radius: 6px;
+        text-align: center;
+    }
+
     .form-action {
         width: 100%;
         margin-top: 4px;
@@ -1433,6 +1637,36 @@
         font-size: 0.94rem;
         font-weight: 700;
         line-height: 1.45;
+    }
+
+    .terms-section {
+        background: var(--oak-ivory);
+    }
+
+    .terms-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 28px;
+    }
+
+    .terms-grid article {
+        padding: clamp(18px, 2.4vw, 26px);
+        border: 1px solid var(--oak-line);
+        border-radius: 8px;
+        background: #fff7e5;
+    }
+
+    .terms-grid h3 {
+        margin: 0;
+        color: var(--oak-bark);
+        font-size: 1.08rem;
+    }
+
+    .terms-grid p {
+        margin: 10px 0 0;
+        color: var(--oak-muted);
+        line-height: 1.65;
     }
 
     .form-action:disabled {
@@ -1642,7 +1876,7 @@
 
     .combined-service-grid {
         display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 14px;
     }
 
@@ -1920,12 +2154,19 @@
             min-height: 340px;
         }
 
+        .catering-menu-showcase,
         .catering-type-grid,
+        .menu-category-grid,
+        .catering-format-grid,
         .catering-plan-grid {
             grid-template-columns: 1fr;
         }
 
         .amenity-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .terms-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
@@ -1990,11 +2231,17 @@
         }
 
         .gallery-grid,
+        .terms-grid,
         .field-row {
             grid-template-columns: 1fr;
         }
 
         .service-picker {
+            grid-template-columns: 1fr;
+        }
+
+        .room-booking-summary,
+        .upi-payment-box {
             grid-template-columns: 1fr;
         }
 

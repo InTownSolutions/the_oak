@@ -13,8 +13,8 @@
                 <p class="eyebrow">Booking Enquiry</p>
                 <h1>Choose What You Would Like To Enquire About</h1>
                 <p>
-                    Browse the resort services, select the option that matches your plan, and send a short enquiry.
-                    The Oak team will call you back to discuss details and confirm availability.
+                    Browse banquet, guest room, decoration, and catering services from The Oak Shillong. The team
+                    will call back to discuss details, advance, and final confirmation.
                 </p>
             </div>
         </section>
@@ -28,7 +28,7 @@
                 <span class="service-badge">Banquet Services</span>
                 <div>
                     <h2>Banquet Hall</h2>
-                    <p>Weddings, receptions, private celebrations, formal gatherings, and corporate functions.</p>
+                    <p>Elegant venue for up to 1,000 guests with dining hall, lawn, parking, and event support.</p>
                     <span class="service-link">View Banquet Hall</span>
                 </div>
             </a>
@@ -41,7 +41,7 @@
                 <span class="service-badge">Accommodation</span>
                 <div>
                     <h2>Rooms</h2>
-                    <p>Comfortable stays for couples, families, and guests visiting the resort.</p>
+                    <p>Guest rooms with attached bathrooms, private sitting area, balcony, and complimentary breakfast.</p>
                     <span class="service-link">View Rooms</span>
                 </div>
             </a>
@@ -54,7 +54,7 @@
                 <span class="service-badge">Event Support</span>
                 <div>
                     <h2>Decoration</h2>
-                    <p>Decoration support for weddings, events, photo corners, and celebration themes.</p>
+                    <p>In-house decoration support for weddings, celebrations, event spaces, and theme discussions.</p>
                     <span class="service-link">View Decoration</span>
                 </div>
             </a>
@@ -67,7 +67,7 @@
                 <span class="service-badge">Event Support</span>
                 <div>
                     <h2>Catering</h2>
-                    <p>Food and catering appointment enquiries for events hosted at the resort.</p>
+                    <p>Multi-cuisine restaurant and catering support with Indian, Chinese, Continental, and Khasi dishes.</p>
                     <span class="service-link">View Catering</span>
                 </div>
             </a>
@@ -76,7 +76,7 @@
         <section id="how-it-works" class="gateway-steps">
             <div>
                 <p class="eyebrow">Simple Flow</p>
-                <h2>No Payment, No Public Date Locking</h2>
+                <h2>Admin-Confirmed Booking Flow</h2>
                 <a class="gateway-alt-link" href="/combined-enquiry">View one-page enquiry option</a>
             </div>
 
@@ -89,12 +89,12 @@
                 <article>
                     <span>02</span>
                     <h3>Send Enquiry</h3>
-                    <p>Share your name, phone number, approximate guests, and a short message.</p>
+                    <p>Share your name, phone number, email, approximate guests, and a short message.</p>
                 </article>
                 <article>
                     <span>03</span>
                     <h3>Team Calls Back</h3>
-                    <p>The admin team contacts you and handles dates, availability, and confirmation offline.</p>
+                    <p>The admin team contacts you and handles availability, advance, and final confirmation.</p>
                 </article>
             </div>
         </section>

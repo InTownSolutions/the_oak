@@ -8,7 +8,7 @@
 
             <div class="nav-links">
                 <a href="/">All Services</a>
-                <a href="#decoration-categories">Packages</a>
+                <a href="#decoration-categories">Support</a>
                 <a href="#enquiry">Enquire</a>
             </div>
         </nav>
@@ -18,11 +18,11 @@
                 <p class="eyebrow">Decoration Services</p>
                 <h1>Choose A Decoration Setup For Your Event</h1>
                 <p>
-                    Floral, traditional, and theme-based decor can be arranged in-house or discussed with outside
-                    vendors based on the style and scale of your event.
+                    In-house decoration support is available for resort events, weddings, birthdays, anniversaries,
+                    and formal gatherings. The final setup can be discussed directly with the team.
                 </p>
                 <div class="hero-actions">
-                    <a class="primary-action" href="#decoration-categories">View Packages</a>
+                    <a class="primary-action" href="#decoration-categories">View Support</a>
                     <a class="ghost-action" href="#enquiry">Send Enquiry</a>
                 </div>
             </div>
@@ -37,8 +37,8 @@
 
         <section id="decoration-categories" class="decoration-categories">
             <div class="section-heading">
-                <p class="eyebrow">Decoration Categories</p>
-                <h2>Three Clear Levels Of Event Styling</h2>
+                <p class="eyebrow">In-House Decoration</p>
+                <h2>Decoration Support For Your Event Space</h2>
             </div>
 
             <div class="decor-category-grid">
@@ -49,15 +49,12 @@
                     >
                     <div>
                         <span>01</span>
-                        <h3>Grand Wedding Decor</h3>
-                        <p>A complete decoration enquiry category for weddings and receptions that need a full visual setup.</p>
+                        <h3>Wedding & Celebration Setup</h3>
+                        <p>The team can help discuss decoration needs for weddings, receptions, engagements, birthdays, and family events.</p>
                         <ul>
-                            <li>Entrance and welcome decor</li>
-                            <li>Mandap or ceremony stage styling</li>
-                            <li>Reception stage backdrop</li>
-                            <li>Floral arrangements and aisle decor</li>
-                            <li>Couple seating and photo corner</li>
-                            <li>Table styling and mood lighting</li>
+                            <li>Entrance and welcome area decor</li>
+                            <li>Stage or backdrop discussion</li>
+                            <li>Floral, traditional, or simple theme guidance</li>
                         </ul>
                     </div>
                 </article>
@@ -69,14 +66,12 @@
                     >
                     <div>
                         <span>02</span>
-                        <h3>Signature Celebration Decor</h3>
-                        <p>A balanced setup for engagement, birthdays, anniversaries, family events, and smaller gatherings.</p>
+                        <h3>Venue Area Styling</h3>
+                        <p>Decoration can be planned around the banquet hall, garden area, entrance, restaurant space, or a combined setup.</p>
                         <ul>
-                            <li>Entry decor</li>
-                            <li>Main backdrop or stage styling</li>
-                            <li>Basic floral accents</li>
-                            <li>Cake or focal table styling</li>
-                            <li>Soft lighting suggestions</li>
+                            <li>Banquet hall arrangement</li>
+                            <li>Outdoor lawn or garden setup</li>
+                            <li>Photo corner or focal table styling</li>
                         </ul>
                     </div>
                 </article>
@@ -88,13 +83,12 @@
                     >
                     <div>
                         <span>03</span>
-                        <h3>Simple Decor Essentials</h3>
-                        <p>A light decoration option for customers who only need the basic event touches arranged.</p>
+                        <h3>Personal Discussion</h3>
+                        <p>There are no fixed decoration packages for now. The team will understand the customer requirement and suggest what can be arranged.</p>
                         <ul>
-                            <li>Simple welcome setup</li>
-                            <li>Small backdrop or banner area</li>
-                            <li>Basic table decoration</li>
-                            <li>Minimal floral touches</li>
+                            <li>Theme and color preference</li>
+                            <li>Guest count and event mood</li>
+                            <li>Final scope confirmed by phone</li>
                         </ul>
                     </div>
                 </article>
@@ -106,17 +100,17 @@
                 <p class="eyebrow">Visual Planning</p>
                 <h2>In-House Decor Or Vendor Support</h2>
                 <p>
-                    Decoration needs usually depend on the event type, guest count, venue area, theme, and customer
-                    taste. The resort team can discuss in-house decor, outside vendor support, and entertainment
-                    arrangements such as music, DJ, or visual setup.
+                    Decoration needs usually depend on event type, guest count, venue area, theme, and customer
+                    preference. The resort team can discuss what is possible in-house and guide the customer on
+                    any outside vendor support if needed.
                 </p>
             </div>
 
             <div class="detail-list">
                 <article>
                     <span>01</span>
-                    <h3>Choose A Category</h3>
-                    <p>Customers can start with a full, medium, or simple decoration requirement.</p>
+                    <h3>Share The Event</h3>
+                    <p>Customers start by sharing the occasion, guest count, venue area, and decoration expectation.</p>
                 </article>
                 <article>
                     <span>02</span>
@@ -125,8 +119,8 @@
                 </article>
                 <article>
                     <span>03</span>
-                    <h3>Extras Can Be Discussed</h3>
-                    <p>Planning coordination, vendor assistance, photography, videography, music, and visual setup can be discussed offline.</p>
+                    <h3>Finalized By The Team</h3>
+                    <p>The team confirms what can be arranged in-house and what may need outside vendor support.</p>
                 </article>
             </div>
         </section>
@@ -161,6 +155,11 @@
                     <input id="name" name="name" type="text" value="{{ old('name') }}" placeholder="Enter your name" required>
                 </div>
 
+                <div class="field-group">
+                    <label for="email">Email Address</label>
+                    <input id="email" name="email" type="email" value="{{ old('email') }}" placeholder="Email for booking updates">
+                </div>
+
                 <div class="field-row">
                     <div class="field-group">
                         <label for="phone">Phone Number</label>
@@ -184,12 +183,13 @@
                         </select>
                     </div>
                     <div class="field-group">
-                        <label for="decor_category">Decoration Category</label>
-                        <select id="decor_category" name="decor_category">
-                            <option @selected(old('decor_category') === 'Grand Wedding Decor')>Grand Wedding Decor</option>
-                            <option @selected(old('decor_category') === 'Signature Celebration Decor')>Signature Celebration Decor</option>
-                            <option @selected(old('decor_category') === 'Simple Decor Essentials')>Simple Decor Essentials</option>
-                            <option @selected(old('decor_category') === 'Not sure yet')>Not sure yet</option>
+                        <label for="decor_area">Decoration Area</label>
+                        <select id="decor_area" name="decor_area">
+                            <option @selected(old('decor_area') === 'Banquet Hall')>Banquet Hall</option>
+                            <option @selected(old('decor_area') === 'Garden Area')>Garden Area</option>
+                            <option @selected(old('decor_area') === 'Entrance + Hall')>Entrance + Hall</option>
+                            <option @selected(old('decor_area') === 'Restaurant Area')>Restaurant Area</option>
+                            <option @selected(old('decor_area') === 'Not sure yet')>Not sure yet</option>
                         </select>
                     </div>
                 </div>

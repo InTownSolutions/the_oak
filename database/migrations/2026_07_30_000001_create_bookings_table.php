@@ -13,6 +13,7 @@ return new class extends Migration
             $table->foreignId('enquiry_id')->nullable()->constrained()->nullOnDelete();
             $table->string('customer_name');
             $table->string('phone');
+            $table->string('email')->nullable();
             $table->json('services');
             $table->json('details')->nullable();
             $table->date('banquet_event_date')->nullable();

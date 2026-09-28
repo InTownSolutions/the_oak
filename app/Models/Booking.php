@@ -14,11 +14,15 @@ class Booking extends Model
         'enquiry_id',
         'customer_name',
         'phone',
+        'email',
         'services',
         'details',
         'banquet_event_date',
         'banquet_hall',
         'status',
+        'total_amount',
+        'advance_amount',
+        'payment_status',
         'admin_notes',
     ];
 
@@ -26,6 +30,8 @@ class Booking extends Model
         'services' => 'array',
         'details' => 'array',
         'banquet_event_date' => 'date',
+        'total_amount' => 'decimal:2',
+        'advance_amount' => 'decimal:2',
     ];
 
     public function enquiry(): BelongsTo

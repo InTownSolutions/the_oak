@@ -18,12 +18,12 @@
                 <p class="eyebrow">Catering Services</p>
                 <h1>Menus For Gatherings, Celebrations, And Events</h1>
                 <p>
-                    The Oak supports in-house catering with multi-cuisine menu options and experienced service staff.
-                    Outside caterers can also be discussed based on the event requirement.
+                    The Oak offers multi-cuisine catering for events hosted at the resort, with quick bites,
+                    Indian meals, Chinese and Continental dishes, desserts, and high tea selections.
                 </p>
                 <div class="hero-actions">
                     <a class="primary-action" href="#enquiry">Enquire About Catering</a>
-                    <a class="ghost-action" href="/catering-menu.pdf" target="_blank" rel="noopener">Open Sample Menu</a>
+                    <a class="ghost-action" href="/catering-menu.pdf" target="_blank" rel="noopener">View Full Menu</a>
                 </div>
             </div>
 
@@ -37,85 +37,82 @@
 
         <section id="catering-options" class="catering-options">
             <div class="section-heading">
-                <p class="eyebrow">Catering Options</p>
-                <h2>Vegetarian And Non-Vegetarian Service Choices</h2>
+                <p class="eyebrow">Menu Preview</p>
+                <h2>Choose From A Wide Multi-Cuisine Menu</h2>
             </div>
 
-            <div class="catering-type-grid">
-                <article class="catering-type-card">
+            <div class="catering-menu-showcase">
+                <article class="menu-feature-card">
                     <img
                         src="{{ asset('images/oak/client/restaurant-corner.jpg') }}"
                         alt="The Oak restaurant interior with dining setup"
                     >
-                    <div class="catering-type-copy">
-                        <span class="catering-type-label">Vegetarian</span>
-                        <h3>Pure Veg Catering</h3>
-                        <div class="catering-plan-grid">
-                            <div>
-                                <h4>Complete Veg Feast</h4>
-                                <p>Full vegetarian catering for weddings, family events, and larger celebrations.</p>
-                                <ul>
-                                    <li>Welcome drink</li>
-                                    <li>Starter selection</li>
-                                    <li>Rice and bread counter</li>
-                                    <li>Paneer or seasonal main dish</li>
-                                    <li>Dal and vegetable curry</li>
-                                    <li>Salad, pickle, papad</li>
-                                    <li>Dessert counter</li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h4>Veg Lite Service</h4>
-                                <p>A smaller vegetarian setup for intimate events or lighter meal requirements.</p>
-                                <ul>
-                                    <li>One welcome drink</li>
-                                    <li>Two starters</li>
-                                    <li>Rice or bread</li>
-                                    <li>One main curry</li>
-                                    <li>One dessert</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div>
+                        <p class="eyebrow">Full Menu PDF</p>
+                        <h3>Detailed Catering Menu</h3>
+                        <p>
+                            The complete PDF includes all available quick bites, main course options, salads,
+                            drinks, desserts, and suggested lunch, dinner, and high tea formats.
+                        </p>
+                        <a class="text-action" href="/catering-menu.pdf" target="_blank" rel="noopener">Open full catering menu</a>
                     </div>
                 </article>
 
-                <article class="catering-type-card">
-                    <img
-                        src="{{ asset('images/oak/client/restaurant-seating.jpg') }}"
-                        alt="The Oak restaurant seating arrangement"
-                    >
-                    <div class="catering-type-copy">
-                        <span class="catering-type-label">Non-Vegetarian</span>
-                        <h3>Non-Veg Catering</h3>
-                        <div class="catering-plan-grid">
-                            <div>
-                                <h4>Complete Non-Veg Feast</h4>
-                                <p>Full catering with vegetarian basics and selected non-vegetarian highlights.</p>
-                                <ul>
-                                    <li>Welcome drink</li>
-                                    <li>Chicken or fish starter</li>
-                                    <li>Rice and bread counter</li>
-                                    <li>Chicken curry or roast item</li>
-                                    <li>Seasonal vegetable dish</li>
-                                    <li>Dal, salad, pickle</li>
-                                    <li>Dessert counter</li>
-                                </ul>
-                            </div>
+                <div class="menu-category-grid">
+                    <article>
+                        <span>01</span>
+                        <h3>Quick Bites</h3>
+                        <p>Veg pakora, paneer pakora, peri peri fries, chicken pakora, fish fingers, chicken kabab, wings, rolls, nuggets, and mini burgers.</p>
+                    </article>
+                    <article>
+                        <span>02</span>
+                        <h3>Chinese & Continental</h3>
+                        <p>Hakka noodles, fried rice, pasta, crispy veg, veg manchurian, chicken manchurian, chilly fry, roast chicken, pork ribs, fish, and prawns.</p>
+                    </article>
+                    <article>
+                        <span>03</span>
+                        <h3>Indian Selection</h3>
+                        <p>Plain rice, pulao, roti, paratha, naan, dal, paneer dishes, chicken curry, fish curry, mutton curry, korma, kabab, and Chicken 65.</p>
+                    </article>
+                    <article>
+                        <span>04</span>
+                        <h3>Drinks & Desserts</h3>
+                        <p>Coffee, tea, fresh lime drinks, soft drinks, rasmalai, gulab jamun, fruit salad, custard pudding, ice cream, caramel custard, and mousse.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-                            <div>
-                                <h4>Non-Veg Lite Service</h4>
-                                <p>A smaller non-vegetarian setup for casual gatherings and focused meal service.</p>
-                                <ul>
-                                    <li>One welcome drink</li>
-                                    <li>One non-veg starter</li>
-                                    <li>Rice or bread</li>
-                                    <li>One non-veg main</li>
-                                    <li>One dessert</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+        <section class="catering-format-section">
+            <div class="section-heading compact-heading">
+                <p class="eyebrow">Serving Formats</p>
+                <h2>Suggested Menu Structures</h2>
+            </div>
+
+            <div class="catering-format-grid">
+                <article>
+                    <span class="catering-type-label">Lunch / Dinner</span>
+                    <h3>Complete Meal Format</h3>
+                    <ul>
+                        <li>Two starter items, usually one veg and one non-veg</li>
+                        <li>Two rice selections</li>
+                        <li>One bread selection</li>
+                        <li>Three non-vegetarian items</li>
+                        <li>Two vegetarian items</li>
+                        <li>Two dessert items</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <span class="catering-type-label">High Tea</span>
+                    <h3>Light Gathering Format</h3>
+                    <ul>
+                        <li>Coffee or tea service</li>
+                        <li>Two sweet items as open choice</li>
+                        <li>Two salty items as open choice</li>
+                        <li>One mixed nuts selection</li>
+                        <li>Pricing varies by item choice and add-ons</li>
+                    </ul>
                 </article>
             </div>
         </section>
@@ -125,8 +122,9 @@
                 <p class="eyebrow">Menu Discussion</p>
                 <h2>Multi-Cuisine Menus, Finalized Personally</h2>
                 <p>
-                    The final menu can include Indian, Continental, Asian, Khasi, and custom selections. Dish names,
-                    serving style, counters, and special requests will be confirmed directly with the resort team.
+                    The final menu can include Indian, Chinese, Continental, snacks, momos, salads, drinks,
+                    desserts, and custom selections. Dish names, serving style, counters, and special requests
+                    will be confirmed directly with the resort team.
                 </p>
             </div>
 
@@ -138,8 +136,8 @@
                 </article>
                 <article>
                     <span>02</span>
-                    <h3>In-House Or Outside Caterers</h3>
-                    <p>The Oak can support in-house catering, and outside caterers may also be allowed after discussion.</p>
+                    <h3>Select Meal Format</h3>
+                    <p>Lunch, dinner, high tea, snacks, or a custom format can be discussed with the resort team.</p>
                 </article>
                 <article>
                     <span>03</span>
@@ -154,7 +152,7 @@
                 <p class="eyebrow">Start A Conversation</p>
                 <h2>Catering Enquiry</h2>
                 <p>
-                    Share the food type, service level, approximate guest count, and event details. The resort team
+                    Share the meal type, food preference, approximate guest count, and event details. The resort team
                     will call back to discuss the menu and arrangements.
                 </p>
             </div>
@@ -179,6 +177,11 @@
                     <input id="name" name="name" type="text" value="{{ old('name') }}" placeholder="Enter your name" required>
                 </div>
 
+                <div class="field-group">
+                    <label for="email">Email Address</label>
+                    <input id="email" name="email" type="email" value="{{ old('email') }}" placeholder="Email for booking updates">
+                </div>
+
                 <div class="field-row">
                     <div class="field-group">
                         <label for="phone">Phone Number</label>
@@ -196,17 +199,30 @@
                         <select id="food_type" name="food_type">
                             <option @selected(old('food_type') === 'Vegetarian')>Vegetarian</option>
                             <option @selected(old('food_type') === 'Non-Vegetarian')>Non-Vegetarian</option>
-                            <option @selected(old('food_type') === 'Both / Need Guidance')>Both / Need Guidance</option>
+                            <option @selected(old('food_type') === 'Veg And Non-Veg')>Veg And Non-Veg</option>
+                            <option @selected(old('food_type') === 'Need Guidance')>Need Guidance</option>
                         </select>
                     </div>
                     <div class="field-group">
-                        <label for="service_level">Service Level</label>
-                        <select id="service_level" name="service_level">
-                            <option @selected(old('service_level') === 'Complete Feast')>Complete Feast</option>
-                            <option @selected(old('service_level') === 'Lite Service')>Lite Service</option>
-                            <option @selected(old('service_level') === 'Not sure yet')>Not sure yet</option>
+                        <label for="meal_type">Meal Type</label>
+                        <select id="meal_type" name="meal_type">
+                            <option @selected(old('meal_type') === 'Lunch')>Lunch</option>
+                            <option @selected(old('meal_type') === 'Dinner')>Dinner</option>
+                            <option @selected(old('meal_type') === 'High Tea')>High Tea</option>
+                            <option @selected(old('meal_type') === 'Snacks / Quick Bites')>Snacks / Quick Bites</option>
+                            <option @selected(old('meal_type') === 'Custom Discussion')>Custom Discussion</option>
                         </select>
                     </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="menu_style">Menu Structure</label>
+                    <select id="menu_style" name="menu_style">
+                        <option @selected(old('menu_style') === 'Standard Lunch / Dinner Format')>Standard Lunch / Dinner Format</option>
+                        <option @selected(old('menu_style') === 'High Tea Format')>High Tea Format</option>
+                        <option @selected(old('menu_style') === 'Only Selected Items')>Only Selected Items</option>
+                        <option @selected(old('menu_style') === 'Need Team Recommendation')>Need Team Recommendation</option>
+                    </select>
                 </div>
 
                 <div class="field-group">
@@ -222,7 +238,7 @@
 
                 <div class="field-group">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Tell us about menu preferences or serving needs">{{ old('message') }}</textarea>
+                    <textarea id="message" name="message" rows="4" placeholder="Mention preferred dishes, serving style, or any special food requirements">{{ old('message') }}</textarea>
                 </div>
 
                 <button class="primary-action form-action" type="submit">Send Catering Enquiry</button>

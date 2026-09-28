@@ -67,17 +67,6 @@
                     </label>
 
                     <label class="combined-service-card">
-                        <input type="checkbox" name="selected_services[]" value="cottages" data-combined-service form="combinedEnquiryForm">
-                        <img
-                            src="{{ asset('images/oak/client/rooms-exterior.jpg') }}"
-                            alt="The Oak guesthouse exterior"
-                        >
-                        <span>Accommodation</span>
-                        <strong>Cottages</strong>
-                        <small>Quiet private stays for families, retreats, and groups.</small>
-                    </label>
-
-                    <label class="combined-service-card">
                         <input type="checkbox" name="selected_services[]" value="decoration" data-combined-service form="combinedEnquiryForm">
                         <img
                             src="{{ asset('images/oak/client/banquet-lawn.jpg') }}"
@@ -85,7 +74,7 @@
                         >
                         <span>Event Support</span>
                         <strong>Decoration</strong>
-                        <small>Grand wedding decor, signature celebration decor, or simple essentials.</small>
+                        <small>In-house decoration support for events, themes, and venue areas.</small>
                     </label>
 
                     <label class="combined-service-card">
@@ -141,8 +130,7 @@
                             <label>
                                 Room Category
                                 <select name="room_type" form="combinedEnquiryForm">
-                                    <option>Semi Deluxe Rooms</option>
-                                    <option>Cottages</option>
+                                    <option>Guest Room</option>
                                     <option>Not sure yet</option>
                                 </select>
                             </label>
@@ -157,43 +145,20 @@
                         </div>
                     </article>
 
-                    <article class="combined-detail is-hidden" data-service-detail="cottages">
-                        <div>
-                            <p class="eyebrow">Cottages</p>
-                            <h3>Private Cottage Requirement</h3>
-                        </div>
-                        <div class="combined-field-grid">
-                            <label>
-                                Cottage Type
-                                <select name="cottage_type" form="combinedEnquiryForm">
-                                    <option>Forest Cottage</option>
-                                    <option>Family Cottage</option>
-                                    <option>Group Cottage</option>
-                                </select>
-                            </label>
-                            <label>
-                                Cottages Needed
-                                <input type="number" name="cottages_needed" min="1" placeholder="Example: 2" form="combinedEnquiryForm">
-                            </label>
-                            <label>
-                                Guests Staying
-                                <input type="number" name="cottage_guests" min="1" placeholder="Example: 6" form="combinedEnquiryForm">
-                            </label>
-                        </div>
-                    </article>
-
                     <article class="combined-detail is-hidden" data-service-detail="decoration">
                         <div>
                             <p class="eyebrow">Decoration</p>
-                            <h3>Decor Style And Package</h3>
+                            <h3>Decor Style And Area</h3>
                         </div>
                         <div class="combined-field-grid">
                             <label>
-                                Decoration Category
-                                <select name="decor_category" form="combinedEnquiryForm">
-                                    <option>Grand Wedding Decor</option>
-                                    <option>Signature Celebration Decor</option>
-                                    <option>Simple Decor Essentials</option>
+                                Decoration Area
+                                <select name="decor_area" form="combinedEnquiryForm">
+                                    <option>Banquet Hall</option>
+                                    <option>Garden Area</option>
+                                    <option>Entrance + Hall</option>
+                                    <option>Restaurant Area</option>
+                                    <option>Not sure yet</option>
                                 </select>
                             </label>
                             <label>
@@ -220,24 +185,37 @@
                             <label>
                                 Food Type
                                 <select name="food_type" form="combinedEnquiryForm">
-                                    <option>Pure Veg</option>
-                                    <option>Non-Veg</option>
+                                    <option>Vegetarian</option>
+                                    <option>Non-Vegetarian</option>
                                     <option>Veg And Non-Veg</option>
+                                    <option>Need Guidance</option>
                                 </select>
                             </label>
                             <label>
-                                Service Level
-                                <select name="service_level" form="combinedEnquiryForm">
-                                    <option>Complete Feast</option>
-                                    <option>Partial Service</option>
+                                Meal Type
+                                <select name="meal_type" form="combinedEnquiryForm">
+                                    <option>Lunch</option>
+                                    <option>Dinner</option>
+                                    <option>High Tea</option>
+                                    <option>Snacks / Quick Bites</option>
+                                    <option>Custom Discussion</option>
                                 </select>
                             </label>
                             <label>
                                 Guests For Food
                                 <input type="number" name="catering_guests" min="1" placeholder="Example: 120" form="combinedEnquiryForm">
                             </label>
+                            <label>
+                                Menu Structure
+                                <select name="menu_style" form="combinedEnquiryForm">
+                                    <option>Standard Lunch / Dinner Format</option>
+                                    <option>High Tea Format</option>
+                                    <option>Only Selected Items</option>
+                                    <option>Need Team Recommendation</option>
+                                </select>
+                            </label>
                         </div>
-                        <a class="combined-menu-link" href="/catering-menu.pdf" target="_blank" rel="noopener">Open sample menu PDF</a>
+                        <a class="combined-menu-link" href="/catering-menu.pdf" target="_blank" rel="noopener">Open full catering menu PDF</a>
                     </article>
                 </div>
             </div>
@@ -272,7 +250,7 @@
                     </label>
                     <label>
                         Email Address
-                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Optional email">
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Email for booking updates">
                     </label>
                     <label>
                         Best Time To Call
@@ -305,7 +283,6 @@
             const serviceNames = {
                 banquet: 'Banquet Hall',
                 rooms: 'Rooms',
-                cottages: 'Cottages',
                 decoration: 'Decoration',
                 catering: 'Catering',
             };

@@ -9,6 +9,7 @@
             <div class="nav-links">
                 <a href="#gallery">Gallery</a>
                 <a href="#details">Details</a>
+                <a href="#terms">Terms</a>
                 <a href="#enquiry">Enquire</a>
             </div>
         </nav>
@@ -18,8 +19,8 @@
                 <p class="eyebrow">Banquet Hall</p>
                 <h1>Where Celebration Comes To Life</h1>
                 <p>
-                    Set amid pine greenery and landscaped outdoor spaces, The Oak Banquet Hall offers an elegant
-                    setting for weddings, receptions, birthdays, corporate meetings, and memorable gatherings.
+                    The Oak Banquet Hall Shillong offers an elegant and versatile setting for weddings,
+                    receptions, birthdays, corporate meetings, and memorable gatherings.
                 </p>
                 <div class="hero-actions">
                     <a class="primary-action" href="#enquiry">Enquire Now</a>
@@ -42,11 +43,11 @@
             </div>
             <div>
                 <strong>400</strong>
-                <span>Theatre Seating</span>
+                <span>Chairs Available</span>
             </div>
             <div>
-                <strong>150</strong>
-                <span>Dining Capacity</span>
+                <strong>20</strong>
+                <span>Dining Tables</span>
             </div>
             <div>
                 <strong>1000</strong>
@@ -82,27 +83,26 @@
                 <p class="eyebrow">For Every Occasion</p>
                 <h2>A Flexible Venue For Formal And Informal Gatherings</h2>
                 <p>
-                    The hall is designed for intimate ceremonies, grand celebrations, corporate programmes, and
-                    family events. Customers can choose their preferred event date and quickly see whether the
-                    banquet hall appears available before sending an enquiry.
+                    The hall supports grand celebrations as well as intimate programmes, with indoor and outdoor
+                    event spaces, a dining hall, kitchen, lawn, and preparation rooms for smoother event planning.
                 </p>
             </div>
 
             <div class="detail-list">
                 <article>
                     <span>01</span>
-                    <h3>Celebration Capacity</h3>
-                    <p>Suitable for 100 to 250 guests in cluster seating, 300 to 400 guests in theatre style, and larger informal gatherings using the outdoor space.</p>
+                    <h3>Grand Banquet Hall</h3>
+                    <p>Elegant venue space for up to 1,000 guests, supported by indoor and outdoor seating options.</p>
                 </article>
                 <article>
                     <span>02</span>
-                    <h3>Dining & Kitchen Support</h3>
-                    <p>A separate dining hall with 25 tables and seating for around 150 guests is connected to a kitchen area for smoother catering operations.</p>
+                    <h3>Event Spaces & Dining</h3>
+                    <p>Includes dining hall, kitchen, lawn, function area, 400 chairs, 20 tables, and buffet tables.</p>
                 </article>
                 <article>
                     <span>03</span>
-                    <h3>Garden & Preparation Rooms</h3>
-                    <p>The outdoor lawn can support open-air ceremonies, while two nearby rooms can be used for preparation, relaxation, or pre-function discussions.</p>
+                    <h3>Catering & Decor Support</h3>
+                    <p>In-house or third-party catering and decor can be discussed as preferred by the customer.</p>
                 </article>
             </div>
         </section>
@@ -115,17 +115,51 @@
 
             <div class="amenity-grid">
                 <span>Air conditioning inside the banquet hall</span>
-                <span>Elegant lighting and custom decor options</span>
-                <span>Wi-Fi across the venue</span>
-                <span>Ample parking space</span>
-                <span>Wheelchair accessibility</span>
-                <span>Power backup and 30KVA generator</span>
+                <span>Dining hall, kitchen, lawn, and function area</span>
+                <span>400 chairs, 20 dining tables, and buffet tables</span>
+                <span>In-house or third-party catering and decor support</span>
+                <span>Ample parking and wheelchair access</span>
+                <span>Power backup with 7 KVA generator for sound</span>
                 <span>24/7 security with CCTV surveillance</span>
-                <span>Children's play area</span>
+                <span>Kids' play area</span>
                 <span>Running water</span>
                 <span>Separate washrooms for ladies and gentlemen</span>
                 <span>Two rooms near the main hall</span>
                 <span>Separate car entry and exit</span>
+            </div>
+        </section>
+
+        <section id="terms" class="terms-section">
+            <div class="section-heading">
+                <p class="eyebrow">Terms & Conditions</p>
+                <h2>Important Booking Notes</h2>
+            </div>
+
+            <div class="terms-grid">
+                <article>
+                    <h3>Booking Advance</h3>
+                    <p>A 25% advance payment is required to confirm and reserve the booking date. The advance is non-refundable in the event of cancellation.</p>
+                </article>
+                <article>
+                    <h3>Music & Sound</h3>
+                    <p>Music and sound systems are permitted only until 11:00 PM. Guests, caterers, decorators, DJs, and event organizers must follow this timing.</p>
+                </article>
+                <article>
+                    <h3>Setup Schedule</h3>
+                    <p>Wedding setup may be done one day before the event. Smaller gatherings must be set up on the day of the event.</p>
+                </article>
+                <article>
+                    <h3>Generator & Cleanliness</h3>
+                    <p>Caterers using induction buffets or heavy decoration lighting must arrange their own generator. Event waste must be collected and disposed of properly.</p>
+                </article>
+                <article>
+                    <h3>Additional Charges</h3>
+                    <p>Canopy charges depend on size. Table covers are INR 200 per table and chairs are INR 50 per piece when applicable.</p>
+                </article>
+                <article>
+                    <h3>Contact</h3>
+                    <p>Laitkor Lumheh, Laitkor Pomlakrai Road, Shillong-10. Call +91 8787320765 or +91 6909781461.</p>
+                </article>
             </div>
         </section>
 
@@ -157,6 +191,11 @@
                 <div class="field-group">
                     <label for="name">Full Name</label>
                     <input id="name" name="name" type="text" value="{{ old('name') }}" placeholder="Enter your name" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="email">Email Address</label>
+                    <input id="email" name="email" type="email" value="{{ old('email') }}" placeholder="Email for booking updates">
                 </div>
 
                 <div class="field-group">

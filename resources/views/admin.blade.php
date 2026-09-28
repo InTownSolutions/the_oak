@@ -7,9 +7,10 @@
             </a>
 
             <nav class="admin-nav" aria-label="Admin navigation">
-                <a class="active" href="/admin">Enquiries</a>
-                <a href="#booking-preview">Bookings</a>
-                <a href="#tariff-season">Season Tariffs</a>
+                <a class="active" href="/admin" data-admin-dashboard-link>Enquiries</a>
+                <a href="#manual-booking" data-manual-booking-link>Create Manual Booking</a>
+                <a href="#booking-preview" data-admin-section-link>Bookings</a>
+                <a href="#tariff-season" data-admin-section-link>Season Tariffs</a>
                 <a href="/">Customer Site</a>
             </nav>
         </aside>
@@ -34,7 +35,7 @@
                 </div>
             @endif
 
-            <section class="admin-stats" aria-label="Admin summary">
+            <section class="admin-stats admin-dashboard-section" aria-label="Admin summary">
                 <article>
                     <span>New</span>
                     <strong>{{ str_pad((string) $stats['new'], 2, '0', STR_PAD_LEFT) }}</strong>
@@ -53,7 +54,110 @@
                 </article>
             </section>
 
-            <section class="admin-panel">
+            <section id="manual-booking" class="admin-panel manual-booking-panel" aria-hidden="true">
+                <div class="admin-panel-header">
+                    <div>
+                        <h2>Create Manual Booking</h2>
+                        <p>Use this when a customer calls directly or confirms outside the website enquiry flow.</p>
+                    </div>
+                    <div class="admin-filters">
+                        <span>Direct Entry</span>
+                        <span>Admin Only</span>
+                    </div>
+                </div>
+
+                <form class="booking-builder" method="POST" action="{{ route('admin.bookings.manual-store') }}">
+                    @csrf
+                    <div class="admin-form-grid">
+                        <label>Customer Name <input name="customer_name" type="text" placeholder="Customer name" required></label>
+                        <label>Phone Number <input name="phone" type="tel" placeholder="Contact number" required></label>
+                        <label>Email Address <input name="email" type="email" placeholder="Email for booking confirmation"></label>
+                    </div>
+
+                    <div class="service-toggle-grid">
+                        <label><input type="checkbox" name="services[]" value="banquet"> Banquet Hall</label>
+                        <label><input type="checkbox" name="services[]" value="rooms"> Rooms</label>
+                        <label><input type="checkbox" name="services[]" value="decoration"> Decoration</label>
+                        <label><input type="checkbox" name="services[]" value="catering"> Catering</label>
+                    </div>
+
+                    <div class="service-form-stack">
+                        <article class="service-booking-form is-visible">
+                            <h4>Banquet Hall Details</h4>
+                            <div class="admin-form-grid">
+                                <label>Event Date <input name="banquet_event_date" type="date"></label>
+                                <label>Event Time <input name="banquet_event_time" type="time"></label>
+                                <label>Hall <select name="banquet_hall"><option>Main Banquet Hall</option><option>Garden Hall</option></select></label>
+                                <label>Guests <input name="banquet_guests" type="number" min="1"></label>
+                            </div>
+                        </article>
+
+                        <article class="service-booking-form is-visible">
+                            <h4>Room Details</h4>
+                            <div class="admin-form-grid">
+                                <label>Check-In <input name="rooms_check_in" type="date"></label>
+                                <label>Check-Out <input name="rooms_check_out" type="date"></label>
+                                <label>Room Type <select name="room_category"><option>Guest Room</option></select></label>
+                                <label>Rooms Needed <input name="rooms_needed" type="number" min="1"></label>
+                            </div>
+                        </article>
+
+                        <article class="service-booking-form is-visible">
+                            <h4>Decoration Details</h4>
+                            <div class="admin-form-grid">
+                                <label>Event Area <select name="decoration_area"><option>Banquet Hall</option><option>Garden Area</option><option>Entrance + Hall</option><option>Restaurant Area</option></select></label>
+                                <label>Theme / Requirement <input name="decoration_theme" type="text" placeholder="Example: floral, traditional, simple stage"></label>
+                                <label>Guests <input name="decoration_guests" type="number" min="1"></label>
+                            </div>
+                        </article>
+
+                        <article class="service-booking-form is-visible">
+                            <h4>Catering Details</h4>
+                            <div class="admin-form-grid">
+                                <label>Food Type <select name="food_type"><option>Vegetarian</option><option>Non-Vegetarian</option><option>Veg And Non-Veg</option><option>Need Guidance</option></select></label>
+                                <label>Meal Type <select name="meal_type"><option>Lunch</option><option>Dinner</option><option>High Tea</option><option>Snacks / Quick Bites</option><option>Custom Discussion</option></select></label>
+                                <label>Menu Structure <select name="menu_style"><option>Standard Lunch / Dinner Format</option><option>High Tea Format</option><option>Only Selected Items</option><option>Need Team Recommendation</option></select></label>
+                                <label>Guests <input name="catering_guests" type="number" min="1"></label>
+                                <label>Menu Notes <input name="menu_notes" type="text"></label>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="admin-form-grid">
+                        <label>Total Cost <input name="total_amount" type="number" min="0" step="0.01" placeholder="Enter final quoted amount" required></label>
+                        <label>Advance Amount <input name="advance_amount" type="number" min="0" step="0.01" placeholder="Optional advance"></label>
+                        <label>Booking Status
+                            <select name="status">
+                                <option>Pending Confirmation</option>
+                                <option>Awaiting Advance</option>
+                                <option>Advance Received</option>
+                                <option>Confirmed</option>
+                                <option>Cancelled</option>
+                            </select>
+                        </label>
+                        <label>Payment Status
+                            <select name="payment_status">
+                                <option>Not Collected</option>
+                                <option>Advance Requested</option>
+                                <option>Advance Received</option>
+                                <option>Paid</option>
+                                <option>Refunded</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <label>
+                        Booking Notes
+                        <textarea name="admin_notes" rows="3" placeholder="Manual booking notes, quoted inclusions, pending confirmation"></textarea>
+                    </label>
+
+                    <div class="modal-actions">
+                        <button class="primary-action" type="submit">Save Manual Booking</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="admin-panel admin-dashboard-section">
                 <div class="admin-panel-header">
                     <div>
                         <h2>All Customer Enquiries</h2>
@@ -61,8 +165,8 @@
                     </div>
 
                     <div class="admin-filters">
-                        <span>{{ $enquiries->count() }} Enquiries</span>
-                        <span>Newest First</span>
+                        <span>{{ $adminRows->count() }} Records</span>
+                        <span>Enquiries + Bookings</span>
                     </div>
                 </div>
 
@@ -79,38 +183,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($enquiries as $enquiry)
+                            @forelse ($adminRows as $row)
                                 @php
-                                    $serviceClass = match ($enquiry->service) {
-                                        'Banquet Hall' => 'banquet',
-                                        'Rooms' => 'rooms',
-                                        'Decoration' => 'decoration',
-                                        'Catering' => 'catering',
+                                    $serviceClass = match (true) {
+                                        str_contains($row['service'], 'Banquet') => 'banquet',
+                                        str_contains($row['service'], 'Rooms') => 'rooms',
+                                        str_contains($row['service'], 'Decoration') => 'decoration',
+                                        str_contains($row['service'], 'Catering') => 'catering',
                                         default => 'banquet',
                                     };
-                                    $statusClass = match ($enquiry->status) {
+                                    $statusClass = match ($row['status']) {
                                         'Contacted' => 'contacted',
                                         'In Discussion' => 'discussion',
-                                        'Booked' => 'booked',
+                                        'Booked', 'Confirmed', 'Advance Received' => 'booked',
+                                        'Pending Confirmation', 'Awaiting Advance' => 'discussion',
+                                        'Cancelled', 'Closed' => 'closed',
                                         default => 'new',
                                     };
+                                    $recordClass = $row['kind'] === 'booking' ? 'booking-record-row' : '';
                                 @endphp
-                                <tr class="enquiry-row" tabindex="0" data-enquiry-id="{{ $enquiry->id }}">
+                                <tr class="enquiry-row {{ $recordClass }}" tabindex="0" data-record-id="{{ $row['record_key'] }}">
                                     <td>
-                                        <strong>{{ $enquiry->customer_name }}</strong>
-                                        <span>{{ $enquiry->email ?: 'No email shared' }}</span>
+                                        <strong>{{ $row['customer_name'] }}</strong>
+                                        <span>{{ $row['email'] ?: 'No email shared' }}</span>
                                     </td>
-                                    <td><span class="service-pill {{ $serviceClass }}">{{ $enquiry->service }}</span></td>
-                                    <td>{{ $enquiry->enquiry_type ?: 'General Enquiry' }}</td>
-                                    <td>{{ $enquiry->phone }}</td>
-                                    <td><span class="status-pill {{ $statusClass }}">{{ $enquiry->status }}</span></td>
-                                    <td>{{ $enquiry->created_at->format('d M Y') }}</td>
+                                    <td><span class="service-pill {{ $serviceClass }}">{{ $row['service'] }}</span></td>
+                                    <td>{{ $row['type'] }}</td>
+                                    <td>{{ $row['phone'] }}</td>
+                                    <td><span class="status-pill {{ $statusClass }}">{{ $row['status'] }}</span></td>
+                                    <td>{{ $row['created_at']->format('d M Y') }}</td>
                                 </tr>
                             @empty
                                 <tr>
                                     <td colspan="6">
-                                        <strong>No enquiries yet</strong>
-                                        <span>Customer submissions will appear here automatically.</span>
+                                        <strong>No enquiries or bookings yet</strong>
+                                        <span>Customer submissions and internal bookings will appear here automatically.</span>
                                     </td>
                                 </tr>
                             @endforelse
@@ -119,7 +226,7 @@
                 </div>
             </section>
 
-            <section id="booking-preview" class="admin-panel booking-preview">
+            <section id="booking-preview" class="admin-panel booking-preview admin-dashboard-section">
                 <div>
                     <h2>Recent Internal Bookings</h2>
                     <p>Created by admin after calling the customer.</p>
@@ -130,7 +237,9 @@
                         <article>
                             <span class="booking-code">BK-{{ str_pad((string) $booking->id, 4, '0', STR_PAD_LEFT) }}</span>
                             <h3>{{ $booking->customer_name }}</h3>
+                            <p>{{ $booking->email ?: 'No email saved' }}</p>
                             <p>{{ collect($booking->services)->map(fn ($service) => \Illuminate\Support\Str::headline($service))->implode(', ') }}</p>
+                            <p>Total: {{ $booking->total_amount !== null ? 'INR '.number_format((float) $booking->total_amount, 2) : 'Not entered' }}</p>
                             <strong>{{ $booking->status }}</strong>
                         </article>
                     @empty
@@ -144,7 +253,7 @@
                 </div>
             </section>
 
-            <section id="tariff-season" class="admin-panel tariff-panel">
+            <section id="tariff-season" class="admin-panel tariff-panel admin-dashboard-section">
                 <div class="admin-panel-header">
                     <div>
                         <h2>Season & Festive Tariffs</h2>
@@ -355,19 +464,18 @@
                             <article class="service-booking-form" data-service-form="rooms">
                                 <h4>Room Assignment</h4>
                                 <div class="admin-form-grid">
-                                    <label>Check-In <input name="rooms_check_in" type="date"></label>
-                                    <label>Check-Out <input name="rooms_check_out" type="date"></label>
-                                    <label>Room Category <select name="room_category"><option>Semi Deluxe Rooms</option><option>Cottages</option></select></label>
-                                    <label>Rooms Needed <input name="rooms_needed" type="number" min="1"></label>
+                                    <label>Check-In <input name="rooms_check_in" id="bookingRoomCheckIn" type="date"></label>
+                                    <label>Check-Out <input name="rooms_check_out" id="bookingRoomCheckOut" type="date"></label>
+                                    <label>Room Type <select name="room_category"><option>Guest Room</option></select></label>
+                                    <label>Rooms Needed <input name="rooms_needed" id="bookingRoomsNeeded" type="number" min="1"></label>
                                 </div>
                             </article>
 
                             <article class="service-booking-form" data-service-form="decoration">
                                 <h4>Decoration Booking</h4>
                                 <div class="admin-form-grid">
-                                    <label>Category <select name="decoration_category"><option>Grand Wedding Decor</option><option>Signature Celebration Decor</option><option>Simple Decor Essentials</option></select></label>
                                     <label>Event Area <select name="decoration_area"><option>Banquet Hall</option><option>Garden Area</option><option>Entrance + Hall</option></select></label>
-                                    <label>Theme <input name="decoration_theme" id="bookingDecorTheme" type="text"></label>
+                                    <label>Theme / Requirement <input name="decoration_theme" id="bookingDecorTheme" type="text"></label>
                                     <label>Guests <input name="decoration_guests" type="number" min="1"></label>
                                 </div>
                             </article>
@@ -375,12 +483,36 @@
                             <article class="service-booking-form" data-service-form="catering">
                                 <h4>Catering Booking</h4>
                                 <div class="admin-form-grid">
-                                    <label>Food Type <select name="food_type"><option>Vegetarian</option><option>Non-Vegetarian</option><option>Both</option></select></label>
-                                    <label>Service Level <select name="service_level"><option>Complete Feast</option><option>Lite Service</option></select></label>
+                                    <label>Food Type <select name="food_type"><option>Vegetarian</option><option>Non-Vegetarian</option><option>Veg And Non-Veg</option><option>Need Guidance</option></select></label>
+                                    <label>Meal Type <select name="meal_type"><option>Lunch</option><option>Dinner</option><option>High Tea</option><option>Snacks / Quick Bites</option><option>Custom Discussion</option></select></label>
+                                    <label>Menu Structure <select name="menu_style"><option>Standard Lunch / Dinner Format</option><option>High Tea Format</option><option>Only Selected Items</option><option>Need Team Recommendation</option></select></label>
                                     <label>Guests <input name="catering_guests" type="number" min="1"></label>
                                     <label>Menu Notes <input name="menu_notes" type="text"></label>
                                 </div>
                             </article>
+                        </div>
+
+                        <div class="admin-form-grid">
+                            <label>Total Cost <input name="total_amount" id="bookingTotalAmount" type="number" min="0" step="0.01" placeholder="Enter final quoted amount" required></label>
+                            <label>Advance Amount <input name="advance_amount" id="bookingAdvanceAmount" type="number" min="0" step="0.01" placeholder="Optional advance"></label>
+                            <label>Booking Status
+                                <select name="status">
+                                    <option>Pending Confirmation</option>
+                                    <option>Awaiting Advance</option>
+                                    <option>Advance Received</option>
+                                    <option>Confirmed</option>
+                                    <option>Cancelled</option>
+                                </select>
+                            </label>
+                            <label>Payment Status
+                                <select name="payment_status">
+                                    <option>Not Collected</option>
+                                    <option>Advance Requested</option>
+                                    <option>Advance Received</option>
+                                    <option>Paid</option>
+                                    <option>Refunded</option>
+                                </select>
+                            </label>
                         </div>
 
                         <label>
@@ -390,7 +522,7 @@
 
                         <div class="modal-actions">
                             <button class="ghost-action" type="button" id="resetBooking">Reset Services</button>
-                            <button class="primary-action" type="submit">Confirm Internal Booking</button>
+                            <button class="primary-action" type="submit">Save Booking</button>
                         </div>
                     </form>
                 </div>
@@ -399,29 +531,18 @@
     </div>
 
     <script>
-        const enquiryPayloads = @js($enquiries->mapWithKeys(fn ($enquiry) => [
-            $enquiry->id => [
-                'id' => $enquiry->id,
-                'customer' => $enquiry->customer_name,
-                'phone' => $enquiry->phone,
-                'email' => $enquiry->email ?: 'No email shared',
-                'service' => $enquiry->service,
-                'type' => $enquiry->enquiry_type ?: 'General Enquiry',
-                'guests' => $enquiry->guests ?: 'Not shared',
-                'preferredDate' => optional($enquiry->preferred_date)->format('Y-m-d') ?: 'Not shared',
-                'created' => $enquiry->created_at->format('d M Y'),
-                'message' => $enquiry->message ?: 'No message shared.',
-                'status' => $enquiry->status,
-                'nextFollowUp' => optional($enquiry->next_follow_up)->format('Y-m-d'),
-                'adminNotes' => $enquiry->admin_notes,
-                'details' => $enquiry->details ?: [],
-            ],
-        ]));
+        const recordPayloads = @js($recordPayloads);
         const modal = document.getElementById('enquiryModal');
         const rows = document.querySelectorAll('.enquiry-row');
         const followupForm = document.getElementById('followupForm');
         const bookingForm = document.getElementById('bookingForm');
+        const manualBookingPanel = document.getElementById('manual-booking');
+        const dashboardSections = document.querySelectorAll('.admin-dashboard-section');
+        const manualBookingLink = document.querySelector('[data-manual-booking-link]');
+        const dashboardLink = document.querySelector('[data-admin-dashboard-link]');
+        const adminSectionLinks = document.querySelectorAll('[data-admin-section-link]');
         const fields = {
+            title: document.getElementById('modalTitle'),
             customer: document.getElementById('modalCustomer'),
             phone: document.getElementById('modalPhone'),
             email: document.getElementById('modalEmail'),
@@ -434,11 +555,28 @@
         };
 
         rows.forEach((row) => {
-            row.addEventListener('click', () => openModal(row.dataset.enquiryId));
+            row.addEventListener('click', () => openModal(row.dataset.recordId));
             row.addEventListener('keydown', (event) => {
                 if (event.key === 'Enter') {
-                    openModal(row.dataset.enquiryId);
+                    openModal(row.dataset.recordId);
                 }
+            });
+        });
+
+        manualBookingLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            showManualBooking();
+        });
+
+        dashboardLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            showDashboard();
+        });
+
+        adminSectionLinks.forEach((link) => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                showDashboard(link.getAttribute('href'));
             });
         });
 
@@ -457,31 +595,48 @@
             updateServiceForms();
         });
 
-        function openModal(enquiryId) {
-            const enquiry = enquiryPayloads[enquiryId];
-            const details = enquiry.details || {};
+        function openModal(recordId) {
+            const record = recordPayloads[recordId];
+            const details = record.details || {};
+            const isBooking = record.kind === 'booking';
 
-            fields.customer.textContent = enquiry.customer;
-            fields.phone.textContent = enquiry.phone;
-            fields.email.textContent = enquiry.email;
-            fields.service.textContent = enquiry.service;
-            fields.type.textContent = enquiry.type;
-            fields.guests.textContent = enquiry.guests;
-            fields.date.textContent = enquiry.preferredDate;
-            fields.created.textContent = enquiry.created;
-            fields.message.textContent = enquiry.message;
+            fields.title.textContent = isBooking ? 'Internal Booking' : 'Customer Enquiry';
+            fields.customer.textContent = record.customer;
+            fields.phone.textContent = record.phone;
+            fields.email.textContent = record.email;
+            fields.service.textContent = record.service;
+            fields.type.textContent = record.type;
+            fields.guests.textContent = record.guests;
+            fields.date.textContent = record.preferredDate;
+            fields.created.textContent = record.created;
+            fields.message.textContent = record.message;
+            fields.message.style.whiteSpace = 'pre-line';
 
-            followupForm.action = `/admin/enquiries/${enquiry.id}`;
-            bookingForm.action = `/admin/enquiries/${enquiry.id}/bookings`;
-            document.getElementById('followupStatus').value = enquiry.status;
-            document.getElementById('followupDate').value = enquiry.nextFollowUp || '';
-            document.getElementById('followupNotes').value = enquiry.adminNotes || '';
+            followupForm.hidden = isBooking;
+            bookingForm.hidden = isBooking;
+
+            if (isBooking) {
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+                return;
+            }
+
+            followupForm.action = `/admin/enquiries/${record.id}`;
+            bookingForm.action = `/admin/enquiries/${record.id}/bookings`;
+            document.getElementById('followupStatus').value = record.status;
+            document.getElementById('followupDate').value = record.nextFollowUp || '';
+            document.getElementById('followupNotes').value = record.adminNotes || '';
             document.getElementById('bookingBanquetDate').value = details.event_date || '';
-            document.getElementById('bookingBanquetGuests').value = enquiry.guests !== 'Not shared' ? enquiry.guests : '';
+            document.getElementById('bookingBanquetGuests').value = record.guests !== 'Not shared' ? record.guests : '';
+            document.getElementById('bookingRoomCheckIn').value = details.check_in || '';
+            document.getElementById('bookingRoomCheckOut').value = details.check_out || '';
+            document.getElementById('bookingRoomsNeeded').value = details.rooms || '';
+            document.getElementById('bookingTotalAmount').value = details.estimated_total || '';
+            document.getElementById('bookingAdvanceAmount').value = details.estimated_advance || '';
             document.getElementById('bookingDecorTheme').value = details.theme || '';
 
             document.querySelectorAll('[data-service-toggle]').forEach((checkbox) => {
-                checkbox.checked = serviceShouldStartChecked(checkbox.value, enquiry, details);
+                checkbox.checked = serviceShouldStartChecked(checkbox.value, record, details);
             });
 
             updateServiceForms();
@@ -515,6 +670,36 @@
             document.querySelectorAll('[data-service-form]').forEach((form) => {
                 form.classList.toggle('is-visible', selected.includes(form.dataset.serviceForm));
             });
+        }
+
+        function showManualBooking() {
+            dashboardSections.forEach((section) => {
+                section.classList.add('is-hidden');
+            });
+
+            manualBookingPanel.classList.add('is-visible');
+            manualBookingPanel.setAttribute('aria-hidden', 'false');
+            manualBookingLink.classList.add('active');
+            dashboardLink.classList.remove('active');
+            manualBookingPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showDashboard(targetSelector = null) {
+            dashboardSections.forEach((section) => {
+                section.classList.remove('is-hidden');
+            });
+
+            manualBookingPanel.classList.remove('is-visible');
+            manualBookingPanel.setAttribute('aria-hidden', 'true');
+            dashboardLink.classList.add('active');
+            manualBookingLink.classList.remove('active');
+
+            if (targetSelector) {
+                document.querySelector(targetSelector)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                return;
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </x-layouts.app>

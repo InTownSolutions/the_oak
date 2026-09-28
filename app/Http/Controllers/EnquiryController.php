@@ -9,9 +9,15 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class EnquiryController extends Controller
 {
+    private const ROOM_TYPE = 'Guest Room';
+    private const ROOM_PRICE_PER_NIGHT = 3500;
+    private const ROOM_ADVANCE_PERCENT = 25;
+    private const ROOM_TOTAL_INVENTORY = 8;
+
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
@@ -23,8 +29,19 @@ class EnquiryController extends Controller
             'message' => ['nullable', 'string', 'max:2000'],
             'event_date' => ['nullable', 'date'],
             'event_type' => ['nullable', 'string', 'max:120'],
+            'food_type' => ['nullable', 'string', 'max:120'],
+            'meal_type' => ['nullable', 'string', 'max:120'],
+            'menu_style' => ['nullable', 'string', 'max:160'],
+            'service_level' => ['nullable', 'string', 'max:120'],
             'selected_services' => ['nullable', 'array'],
             'selected_services.*' => ['string', 'max:60'],
+            'check_in' => ['nullable', 'date'],
+            'check_out' => ['nullable', 'date', 'after:check_in'],
+            'rooms' => ['nullable', 'integer', 'min:1'],
+            'room_type' => ['nullable', 'string', 'max:120'],
+            'upi_reference' => ['nullable', 'string', 'max:120'],
+            'estimated_total' => ['nullable', 'numeric', 'min:0'],
+            'estimated_advance' => ['nullable', 'numeric', 'min:0'],
         ]);
 
         if ($validated['service'] === 'Banquet Hall') {
@@ -32,6 +49,24 @@ class EnquiryController extends Controller
                 'event_date' => ['required', 'date', function (string $attribute, mixed $value, \Closure $fail): void {
                     if ($this->banquetDateIsBooked($value)) {
                         $fail('The banquet hall is unavailable on this date. Please choose another date.');
+                    }
+                }],
+            ]);
+        }
+
+        if ($validated['service'] === 'Rooms') {
+            $request->validate([
+                'check_in' => ['required', 'date'],
+                'check_out' => ['required', 'date', 'after:check_in'],
+                'rooms' => ['required', 'integer', 'min:1', function (string $attribute, mixed $value, \Closure $fail) use ($request): void {
+                    $available = $this->availableRooms(
+                        $request->input('check_in'),
+                        $request->input('check_out'),
+                        $request->input('room_type', self::ROOM_TYPE)
+                    );
+
+                    if ((int) $value > $available) {
+                        $fail('Only '.$available.' room(s) appear available for the selected dates. Please reduce rooms or choose different dates.');
                     }
                 }],
             ]);
@@ -47,7 +82,7 @@ class EnquiryController extends Controller
             'service' => $validated['service'],
             'enquiry_type' => $this->enquiryType($request),
             'guests' => $validated['guests'] ?? $this->firstNumeric($request, ['banquet_guests', 'rooms_guests', 'decor_guests', 'catering_guests']),
-            'preferred_date' => $request->input('event_date'),
+            'preferred_date' => $request->input('event_date') ?? $request->input('check_in'),
             'details' => [
                 ...$details,
                 'selected_services' => $selectedServices,
@@ -69,6 +104,36 @@ class EnquiryController extends Controller
         ]);
     }
 
+    public function roomAvailability(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'check_in' => ['required', 'date'],
+            'check_out' => ['required', 'date', 'after:check_in'],
+            'rooms' => ['nullable', 'integer', 'min:1'],
+            'room_type' => ['nullable', 'string', 'max:120'],
+        ]);
+
+        $roomsRequested = (int) ($validated['rooms'] ?? 1);
+        $available = $this->availableRooms(
+            $validated['check_in'],
+            $validated['check_out'],
+            $validated['room_type'] ?? self::ROOM_TYPE
+        );
+        $nights = max(1, Carbon::parse($validated['check_in'])->diffInDays(Carbon::parse($validated['check_out'])));
+        $total = $roomsRequested * $nights * self::ROOM_PRICE_PER_NIGHT;
+        $advance = (int) ceil($total * self::ROOM_ADVANCE_PERCENT / 100);
+
+        return response()->json([
+            'available' => $available >= $roomsRequested,
+            'available_rooms' => $available,
+            'nights' => $nights,
+            'price_per_night' => self::ROOM_PRICE_PER_NIGHT,
+            'advance_percent' => self::ROOM_ADVANCE_PERCENT,
+            'estimated_total' => $total,
+            'estimated_advance' => $advance,
+        ]);
+    }
+
     private function banquetDateIsBooked(string $date, string $hall = 'Main Banquet Hall'): bool
     {
         return Booking::query()
@@ -78,11 +143,45 @@ class EnquiryController extends Controller
             ->exists();
     }
 
+    private function availableRooms(string $checkIn, string $checkOut, string $roomType = self::ROOM_TYPE): int
+    {
+        $bookedRooms = Booking::query()
+            ->where('status', 'Confirmed')
+            ->get()
+            ->filter(function (Booking $booking) use ($checkIn, $checkOut, $roomType): bool {
+                $details = $booking->details ?? [];
+                $services = $booking->services ?? [];
+
+                if (! in_array('rooms', $services, true)) {
+                    return false;
+                }
+
+                if (($details['room_category'] ?? self::ROOM_TYPE) !== $roomType) {
+                    return false;
+                }
+
+                $bookingCheckIn = $details['rooms_check_in'] ?? null;
+                $bookingCheckOut = $details['rooms_check_out'] ?? null;
+
+                if (! $bookingCheckIn || ! $bookingCheckOut) {
+                    return false;
+                }
+
+                return $checkIn < $bookingCheckOut && $checkOut > $bookingCheckIn;
+            })
+            ->sum(fn (Booking $booking): int => (int) (($booking->details['rooms_needed'] ?? 1)));
+
+        return max(0, self::ROOM_TOTAL_INVENTORY - $bookedRooms);
+    }
+
     private function enquiryType(Request $request): ?string
     {
         return $request->input('event_type')
             ?? $request->input('room_type')
-            ?? $request->input('decor_category')
+            ?? $request->input('decor_area')
+            ?? $request->input('theme')
+            ?? $request->input('meal_type')
+            ?? $request->input('menu_style')
             ?? $request->input('service_level')
             ?? collect($request->input('selected_services', []))->implode(', ');
     }
