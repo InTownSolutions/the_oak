@@ -895,6 +895,28 @@
         border-color: #d99a0c;
     }
 
+    .admin-user-card {
+        display: grid;
+        gap: 5px;
+        margin-top: 26px;
+        padding: 14px;
+        border: 1px solid rgba(217, 154, 12, 0.28);
+        border-radius: 8px;
+        background: rgba(255, 241, 201, 0.08);
+    }
+
+    .admin-user-card span {
+        color: rgba(255, 249, 232, 0.64);
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .admin-user-card strong {
+        color: #fff1c9;
+        line-height: 1.35;
+    }
+
     .admin-nav {
         display: grid;
         gap: 8px;
@@ -913,6 +935,26 @@
     .admin-nav a:hover {
         color: #fff1c9;
         border-color: rgba(217, 154, 12, 0.42);
+        background: rgba(255, 241, 201, 0.08);
+    }
+
+    .admin-logout-form {
+        margin-top: 18px;
+    }
+
+    .admin-logout-form button {
+        width: 100%;
+        min-height: 44px;
+        border: 1px solid rgba(217, 154, 12, 0.42);
+        border-radius: 6px;
+        background: transparent;
+        color: #fff1c9;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 800;
+    }
+
+    .admin-logout-form button:hover {
         background: rgba(255, 241, 201, 0.08);
     }
 
@@ -1695,6 +1737,102 @@
 
     .form-error p + p {
         margin-top: 6px;
+    }
+
+    .auth-shell {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding: clamp(28px, 5vw, 72px) 20px;
+        background:
+            linear-gradient(rgba(255, 250, 240, 0.9), rgba(255, 250, 240, 0.96)),
+            url('{{ asset('images/oak/client/banquet-hero.jpg') }}');
+        background-position: center;
+        background-size: cover;
+    }
+
+    .auth-card {
+        width: min(100%, 520px);
+        padding: clamp(24px, 4vw, 40px);
+        border: 1px solid var(--oak-line);
+        background: rgba(255, 247, 229, 0.96);
+        box-shadow: 0 24px 70px rgba(39, 22, 14, 0.12);
+    }
+
+    .auth-brand {
+        width: fit-content;
+    }
+
+    .auth-heading {
+        margin-top: 34px;
+    }
+
+    .auth-heading h1 {
+        max-width: 460px;
+        font-size: clamp(2.1rem, 5vw, 3.8rem);
+    }
+
+    .auth-heading p:not(.eyebrow) {
+        margin: 16px 0 0;
+        color: var(--oak-muted);
+        line-height: 1.65;
+    }
+
+    .auth-form {
+        display: grid;
+        gap: 16px;
+        margin-top: 28px;
+    }
+
+    .auth-form label {
+        display: grid;
+        gap: 8px;
+        color: var(--oak-bark);
+        font-size: 0.9rem;
+        font-weight: 800;
+    }
+
+    .auth-form input {
+        width: 100%;
+        min-height: 48px;
+        padding: 0 14px;
+        border: 1px solid rgba(121, 80, 0, 0.26);
+        border-radius: 6px;
+        background: var(--oak-ivory);
+        color: var(--oak-ink);
+        font: inherit;
+        outline: none;
+    }
+
+    .auth-form input:focus {
+        border-color: var(--oak-gold);
+        box-shadow: 0 0 0 3px rgba(164, 109, 2, 0.12);
+    }
+
+    .auth-check {
+        display: flex !important;
+        align-items: center;
+        gap: 10px !important;
+        color: var(--oak-muted) !important;
+        font-weight: 700 !important;
+    }
+
+    .auth-check input {
+        width: 18px;
+        min-height: 18px;
+    }
+
+    .auth-switch {
+        margin: 22px 0 0;
+        color: var(--oak-muted);
+        text-align: center;
+    }
+
+    .auth-switch a {
+        color: var(--oak-gold-dark);
+        font-weight: 800;
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
     }
 
     .amenities-section {

@@ -5,6 +5,10 @@
                 <span class="brand-mark">O</span>
                 <span>The Oak Admin</span>
             </a>
+            <div class="admin-user-card">
+                <span>Signed in as</span>
+                <strong>{{ auth()->user()->name }}</strong>
+            </div>
 
             <nav class="admin-nav" aria-label="Admin navigation">
                 <a class="active" href="/admin" data-admin-dashboard-link>Enquiries</a>
@@ -13,6 +17,10 @@
                 <a href="#tariff-season" data-tariff-link>Room Tariffs</a>
                 <a href="/">Customer Site</a>
             </nav>
+            <form class="admin-logout-form" method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
         </aside>
 
         <section class="admin-main">
