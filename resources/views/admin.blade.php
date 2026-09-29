@@ -105,8 +105,8 @@
                             <div class="admin-form-grid">
                                 <label>Check-In <input name="rooms_check_in" type="date"></label>
                                 <label>Check-Out <input name="rooms_check_out" type="date"></label>
-                                <label>Room Type <select name="room_category"><option>Guest Room</option></select></label>
-                                <label>Rooms Needed <input name="rooms_needed" type="number" min="1"></label>
+                                <label>Stay Type <select name="room_category"><option>Cottage</option><option selected>Semi Deluxe Room</option><option>Twin Bed Room</option></select></label>
+                                <label>Units Needed <input name="rooms_needed" type="number" min="1"></label>
                             </div>
                         </article>
 
@@ -281,78 +281,92 @@
                                 <tr>
                                     <th>Season</th>
                                     <th>Date Range</th>
-                                    <th>Room Rate</th>
+                                    <th>Category</th>
+                                    <th>Nightly Price</th>
                                     <th>Adjustment</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <strong>Autumn Wedding Peak</strong>
-                                        <span>High demand stay period</span>
-                                    </td>
-                                    <td>01 Oct 2026 - 20 Nov 2026</td>
-                                    <td>Guest Room</td>
-                                    <td><span class="tariff-badge increase">Seasonal Override</span></td>
-                                    <td><span class="status-pill discussion">Upcoming</span></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>Christmas & New Year</strong>
-                                        <span>Festive holiday pricing</span>
-                                    </td>
-                                    <td>20 Dec 2026 - 03 Jan 2027</td>
-                                    <td>Guest Room</td>
-                                    <td><span class="tariff-badge increase">Festive Override</span></td>
-                                    <td><span class="status-pill new">Active Soon</span></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <strong>Monsoon Stay Offer</strong>
-                                        <span>Low season accommodation offer</span>
-                                    </td>
-                                    <td>01 Jun 2027 - 31 Jul 2027</td>
-                                    <td>Guest Room</td>
-                                    <td><span class="tariff-badge discount">Low Season Override</span></td>
-                                    <td><span class="status-pill contacted">Draft</span></td>
-                                </tr>
+                                @forelse ($roomTariffs as $tariff)
+                                    @php
+                                        $statusText = 'Active';
+                                        $statusClass = 'booked';
+
+                                        if (! $tariff->is_active) {
+                                            $statusText = 'Inactive';
+                                            $statusClass = 'contacted';
+                                        } elseif ($tariff->starts_on->isFuture()) {
+                                            $statusText = 'Upcoming';
+                                            $statusClass = 'discussion';
+                                        } elseif ($tariff->ends_on->isPast()) {
+                                            $statusText = 'Expired';
+                                            $statusClass = 'closed';
+                                        }
+
+                                        $badgeClass = $tariff->tariff_type === 'Low Season Room Rate' ? 'discount' : 'increase';
+                                    @endphp
+                                    <tr>
+                                        <td>
+                                            <strong>{{ $tariff->rule_name }}</strong>
+                                            <span>{{ $tariff->note ?: 'Applies when the stay dates overlap this tariff period.' }}</span>
+                                        </td>
+                                        <td>{{ $tariff->starts_on->format('d M Y') }} - {{ $tariff->ends_on->format('d M Y') }}</td>
+                                        <td>{{ $tariff->room_category }}</td>
+                                        <td>INR {{ number_format((float) $tariff->price_per_night) }}</td>
+                                        <td><span class="tariff-badge {{ $badgeClass }}">{{ $tariff->tariff_type }}</span></td>
+                                        <td><span class="status-pill {{ $statusClass }}">{{ $statusText }}</span></td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="6">
+                                            <strong>No tariff rules yet</strong>
+                                            <span>Add a rule to change room/cottage prices for a specific category and date range.</span>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
 
-                    <form class="tariff-form" action="#" method="POST">
+                    <form class="tariff-form" action="{{ route('admin.room-tariffs.store') }}" method="POST">
                         @csrf
                         <h3>Add Tariff Rule</h3>
                         <label>
                             Rule Name
-                            <input type="text" value="Festive Room Rate">
+                            <input name="rule_name" type="text" value="{{ old('rule_name', 'Festive Room Rate') }}" required>
                         </label>
                         <div class="admin-form-grid">
-                            <label>Start Date <input type="date" value="2026-10-01"></label>
-                            <label>End Date <input type="date" value="2026-10-24"></label>
+                            <label>Start Date <input name="starts_on" type="date" value="{{ old('starts_on') }}" required></label>
+                            <label>End Date <input name="ends_on" type="date" value="{{ old('ends_on') }}" required></label>
                         </div>
                         <label>
-                            Apply To
-                            <select>
-                                <option>Guest Room</option>
+                            Apply To Category
+                            <select name="room_category" required>
+                                <option value="Cottage" @selected(old('room_category') === 'Cottage')>Cottage</option>
+                                <option value="Semi Deluxe Room" @selected(old('room_category', 'Semi Deluxe Room') === 'Semi Deluxe Room')>Semi Deluxe Room</option>
+                                <option value="Twin Bed Room" @selected(old('room_category') === 'Twin Bed Room')>Twin Bed Room</option>
                             </select>
                         </label>
                         <div class="admin-form-grid">
                             <label>Tariff Type
-                                <select>
-                                    <option>Seasonal Room Rate</option>
-                                    <option>Festive Room Rate</option>
-                                    <option>Low Season Room Rate</option>
+                                <select name="tariff_type" required>
+                                    <option value="Seasonal Room Rate" @selected(old('tariff_type') === 'Seasonal Room Rate')>Seasonal Room Rate</option>
+                                    <option value="Festive Room Rate" @selected(old('tariff_type', 'Festive Room Rate') === 'Festive Room Rate')>Festive Room Rate</option>
+                                    <option value="Low Season Room Rate" @selected(old('tariff_type') === 'Low Season Room Rate')>Low Season Room Rate</option>
                                 </select>
                             </label>
-                            <label>Room Price <input type="text" value="INR 4,000"></label>
+                            <label>Nightly Price <input name="price_per_night" type="number" min="0" step="1" value="{{ old('price_per_night') }}" placeholder="Example: 4500" required></label>
                         </div>
                         <label>
                             Note For Admin
-                            <textarea rows="3">Apply this room rate when the selected stay dates fall inside this tariff period.</textarea>
+                            <textarea name="note" rows="3" placeholder="Example: Christmas and New Year pricing for this stay type">{{ old('note') }}</textarea>
                         </label>
-                        <button class="primary-action form-action" type="button">Save Tariff Rule</button>
+                        <label class="inline-check">
+                            <input name="is_active" type="checkbox" value="1" @checked(old('is_active', '1'))>
+                            Keep this tariff active
+                        </label>
+                        <button class="primary-action form-action" type="submit">Save Tariff Rule</button>
                     </form>
                 </div>
             </section>
@@ -470,8 +484,8 @@
                                 <div class="admin-form-grid">
                                     <label>Check-In <input name="rooms_check_in" id="bookingRoomCheckIn" type="date"></label>
                                     <label>Check-Out <input name="rooms_check_out" id="bookingRoomCheckOut" type="date"></label>
-                                    <label>Room Type <select name="room_category"><option>Guest Room</option></select></label>
-                                    <label>Rooms Needed <input name="rooms_needed" id="bookingRoomsNeeded" type="number" min="1"></label>
+                                    <label>Stay Type <select name="room_category" id="bookingRoomCategory"><option>Cottage</option><option selected>Semi Deluxe Room</option><option>Twin Bed Room</option></select></label>
+                                    <label>Units Needed <input name="rooms_needed" id="bookingRoomsNeeded" type="number" min="1"></label>
                                 </div>
                             </article>
 
@@ -641,6 +655,7 @@
             document.getElementById('bookingBanquetGuests').value = record.guests !== 'Not shared' ? record.guests : '';
             document.getElementById('bookingRoomCheckIn').value = details.check_in || '';
             document.getElementById('bookingRoomCheckOut').value = details.check_out || '';
+            document.getElementById('bookingRoomCategory').value = details.room_type || details.room_category || 'Semi Deluxe Room';
             document.getElementById('bookingRoomsNeeded').value = details.rooms || '';
             document.getElementById('bookingTotalAmount').value = details.estimated_total || '';
             document.getElementById('bookingAdvanceAmount').value = details.estimated_advance || '';

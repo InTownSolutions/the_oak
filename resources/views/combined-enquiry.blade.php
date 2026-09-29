@@ -130,12 +130,14 @@
                             <label>
                                 Room Category
                                 <select name="room_type" form="combinedEnquiryForm">
-                                    <option>Guest Room</option>
-                                    <option>Not sure yet</option>
+                                    <option>Cottage</option>
+                                    <option selected>Semi Deluxe Room</option>
+                                    <option>Twin Bed Room</option>
+                                    <option value="">Not sure yet</option>
                                 </select>
                             </label>
                             <label>
-                                Rooms Needed
+                                Units Needed
                                 <input type="number" name="rooms" min="1" placeholder="Example: 4" form="combinedEnquiryForm">
                             </label>
                             <label>

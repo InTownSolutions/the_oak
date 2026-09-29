@@ -40,9 +40,9 @@
                 >
                 <span class="service-badge">Accommodation</span>
                 <div>
-                    <h2>Rooms</h2>
-                    <p>Guest rooms with attached bathrooms, private sitting area, balcony, and complimentary breakfast.</p>
-                    <span class="service-link">View Rooms</span>
+                    <h2>Rooms/Cottage</h2>
+                    <p>Cottage, semi deluxe, and twin bed stay options with breakfast and essential guest facilities.</p>
+                    <span class="service-link">View Rooms/Cottage</span>
                 </div>
             </a>
 

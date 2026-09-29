@@ -1,4 +1,4 @@
-<x-layouts.app title="Rooms | The Oak">
+<x-layouts.app title="Rooms/Cottage | The Oak">
     <main class="site-shell">
         <nav class="topbar" aria-label="Primary navigation">
             <a class="brand" href="/">
@@ -8,7 +8,7 @@
 
             <div class="nav-links">
                 <a href="/">All Services</a>
-                <a href="#room-categories">Rooms</a>
+                <a href="#room-categories">Rooms/Cottage</a>
                 <a href="#restaurant-menu">Restaurant Menu</a>
                 <a href="#room-facilities">Facilities</a>
                 <a href="#enquiry">Enquire</a>
@@ -18,15 +18,15 @@
         <section class="hero-section room-hero">
             <div class="hero-copy">
                 <p class="eyebrow">Accommodation</p>
-                <h1>Comfortable Stays Near The Oak</h1>
+                <h1>Comfortable Rooms And Cottage Stays</h1>
                 <p>
                     Stay close to the resort in calm, comfortable accommodation surrounded by natural beauty.
                     Select your stay dates, check apparent availability, and send a booking request for admin
                     confirmation.
                 </p>
                 <div class="hero-actions">
-                    <a class="primary-action" href="#enquiry">Enquire About Rooms</a>
-                    <a class="ghost-action" href="#room-categories">View Room Types</a>
+                    <a class="primary-action" href="#enquiry">Enquire About Stay</a>
+                    <a class="ghost-action" href="#room-categories">View Stay Options</a>
                 </div>
             </div>
 
@@ -40,27 +40,67 @@
 
         <section id="room-categories" class="room-categories">
             <div class="section-heading">
-                <p class="eyebrow">Rooms & Restaurant</p>
-                <h2>Choose The Option That Feels Right</h2>
+                <p class="eyebrow">Rooms/Cottage & Restaurant</p>
+                <h2>Choose The Stay That Feels Right</h2>
             </div>
 
             <div class="room-category-grid">
                 <article class="room-category-card">
                     <img
-                        src="{{ asset('images/oak/client/room-deluxe.jpg') }}"
-                        alt="The Oak guest room"
+                        src="{{ asset('images/oak/client/banquet-garden.jpg') }}"
+                        alt="The Oak cottage stay option"
                     >
                     <div>
                         <span>01</span>
-                        <h3>Guest Room</h3>
-                        <strong class="room-price">INR 3,500 - INR 4,000 / night</strong>
-                        <p>A comfortable and convenient accommodation option offering a pleasant stay with essential amenities and quality service.</p>
+                        <h3>Cottage</h3>
+                        <strong class="room-price">INR 3,000 / night</strong>
+                        <p>A peaceful stay option for guests who prefer a quieter resort experience close to nature.</p>
                         <ul>
-                            <li>8 rooms available in total</li>
-                            <li>Spacious and comfortable bedrooms with attached bathrooms</li>
-                            <li>Private sitting area with balcony</li>
+                            <li>4 cottages available</li>
+                            <li>Comfortable cottage-style accommodation</li>
+                            <li>Good for relaxed stays and family visits</li>
                             <li>Complimentary breakfast included</li>
                             <li>24/7 water and power availability</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="room-category-card">
+                    <img
+                        src="{{ asset('images/oak/client/room-deluxe.jpg') }}"
+                        alt="The Oak semi deluxe room"
+                    >
+                    <div>
+                        <span>02</span>
+                        <h3>Semi Deluxe Room</h3>
+                        <strong class="room-price">INR 3,500 / night</strong>
+                        <p>A comfortable room for travellers who want a calm stay with essential amenities and quality service.</p>
+                        <ul>
+                            <li>4 rooms available</li>
+                            <li>Spacious bedroom with attached bathroom</li>
+                            <li>Private sitting area with balcony</li>
+                            <li>Complimentary breakfast included</li>
+                            <li>High-speed Wi-Fi connectivity</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="room-category-card">
+                    <img
+                        src="{{ asset('images/oak/client/room-twin.jpg') }}"
+                        alt="The Oak twin bed room"
+                    >
+                    <div>
+                        <span>03</span>
+                        <h3>Twin Bed Room</h3>
+                        <strong class="room-price">INR 4,000 / night</strong>
+                        <p>A twin-bed stay option suited for friends, family members, or event guests sharing a room.</p>
+                        <ul>
+                            <li>2 rooms available</li>
+                            <li>Twin bed setup</li>
+                            <li>Attached bathroom</li>
+                            <li>Complimentary breakfast included</li>
+                            <li>Clean and well-maintained facilities</li>
                         </ul>
                     </div>
                 </article>
@@ -71,7 +111,7 @@
                         alt="The Oak restaurant dining space"
                     >
                     <div>
-                        <span>02</span>
+                        <span>04</span>
                         <h3>The Oak Restaurant</h3>
                         <p>A warm dining space offering a delicious variety of multi-cuisine dishes in a comfortable indoor and outdoor seating ambience.</p>
                         <ul>
@@ -172,7 +212,7 @@
         <section id="enquiry" class="enquiry-section">
             <div class="enquiry-intro">
                 <p class="eyebrow">Start A Conversation</p>
-                <h2>Room Enquiry</h2>
+                <h2>Rooms/Cottage Enquiry</h2>
                 <p>
                     Choose your dates and number of rooms. Availability and amount shown here are subject to admin
                     confirmation after the team contacts you.
@@ -230,13 +270,15 @@
 
                 <div class="field-row">
                     <div class="field-group">
-                        <label for="rooms">Rooms Needed</label>
-                        <input id="rooms" name="rooms" type="number" min="1" value="{{ old('rooms', 1) }}" placeholder="No. of rooms" data-room-count required>
+                        <label for="rooms">Units Needed</label>
+                        <input id="rooms" name="rooms" type="number" min="1" value="{{ old('rooms', 1) }}" placeholder="No. of rooms/cottages" data-room-count required>
                     </div>
                     <div class="field-group">
-                        <label for="room_type">Room Type</label>
-                        <select id="room_type" name="room_type">
-                            <option @selected(old('room_type') === 'Guest Room')>Guest Room</option>
+                        <label for="room_type">Stay Type</label>
+                        <select id="room_type" name="room_type" data-room-type>
+                            <option value="Cottage" @selected(old('room_type') === 'Cottage')>Cottage - INR 3,000</option>
+                            <option value="Semi Deluxe Room" @selected(old('room_type', 'Semi Deluxe Room') === 'Semi Deluxe Room')>Semi Deluxe Room - INR 3,500</option>
+                            <option value="Twin Bed Room" @selected(old('room_type') === 'Twin Bed Room')>Twin Bed Room - INR 4,000</option>
                         </select>
                     </div>
                 </div>
@@ -244,7 +286,7 @@
                 <div class="room-booking-summary">
                     <div>
                         <span>Price Per Night</span>
-                        <strong>INR 3,500+</strong>
+                        <strong data-room-price>INR 3,500</strong>
                     </div>
                     <div>
                         <span>Estimated Total</span>
@@ -291,7 +333,7 @@
                     <textarea id="message" name="message" rows="4" placeholder="Tell us about your stay requirements">{{ old('message') }}</textarea>
                 </div>
 
-                <button class="primary-action form-action" type="submit" data-room-submit disabled>Send Room Booking Request</button>
+                <button class="primary-action form-action" type="submit" data-room-submit disabled>Send Stay Booking Request</button>
             </form>
         </section>
 
@@ -299,13 +341,20 @@
             const roomCheckIn = document.querySelector('[data-room-check-in]');
             const roomCheckOut = document.querySelector('[data-room-check-out]');
             const roomCount = document.querySelector('[data-room-count]');
+            const roomType = document.querySelector('[data-room-type]');
             const roomAvailability = document.querySelector('[data-room-availability]');
             const roomSubmit = document.querySelector('[data-room-submit]');
+            const roomPrice = document.querySelector('[data-room-price]');
             const roomTotal = document.querySelector('[data-room-total]');
             const roomAdvance = document.querySelector('[data-room-advance]');
             const roomTotalInput = document.querySelector('[data-room-total-input]');
             const roomAdvanceInput = document.querySelector('[data-room-advance-input]');
             let roomAvailabilityRequest;
+            const roomRates = {
+                'Cottage': 3000,
+                'Semi Deluxe Room': 3500,
+                'Twin Bed Room': 4000,
+            };
 
             function formatRoomAmount(amount) {
                 return `INR ${Number(amount).toLocaleString('en-IN')}`;
@@ -315,6 +364,7 @@
                 roomAvailability.classList.remove('available', 'unavailable', 'neutral');
                 roomAvailability.classList.add('neutral');
                 roomAvailability.textContent = message;
+                roomPrice.textContent = roomType.value ? formatRoomAmount(roomRates[roomType.value]) : 'Choose stay type';
                 roomTotal.textContent = 'Choose dates';
                 roomAdvance.textContent = '25% after availability';
                 roomTotalInput.value = '';
@@ -326,8 +376,9 @@
                 const checkIn = roomCheckIn.value;
                 const checkOut = roomCheckOut.value;
                 const rooms = roomCount.value;
+                const selectedRoomType = roomType.value;
 
-                if (!checkIn || !checkOut || !rooms) {
+                if (!checkIn || !checkOut || !rooms || !selectedRoomType) {
                     resetRoomAvailability();
                     return;
                 }
@@ -350,24 +401,27 @@
 
                 roomAvailabilityRequest = new AbortController();
 
-                fetch(`{{ route('rooms.availability') }}?check_in=${encodeURIComponent(checkIn)}&check_out=${encodeURIComponent(checkOut)}&rooms=${encodeURIComponent(rooms)}&room_type=Guest%20Room`, {
+                fetch(`{{ route('rooms.availability') }}?check_in=${encodeURIComponent(checkIn)}&check_out=${encodeURIComponent(checkOut)}&rooms=${encodeURIComponent(rooms)}&room_type=${encodeURIComponent(selectedRoomType)}`, {
                     headers: { 'Accept': 'application/json' },
                     signal: roomAvailabilityRequest.signal,
                 })
                     .then((response) => response.json())
                     .then((data) => {
                         roomAvailability.classList.remove('available', 'unavailable', 'neutral');
+                        roomPrice.textContent = formatRoomAmount(data.price_per_night);
                         roomTotal.textContent = formatRoomAmount(data.estimated_total);
                         roomAdvance.textContent = formatRoomAmount(data.estimated_advance);
                         roomTotalInput.value = data.estimated_total;
                         roomAdvanceInput.value = data.estimated_advance;
 
+                        const tariffNote = data.tariff_applied ? ` ${data.tariff_name} tariff applied.` : '';
+
                         if (data.available) {
-                            roomAvailability.textContent = `${data.available_rooms} room(s) appear available for ${data.nights} night(s). Submit your request and our team will call to confirm.`;
+                            roomAvailability.textContent = `${data.available_rooms} ${data.room_type} unit(s) appear available for ${data.nights} night(s).${tariffNote} Submit your request and our team will call to confirm.`;
                             roomAvailability.classList.add('available');
                             roomSubmit.disabled = false;
                         } else {
-                            roomAvailability.textContent = `Only ${data.available_rooms} room(s) appear available for these dates. Please reduce rooms or choose different dates.`;
+                            roomAvailability.textContent = `Only ${data.available_rooms} ${data.room_type} unit(s) appear available for these dates.${tariffNote} Please reduce units or choose different dates.`;
                             roomAvailability.classList.add('unavailable');
                             roomSubmit.disabled = true;
                         }
@@ -384,7 +438,7 @@
                     });
             }
 
-            [roomCheckIn, roomCheckOut, roomCount].forEach((input) => {
+            [roomCheckIn, roomCheckOut, roomCount, roomType].forEach((input) => {
                 input.addEventListener('change', updateRoomAvailability);
                 input.addEventListener('input', updateRoomAvailability);
             });

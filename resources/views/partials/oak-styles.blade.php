@@ -1158,6 +1158,11 @@
         color: #285c28;
     }
 
+    .status-pill.closed {
+        background: rgba(148, 55, 42, 0.1);
+        color: #8b2f25;
+    }
+
     .booking-card-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2007,6 +2012,18 @@
     .tariff-form textarea {
         padding: 12px;
         resize: vertical;
+    }
+
+    .tariff-form .inline-check {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .tariff-form .inline-check input {
+        width: 18px;
+        min-height: 18px;
+        accent-color: var(--oak-gold);
     }
 
     .admin-availability-note {

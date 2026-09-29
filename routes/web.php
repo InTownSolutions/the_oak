@@ -47,4 +47,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/enquiries/{enquiry}', [AdminController::class, 'updateEnquiry'])->name('admin.enquiries.update');
     Route::post('/admin/enquiries/{enquiry}/bookings', [AdminController::class, 'storeBooking'])->name('admin.bookings.store');
     Route::post('/admin/bookings', [AdminController::class, 'storeManualBooking'])->name('admin.bookings.manual-store');
+    Route::post('/admin/room-tariffs', [AdminController::class, 'storeRoomTariff'])->name('admin.room-tariffs.store');
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\BookingConfirmedMail;
 use App\Models\Booking;
 use App\Models\Enquiry;
+use App\Models\RoomTariff;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -21,6 +22,10 @@ class AdminController extends Controller
         $allBookings = Booking::query()->latest()->get();
         $manualBookings = $allBookings->whereNull('enquiry_id');
         $bookings = $allBookings->take(8);
+        $roomTariffs = RoomTariff::query()
+            ->orderByDesc('is_active')
+            ->orderByDesc('starts_on')
+            ->get();
         $adminRows = $enquiries
             ->map(function (Enquiry $enquiry): array {
                 $latestBooking = $enquiry->bookings->sortByDesc('created_at')->first();
@@ -113,6 +118,7 @@ class AdminController extends Controller
         return view('admin', [
             'enquiries' => $enquiries,
             'bookings' => $bookings,
+            'roomTariffs' => $roomTariffs,
             'adminRows' => $adminRows,
             'recordPayloads' => $recordPayloads,
             'stats' => [
@@ -204,6 +210,27 @@ class AdminController extends Controller
         return back()->with('success', 'Manual booking saved for '.$validated['customer_name'].'.');
     }
 
+    public function storeRoomTariff(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'rule_name' => ['required', 'string', 'max:120'],
+            'room_category' => ['required', 'string', Rule::in(['Cottage', 'Semi Deluxe Room', 'Twin Bed Room'])],
+            'starts_on' => ['required', 'date'],
+            'ends_on' => ['required', 'date', 'after_or_equal:starts_on'],
+            'tariff_type' => ['required', 'string', Rule::in(['Seasonal Room Rate', 'Festive Room Rate', 'Low Season Room Rate'])],
+            'price_per_night' => ['required', 'numeric', 'min:0'],
+            'note' => ['nullable', 'string', 'max:1000'],
+            'is_active' => ['nullable', 'boolean'],
+        ]);
+
+        RoomTariff::create([
+            ...$validated,
+            'is_active' => $request->boolean('is_active', true),
+        ]);
+
+        return back()->with('success', 'Room tariff rule saved for '.$validated['room_category'].'.');
+    }
+
     private function bookingRules(): array
     {
         return [
@@ -219,7 +246,7 @@ class AdminController extends Controller
             'banquet_guests' => ['nullable', 'integer', 'min:1'],
             'rooms_check_in' => ['nullable', 'date'],
             'rooms_check_out' => ['nullable', 'date', 'after_or_equal:rooms_check_in'],
-            'room_category' => ['nullable', 'string', 'max:120'],
+            'room_category' => ['nullable', 'string', Rule::in(['Cottage', 'Semi Deluxe Room', 'Twin Bed Room'])],
             'rooms_needed' => ['nullable', 'integer', 'min:1'],
             'decoration_area' => ['nullable', 'string', 'max:120'],
             'decoration_theme' => ['nullable', 'string', 'max:160'],
