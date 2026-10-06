@@ -231,6 +231,21 @@
                 </div>
             @endif
 
+            @if ($publicTariffNotices->isNotEmpty())
+                <div class="room-tariff-notice" aria-label="Seasonal room tariff notice">
+                    <div>
+                        <span>Seasonal Tariff Notice</span>
+                        <strong>Some stay rates change during selected dates.</strong>
+                    </div>
+                    <ul>
+                        @foreach ($publicTariffNotices as $notice)
+                            <li>{{ $notice }}</li>
+                        @endforeach
+                    </ul>
+                    <p>The applicable estimate will update automatically after you choose your stay type and dates.</p>
+                </div>
+            @endif
+
             <form class="enquiry-form" method="POST" action="{{ route('enquiries.store') }}">
                 @csrf
                 <input type="hidden" name="service" value="Rooms">
@@ -305,13 +320,21 @@
                 <div class="upi-payment-box">
                     <div>
                         <p class="eyebrow">Admin Confirmation</p>
-                        <h3>Advance Collected By The Team</h3>
+                        <h3>Advance After Confirmation</h3>
                         <p>
-                            A 25% advance payment is required to reserve the booking date. The Oak team will call
-                            after this request and guide the customer through payment and confirmation.
+                            Pay the advance to start your booking request. The Oak team will call you to confirm and complete the booking.
                         </p>
                     </div>
                     <div>
+                        <div class="qr-frame" aria-label="The Oak UPI QR code">
+                            <img
+                                src="{{ asset('images/oak/oak_qr.png') }}"
+                                alt="The Oak UPI QR code"
+                                onload="this.nextElementSibling.hidden = true"
+                                onerror="this.hidden = true"
+                            >
+                            <span>QR</span>
+                        </div>
                         <span>Booking Advance</span>
                         <strong>25%</strong>
                     </div>

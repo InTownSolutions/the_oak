@@ -13,9 +13,7 @@ Route::get('/banquet-hall', function () {
     return view('banquet-hall');
 })->name('banquet-hall');
 
-Route::get('/rooms', function () {
-    return view('rooms');
-})->name('rooms');
+Route::get('/rooms', [EnquiryController::class, 'rooms'])->name('rooms');
 
 Route::get('/decoration', function () {
     return view('decoration');

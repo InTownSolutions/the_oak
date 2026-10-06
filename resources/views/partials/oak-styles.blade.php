@@ -1654,6 +1654,52 @@
         gap: 12px;
     }
 
+    .room-tariff-notice {
+        display: grid;
+        gap: 12px;
+        margin: 0 0 18px;
+        padding: 18px;
+        border: 1px solid rgba(164, 109, 2, 0.24);
+        border-radius: 8px;
+        background: #fff7e5;
+        color: var(--oak-ink);
+    }
+
+    .room-tariff-notice div {
+        display: grid;
+        gap: 4px;
+    }
+
+    .room-tariff-notice span {
+        color: var(--oak-gold-dark);
+        font-size: 0.78rem;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+
+    .room-tariff-notice strong {
+        color: var(--oak-bark);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.28rem;
+        font-weight: 700;
+    }
+
+    .room-tariff-notice ul {
+        display: grid;
+        gap: 7px;
+        margin: 0;
+        padding-left: 18px;
+        color: var(--oak-muted);
+        line-height: 1.55;
+    }
+
+    .room-tariff-notice p {
+        margin: 0;
+        color: var(--oak-muted);
+        font-size: 0.92rem;
+        line-height: 1.55;
+    }
+
     .room-booking-summary div,
     .upi-payment-box {
         border: 1px solid var(--oak-line);
@@ -1683,7 +1729,7 @@
 
     .upi-payment-box {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(180px, 0.34fr);
+        grid-template-columns: minmax(0, 1fr) minmax(150px, 0.28fr);
         gap: 18px;
         padding: 18px;
     }
@@ -1707,6 +1753,30 @@
         border: 1px dashed rgba(121, 80, 0, 0.32);
         border-radius: 6px;
         text-align: center;
+    }
+
+    .qr-frame {
+        display: grid;
+        width: 96px;
+        aspect-ratio: 1;
+        place-items: center;
+        margin: 0 auto 4px;
+        border: 1px solid rgba(121, 80, 0, 0.24);
+        border-radius: 6px;
+        background: rgba(255, 250, 240, 0.86);
+        color: var(--oak-gold-dark);
+        font-size: 0.78rem;
+        font-weight: 900;
+    }
+
+    .qr-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .qr-frame span {
+        grid-area: 1 / 1;
     }
 
     .form-action {

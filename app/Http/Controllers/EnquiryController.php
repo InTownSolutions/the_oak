@@ -13,6 +13,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 use Carbon\Carbon;
 use Throwable;
 
@@ -30,6 +31,28 @@ class EnquiryController extends Controller
         'Twin Bed Room' => 2,
     ];
     private const ROOM_ADVANCE_PERCENT = 25;
+
+    public function rooms(): View
+    {
+        $today = Carbon::today();
+
+        $publicTariffNotices = RoomTariff::query()
+            ->where('is_active', true)
+            ->whereDate('ends_on', '>=', $today)
+            ->orderBy('starts_on')
+            ->limit(4)
+            ->get()
+            ->map(function (RoomTariff $tariff) use ($today): string {
+                $dateRange = $tariff->starts_on->format('d M Y').' to '.$tariff->ends_on->format('d M Y');
+                $prefix = $tariff->starts_on->lte($today) ? 'currently applies' : 'is scheduled';
+
+                return "{$tariff->tariff_type} {$prefix} for {$tariff->room_category} from {$dateRange}.";
+            });
+
+        return view('rooms', [
+            'publicTariffNotices' => $publicTariffNotices,
+        ]);
+    }
 
     public function store(Request $request): RedirectResponse
     {
