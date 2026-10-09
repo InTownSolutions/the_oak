@@ -29,8 +29,8 @@
 
             <div class="decoration-hero-image" aria-label="Decoration preview">
                 <img
-                    src="{{ asset('images/oak/client/banquet-lawn.jpg') }}"
-                    alt="The Oak outdoor event lawn"
+                    src="{{ asset('images/oak/client/decoration-hero.jpg') }}"
+                    alt="The Oak decorated banquet entrance"
                 >
             </div>
         </section>
@@ -44,8 +44,8 @@
             <div class="decor-category-grid">
                 <article class="decor-category-card">
                     <img
-                        src="{{ asset('images/oak/client/banquet-hero.jpg') }}"
-                        alt="The Oak banquet entrance for wedding decoration planning"
+                        src="{{ asset('images/oak/client/decoration-stage.jpg') }}"
+                        alt="The Oak floral stage decoration"
                     >
                     <div>
                         <span>01</span>
@@ -61,8 +61,8 @@
 
                 <article class="decor-category-card">
                     <img
-                        src="{{ asset('images/oak/client/banquet-garden.jpg') }}"
-                        alt="The Oak garden event space for celebration decoration"
+                        src="{{ asset('images/oak/client/decoration-entrance.jpg') }}"
+                        alt="The Oak entrance decoration with lanterns and flowers"
                     >
                     <div>
                         <span>02</span>
@@ -78,8 +78,8 @@
 
                 <article class="decor-category-card">
                     <img
-                        src="{{ asset('images/oak/client/banquet-entrance.jpg') }}"
-                        alt="The Oak event entrance for simple decoration setup"
+                        src="{{ asset('images/oak/client/decoration-arch.jpg') }}"
+                        alt="The Oak outdoor floral arch decoration"
                     >
                     <div>
                         <span>03</span>
@@ -93,6 +93,14 @@
                     </div>
                 </article>
             </div>
+        </section>
+
+        <section class="decor-gallery" aria-label="Decoration photo gallery">
+            <img src="{{ asset('images/oak/client/decoration-hero.jpg') }}" alt="The Oak decorated entrance setup">
+            <img src="{{ asset('images/oak/client/decoration-entrance.jpg') }}" alt="Lantern and floral entrance decoration at The Oak">
+            <img src="{{ asset('images/oak/client/decoration-stage.jpg') }}" alt="Floral stage decoration at The Oak">
+            <img src="{{ asset('images/oak/client/decoration-arch.jpg') }}" alt="Outdoor floral arch at The Oak">
+            <img src="{{ asset('images/oak/client/decoration-evening.jpg') }}" alt="Evening event lighting and decor at The Oak">
         </section>
 
         <section class="details-section decoration-details">
