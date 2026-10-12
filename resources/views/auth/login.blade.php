@@ -41,7 +41,6 @@
                 <button class="primary-action form-action" type="submit">Login</button>
             </form>
 
-            <p class="auth-switch">Need an admin account? <a href="{{ route('register') }}">Create one</a></p>
         </section>
     </main>
 </x-layouts.app>
