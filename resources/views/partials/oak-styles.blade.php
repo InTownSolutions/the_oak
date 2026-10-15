@@ -69,6 +69,11 @@
         text-decoration: none;
     }
 
+    .brand-logo {
+        width: clamp(118px, 12vw, 150px);
+        height: auto;
+    }
+
     .brand-mark {
         display: grid;
         width: 38px;
@@ -908,6 +913,11 @@
         font-family: Georgia, 'Times New Roman', serif;
         font-size: 1.2rem;
         text-decoration: none;
+    }
+
+    .admin-brand-logo {
+        width: 136px;
+        height: auto;
     }
 
     .admin-sidebar .brand-mark {

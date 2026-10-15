@@ -2,8 +2,7 @@
     <main class="auth-shell">
         <section class="auth-card">
             <a class="brand auth-brand" href="/">
-                <span class="brand-mark">O</span>
-                <span>The Oak Shillong</span>
+                <img class="brand-logo" src="{{ asset('images/oak/the-oak-logo.png') }}" alt="The Oak Banquet Hall">
             </a>
 
             <div class="auth-heading">

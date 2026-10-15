@@ -2,8 +2,8 @@
     <main class="admin-shell">
         <aside class="admin-sidebar">
             <a class="admin-brand" href="/admin">
-                <span class="brand-mark">O</span>
-                <span>The Oak Admin</span>
+                <img class="admin-brand-logo" src="{{ asset('images/oak/the-oak-logo.png') }}" alt="The Oak Banquet Hall">
+                <span>Admin</span>
             </a>
             <div class="admin-user-card">
                 <span>Signed in as</span>

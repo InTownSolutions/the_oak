@@ -2,8 +2,7 @@
     <main class="site-shell booking-gateway">
         <nav class="topbar" aria-label="Primary navigation">
             <a class="brand" href="/">
-                <span class="brand-mark">O</span>
-                <span>The Oak</span>
+                <img class="brand-logo" src="{{ asset('images/oak/the-oak-logo.png') }}" alt="The Oak Banquet Hall">
             </a>
 
         </nav>
